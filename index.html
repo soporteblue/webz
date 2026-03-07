@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlueTeam México | Ciberseguridad Ofensiva y Defensiva</title>
     <style>
-        /* Tipografía Empresarial Limpia */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@500&display=swap');
 
         body {
-            /* Degradado azul pizarra profundo (estilo corporativo moderno) */
-            background: linear-gradient(135deg, #0f172a 0%, #020617 100%); 
+            /* Fondo oscuro con cuadrícula cibernética (Tech Grid) */
+            background-color: #020617;
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
             color: #e2e8f0;
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -21,19 +24,44 @@
             min-height: 100vh;
             line-height: 1.6;
             box-sizing: border-box;
+            overflow-x: hidden;
         }
+
+        /* Animación de entrada suave */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .container {
             max-width: 800px;
             width: 100%;
             padding: 50px 60px;
-            background: rgba(30, 41, 59, 0.7); /* Tarjeta oscura semi-transparente */
-            border: 1px solid rgba(255, 255, 255, 0.05); /* Borde ultra sutil */
-            border-top: 4px solid #3b82f6; /* Acento azul de confianza */
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); /* Sombra elegante */
+            background: rgba(15, 23, 42, 0.85); /* Tarjeta oscura */
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-top: 4px solid #38bdf8; /* Azul eléctrico */
+            /* Efecto Glow de Alta Tecnología */
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.1), 0 25px 50px -12px rgba(0, 0, 0, 0.8);
             border-radius: 12px;
-            backdrop-filter: blur(10px); /* Efecto cristalino de alta gama */
+            backdrop-filter: blur(15px);
             box-sizing: border-box;
+            animation: fadeInUp 0.8s ease-out forwards;
+            position: relative;
         }
+
+        /* Cursor parpadeante estilo terminal */
+        .terminal-prompt {
+            font-family: 'Fira Code', monospace;
+            color: #38bdf8;
+            margin-right: 8px;
+        }
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
         h1 {
             color: #ffffff;
             font-size: 2.6em;
@@ -41,68 +69,82 @@
             margin-top: 0;
             margin-bottom: 5px;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
         }
-        .brand-accent {
-            color: #3b82f6; /* Azul corporativo para la palabra BlueTeam */
-        }
+        
         h2 {
-            color: #94a3b8; /* Gris azulado claro */
+            color: #94a3b8;
             font-size: 1.2em;
             font-weight: 300;
             margin-bottom: 35px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 20px;
         }
+
         .intro-text {
             color: #cbd5e1;
             font-size: 1.1em;
             margin-bottom: 30px;
         }
+
         .service-block {
             margin-bottom: 25px;
-            background: rgba(15, 23, 42, 0.4);
-            padding: 20px;
+            background: linear-gradient(90deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0) 100%);
+            padding: 20px 25px;
             border-radius: 8px;
             border-left: 3px solid #38bdf8;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
+
+        .service-block:hover {
+            transform: translateX(10px);
+            border-left: 3px solid #60a5fa;
+            background: linear-gradient(90deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 0) 100%);
+        }
+
         h3 {
-            color: #e0e7ff;
+            color: #f8fafc;
             font-size: 1.25em;
             font-weight: 600;
             margin-top: 0;
             margin-bottom: 8px;
         }
+
         .service-block p {
             color: #94a3b8;
             font-size: 1em;
             margin: 0;
         }
+
         .cta-button {
             display: inline-block;
-            margin-top: 15px;
-            padding: 16px 32px;
-            background-color: #2563eb; /* Azul corporativo principal */
+            margin-top: 20px;
+            padding: 16px 35px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
             border-radius: 6px;
             transition: all 0.3s ease;
-            font-size: 1.05em;
-            box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4); /* Resplandor sutil */
+            font-size: 1.1em;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
+
         .cta-button:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
         }
+
         .footer {
             margin-top: 40px;
             font-size: 0.85em;
             color: #475569;
             text-align: center;
         }
-        
-        /* Ajuste para pantallas de celular */
+
         @media (max-width: 600px) {
             .container { padding: 30px 20px; }
             h1 { font-size: 2em; }
@@ -111,7 +153,7 @@
 </head>
 <body>
     <div class="container">
-        <h1><span class="brand-accent">BlueTeam</span> México</h1>
+        <h1><span class="terminal-prompt">>_<span class="blink">_</span></span> BlueTeam México</h1>
         <h2>Firma de Ciberseguridad Ofensiva y Defensiva.</h2>
         
         <p class="intro-text">Protegemos la continuidad operativa de infraestructuras críticas. Validamos la eficacia de tus defensas mediante simulaciones de ataque reales y fortalecemos tu red corporativa ante amenazas avanzadas.</p>
@@ -134,4 +176,3 @@
     </div>
 </body>
 </html>
-
