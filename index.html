@@ -5,93 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlueTeam México | Ciberseguridad Ofensiva y Defensiva</title>
     <style>
-        /* Tipografía Empresarial (Sans-Serif limpia) */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        /* Tipografía Empresarial Limpia */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
         body {
-            background-color: #f4f7f6; /* Fondo gris muy claro */
-            color: #333333; /* Texto principal gris oscuro */
-            font-family: 'Inter', sans-serif; /* Tipografía sans-serif moderna */
+            /* Degradado azul pizarra profundo (estilo corporativo moderno) */
+            background: linear-gradient(135deg, #0f172a 0%, #020617 100%); 
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            line-height: 1.6;
+            box-sizing: border-box;
         }
         .container {
             max-width: 800px;
-            padding: 60px; /* Más espacio */
-            border-left: 6px solid #1e4a8d; /* Borde más sutil y azul marino corporativo */
-            background-color: #ffffff; /* Fondo del contenedor blanco nítido */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra más sutil y profunda */
-            border-radius: 8px; /* Bordes ligeramente redondeados */
+            width: 100%;
+            padding: 50px 60px;
+            background: rgba(30, 41, 59, 0.7); /* Tarjeta oscura semi-transparente */
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Borde ultra sutil */
+            border-top: 4px solid #3b82f6; /* Acento azul de confianza */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); /* Sombra elegante */
+            border-radius: 12px;
+            backdrop-filter: blur(10px); /* Efecto cristalino de alta gama */
+            box-sizing: border-box;
         }
         h1 {
-            color: #1e4a8d; /* Azul Marino Corporativo (Confianza) */
-            font-size: 2.8em;
+            color: #ffffff;
+            font-size: 2.6em;
             font-weight: 700;
+            margin-top: 0;
             margin-bottom: 5px;
-            letter-spacing: -1px; /* Toque moderno */
+            letter-spacing: -0.5px;
+        }
+        .brand-accent {
+            color: #3b82f6; /* Azul corporativo para la palabra BlueTeam */
         }
         h2 {
-            color: #666666; /* Gris sutil */
-            font-size: 1.3em;
-            font-weight: 400;
+            color: #94a3b8; /* Gris azulado claro */
+            font-size: 1.2em;
+            font-weight: 300;
             margin-bottom: 35px;
-            line-height: 1.4;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+        .intro-text {
+            color: #cbd5e1;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .service-block {
+            margin-bottom: 25px;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid #38bdf8;
         }
         h3 {
-            color: #1e4a8d; /* Azul Marino Corporativo */
-            font-size: 1.4em;
+            color: #e0e7ff;
+            font-size: 1.25em;
             font-weight: 600;
-            margin-top: 35px;
-            margin-bottom: 10px;
-        }
-        p {
-            line-height: 1.7; /* Mejor legibilidad */
-            color: #555555;
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
+        }
+        .service-block p {
+            color: #94a3b8;
+            font-size: 1em;
+            margin: 0;
         }
         .cta-button {
             display: inline-block;
-            margin-top: 40px;
-            padding: 18px 35px;
-            background-color: #1e7e34; /* Verde Cobalto Profesional */
+            margin-top: 15px;
+            padding: 16px 32px;
+            background-color: #2563eb; /* Azul corporativo principal */
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
-            border-radius: 6px; /* Bordes suaves */
-            transition: background-color 0.3s, transform 0.2s;
-            font-size: 1.1em;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+            box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4); /* Resplandor sutil */
         }
         .cta-button:hover {
-            background-color: #155d26; /* Verde más oscuro al hover */
-            transform: translateY(-2px); /* Efecto sutil al hover */
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
         }
-        .brand-icon {
-            color: #1e4a8d; /* Mismo azul marino */
-            font-family: 'Courier New', monospace; /* Solo el ícono mantiene el guiño técnico */
-            font-weight: bold;
+        .footer {
+            margin-top: 40px;
+            font-size: 0.85em;
+            color: #475569;
+            text-align: center;
+        }
+        
+        /* Ajuste para pantallas de celular */
+        @media (max-width: 600px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 2em; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1><span class="brand-icon">>_</span> blueteam.mx</h1>
-        <h2>Ciberseguridad Ofensiva y Defensiva para Infraestructuras Críticas.</h2>
+        <h1><span class="brand-accent">BlueTeam</span> México</h1>
+        <h2>Firma de Ciberseguridad Ofensiva y Defensiva.</h2>
         
-        <p>No confíes ciegamente en tu antivirus tradicional. Validamos la eficacia de tus defensas simulando ataques reales y fortalecemos tu red corporativa antes de que ocurra un incidente de ransomware.</p>
+        <p class="intro-text">Protegemos la continuidad operativa de infraestructuras críticas. Validamos la eficacia de tus defensas mediante simulaciones de ataque reales y fortalecemos tu red corporativa ante amenazas avanzadas.</p>
 
-        <h3>[01] Pentesting y Auditorías de Seguridad</h3>
-        <p>Identificamos vulnerabilidades ocultas, fallos en la configuración de Active Directory y bypass de EDRs mediante ejercicios controlados de Red Teaming y Hacking Ético.</p>
+        <div class="service-block">
+            <h3>Auditorías y Penetration Testing</h3>
+            <p>Identificamos vulnerabilidades críticas, fallos en la arquitectura de Active Directory y evasión de controles (EDR) mediante ejercicios de Red Teaming bajo estándares internacionales.</p>
+        </div>
 
-        <h3>[02] Respuesta a Incidentes y Hardening</h3>
-        <p>Proporcionamos análisis forense de red, contención de amenazas activas en tu entorno y fortificación de servidores críticos.</p>
+        <div class="service-block">
+            <h3>Hardening y Respuesta a Incidentes</h3>
+            <p>Proporcionamos análisis forense profundo, contención de incidentes activos (Ransomware) y fortificación proactiva de servidores para garantizar la resiliencia del negocio.</p>
+        </div>
 
-        <a href="mailto:contacto@blueteam.mx" class="cta-button">Solicitar Diagnóstico de Seguridad</a>
+        <a href="mailto:contacto@blueteam.mx" class="cta-button">Agendar Diagnóstico Ejecutivo</a>
+        
+        <div class="footer">
+            <p>© 2026 BlueTeam México. Operaciones a nivel nacional.</p>
+        </div>
     </div>
 </body>
 </html>
+
