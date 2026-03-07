@@ -3,177 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlueTeam México | Ciberseguridad Ofensiva y Defensiva</title>
+    <title>BlueTeam México | Ciberseguridad Estratégica</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@500&display=swap');
+        /* Tipografía gruesa y limpia, estándar en firmas globales */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap');
 
         body {
-            /* Fondo oscuro con cuadrícula cibernética (Tech Grid) */
-            background-color: #020617;
-            background-image: 
-                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            color: #e2e8f0;
+            background-color: #ffffff; /* Blanco puro Enterprise */
+            color: #111827; /* Gris casi negro para máxima legibilidad */
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             line-height: 1.6;
-            box-sizing: border-box;
-            overflow-x: hidden;
-        }
-
-        /* Animación de entrada suave */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            padding: 50px 60px;
-            background: rgba(15, 23, 42, 0.85); /* Tarjeta oscura */
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-top: 4px solid #38bdf8; /* Azul eléctrico */
-            /* Efecto Glow de Alta Tecnología */
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.1), 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
-            backdrop-filter: blur(15px);
+            padding: 60px 40px;
             box-sizing: border-box;
-            animation: fadeInUp 0.8s ease-out forwards;
-            position: relative;
         }
 
-        /* Cursor parpadeante estilo terminal */
-        .terminal-prompt {
-            font-family: 'Fira Code', monospace;
-            color: #38bdf8;
-            margin-right: 8px;
-        }
-        .blink {
-            animation: blinker 1s linear infinite;
-        }
-        @keyframes blinker {
-            50% { opacity: 0; }
-        }
-
+        /* Hero Typography (Estilo Bishop Fox) */
         h1 {
-            color: #ffffff;
-            font-size: 2.6em;
-            font-weight: 700;
+            color: #111827;
+            font-size: 3.5em;
+            font-weight: 800;
             margin-top: 0;
-            margin-bottom: 5px;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px; /* Letras más juntas, estilo moderno */
+            line-height: 1.1;
         }
-        
+
+        .brand-accent {
+            color: #2563eb; /* Azul corporativo sólido, sin degradados */
+        }
+
         h2 {
-            color: #94a3b8;
-            font-size: 1.2em;
-            font-weight: 300;
-            margin-bottom: 35px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 20px;
+            color: #4b5563;
+            font-size: 1.4em;
+            font-weight: 400;
+            margin-bottom: 50px;
+            max-width: 750px;
         }
 
-        .intro-text {
-            color: #cbd5e1;
-            font-size: 1.1em;
-            margin-bottom: 30px;
+        /* Estructura de cuadrícula limpia (Estilo CrowdStrike) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+            border-top: 2px solid #e5e7eb;
+            padding-top: 40px;
         }
 
-        .service-block {
-            margin-bottom: 25px;
-            background: linear-gradient(90deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0) 100%);
-            padding: 20px 25px;
-            border-radius: 8px;
-            border-left: 3px solid #38bdf8;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas grandes */
+            }
         }
 
-        .service-block:hover {
-            transform: translateX(10px);
-            border-left: 3px solid #60a5fa;
-            background: linear-gradient(90deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 0) 100%);
+        .service-card {
+            background-color: #f9fafb; /* Gris ultra claro para diferenciar */
+            border: 1px solid #e5e7eb; /* Borde sutil, nada de luces */
+            padding: 30px;
+            border-radius: 4px; /* Bordes casi cuadrados, más serios */
         }
 
         h3 {
-            color: #f8fafc;
-            font-size: 1.25em;
-            font-weight: 600;
+            color: #111827;
+            font-size: 1.3em;
+            font-weight: 800;
             margin-top: 0;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
 
-        .service-block p {
-            color: #94a3b8;
-            font-size: 1em;
+        .service-card p {
+            color: #4b5563;
+            font-size: 1.05em;
             margin: 0;
         }
 
+        /* Botón plano y contundente */
         .cta-button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 16px 35px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            padding: 18px 40px;
+            background-color: #2563eb;
             color: #ffffff;
             text-decoration: none;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            border-radius: 4px;
             font-size: 1.1em;
-            border: 1px solid #3b82f6;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: background-color 0.2s;
+            border: none;
         }
 
         .cta-button:hover {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+            background-color: #1d4ed8;
         }
 
         .footer {
-            margin-top: 40px;
-            font-size: 0.85em;
-            color: #475569;
-            text-align: center;
+            margin-top: 80px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.9em;
+            color: #6b7280;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         @media (max-width: 600px) {
-            .container { padding: 30px 20px; }
-            h1 { font-size: 2em; }
+            h1 { font-size: 2.5em; }
+            .container { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1><span class="terminal-prompt">><span class="blink">_</span></span> BlueTeam México</h1>
-        <h2>Firma de Ciberseguridad Ofensiva y Defensiva.</h2>
+        <h1>Reduzca el riesgo con <br><span class="brand-accent">BlueTeam México.</span></h1>
         
-        <p class="intro-text">Protegemos la continuidad operativa de infraestructuras críticas. Validamos la eficacia de tus defensas mediante simulaciones de ataque reales y fortalecemos tu red corporativa ante amenazas avanzadas.</p>
+        <h2>Protegemos la continuidad operativa de infraestructuras críticas industriales. Validamos sus defensas con inteligencia técnica real y mitigamos el impacto de amenazas avanzadas.</h2>
 
-        <div class="service-block">
-            <h3>Auditorías y Penetration Testing</h3>
-            <p>Identificamos vulnerabilidades críticas, fallos en la arquitectura de Active Directory y evasión de controles (EDR) mediante ejercicios de Red Teaming bajo estándares internacionales.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Penetration Testing</h3>
+                <p>Auditorías profundas de arquitectura, evaluación de Active Directory y validación de controles (EDR) mediante ejercicios de Red Teaming para descubrir puntos ciegos antes que los atacantes.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Respuesta a Incidentes</h3>
+                <p>Análisis forense de red, contención rápida de eventos de ransomware y fortificación proactiva para asegurar la resiliencia y cumplir con normativas corporativas.</p>
+            </div>
         </div>
 
-        <div class="service-block">
-            <h3>Hardening y Respuesta a Incidentes</h3>
-            <p>Proporcionamos análisis forense profundo, contención de incidentes activos (Ransomware) y fortificación proactiva de servidores para garantizar la resiliencia del negocio.</p>
-        </div>
-
-        <a href="mailto:contacto@blueteam.mx" class="cta-button">Agendar Diagnóstico Ejecutivo</a>
+        <a href="mailto:contacto@blueteam.mx" class="cta-button">Contactar a Consultoría</a>
         
         <div class="footer">
-            <p>© 2026 BlueTeam México. Operaciones a nivel nacional.</p>
+            <span>© 2026 BlueTeam México</span>
+            <span>Operaciones a nivel nacional.</span>
         </div>
     </div>
 </body>
 </html>
-
