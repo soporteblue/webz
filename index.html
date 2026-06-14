@@ -9,7 +9,7 @@
         :root {
             --bg-dark: #121212;
             --bg-card: #1e1e1e;
-            --primary-orange: #d95a2b; /* Ajustado al naranja de tu logo */
+            --primary-orange: #d95a2b;
             --primary-hover: #b04620;
             --text-light: #f5f5f5;
             --text-muted: #a0a0a0;
@@ -34,7 +34,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 15px 5%;
             background-color: rgba(18, 18, 18, 0.95);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
@@ -43,18 +43,14 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-light);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            text-decoration: none;
         }
-
-        .logo span {
-            color: var(--primary-orange);
+        
+        .logo img {
+            height: 50px; /* Ajusta este valor si quieres el logo más grande o más pequeño */
+            width: auto;
         }
 
         nav a {
@@ -100,6 +96,7 @@
             transition: background-color 0.3s;
             border: none;
             cursor: pointer;
+            display: inline-block;
         }
 
         .btn:hover {
@@ -236,11 +233,12 @@
 <body>
 
     <header>
-        <!-- Reemplaza el texto con tu logo real usando la etiqueta img: <img src="ruta-de-tu-logo.png" alt="Breachcorp" height="40"> -->
-        <a href="#" class="logo">BREACH<span>CORP</span></a>
+        <!-- Logo actualizado con tu archivo de imagen -->
+        <a href="#" class="logo">
+            <img src="logo-BC.png" alt="Breachcorp - Operations & Resilience">
+        </a>
         <nav>
             <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios Operativos</a>
             <a href="#paquetes">Paquetes</a>
             <a href="mailto:contacto@breachcorp.mx">Contacto</a>
         </nav>
