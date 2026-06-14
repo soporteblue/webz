@@ -177,17 +177,21 @@
             margin-bottom: 25px;
         }
 
+        /* CORRECCIÓN APLICADA AQUÍ: Alineación y prevención de salto de línea feo */
         .price {
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 5px;
             color: white;
+            line-height: 1.1; /* Previene el espacio gigante si hay salto */
         }
 
         .price span {
             font-size: 1rem;
             color: var(--text-muted);
             font-weight: normal;
+            display: inline-block;
+            white-space: nowrap; /* Obliga a que "MXN / mes" siempre estén juntos */
         }
 
         .hours-label {
@@ -288,14 +292,14 @@
     </section>
 
     <section class="pricing-section" id="paquetes">
-        <h2 class="section-title">Paquetes de Seguridad</h2>
+        <h2 class="section-title">Modelos de Retención de Seguridad</h2>
         <div class="pricing-grid">
             
             <div class="card basic">
                 <h3>Básico</h3>
                 <p class="subtitle">Para negocios pequeños</p>
                 <div class="price">$3,500 <span>MXN / mes</span></div>
-                <div class="hours-label">2-4 hrs / semana</div>
+                <div class="hours-label">~2-4 hrs / semana</div>
                 <ul class="features">
                     <li>Diagnóstico inicial de vulnerabilidades</li>
                     <li>Revisión mensual de seguridad de endpoints</li>
@@ -311,7 +315,7 @@
                 <h3>Estándar</h3>
                 <p class="subtitle">Para PyMEs en crecimiento</p>
                 <div class="price">$6,500 <span>MXN / mes</span></div>
-                <div class="hours-label">6-8 hrs / semana</div>
+                <div class="hours-label">~6-8 hrs / semana</div>
                 <ul class="features">
                     <li><strong>Todo lo del plan Básico</strong></li>
                     <li>Auditoría de red mensual (Aislamiento, segmentación)</li>
@@ -326,7 +330,7 @@
                 <h3>Premium</h3>
                 <p class="subtitle">Para empresas con mayor riesgo</p>
                 <div class="price">$12,000 <span>MXN / mes</span></div>
-                <div class="hours-label">12-15 hrs / semana</div>
+                <div class="hours-label">~12-15 hrs / semana</div>
                 <ul class="features">
                     <li><strong>Todo lo del plan Estándar</strong></li>
                     <li>Pen testing trimestral (Operaciones Red Team)</li>
