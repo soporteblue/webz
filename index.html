@@ -165,45 +165,55 @@
             letter-spacing: 0.5px;
         }
 
+        /* CORRECCIÓN DE SIMETRÍA: Bloque superior de altura fija */
+        .card-header {
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+        }
+
         .card h3 {
             font-size: 1.6rem;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 600;
         }
 
         .card .subtitle {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
-        /* CORRECCIÓN APLICADA AQUÍ: Alineación y prevención de salto de línea feo */
         .price {
-            font-size: 2.8rem;
+            font-size: 2.4rem; /* Reducido levemente para que quepa todo */
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
             color: white;
-            line-height: 1.1; /* Previene el espacio gigante si hay salto */
+            line-height: 1;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .price span {
             font-size: 1rem;
             color: var(--text-muted);
             font-weight: normal;
-            display: inline-block;
-            white-space: nowrap; /* Obliga a que "MXN / mes" siempre estén juntos */
+            white-space: nowrap;
         }
 
         .hours-label {
             font-size: 0.9rem;
             color: var(--primary-orange);
             font-weight: 600;
-            margin-bottom: 25px;
             background: rgba(217, 90, 43, 0.1);
             display: inline-block;
             padding: 4px 10px;
             border-radius: 4px;
             width: fit-content;
+            margin-top: auto; /* Empuja la etiqueta hacia el fondo del card-header */
+            margin-bottom: 25px;
         }
 
         .features {
@@ -271,6 +281,7 @@
             .hero h1 { font-size: 2.3rem; }
             .hero p { font-size: 1.1rem; }
             nav a { margin: 0 10px; }
+            .card-header { min-height: auto; } /* En móvil no hace falta fijar altura */
         }
     </style>
 </head>
@@ -292,14 +303,16 @@
     </section>
 
     <section class="pricing-section" id="paquetes">
-        <h2 class="section-title">Modelos de Retención de Seguridad</h2>
+        <h2 class="section-title">Planes de Protección Continua</h2>
         <div class="pricing-grid">
             
             <div class="card basic">
-                <h3>Básico</h3>
-                <p class="subtitle">Para negocios pequeños</p>
-                <div class="price">$3,500 <span>MXN / mes</span></div>
-                <div class="hours-label">~2-4 hrs / semana</div>
+                <div class="card-header">
+                    <h3>Básico</h3>
+                    <p class="subtitle">Para negocios pequeños</p>
+                    <div class="price">$3,500 <span>MXN / mes</span></div>
+                    <div class="hours-label">~2-4 hrs / semana</div>
+                </div>
                 <ul class="features">
                     <li>Diagnóstico inicial de vulnerabilidades</li>
                     <li>Revisión mensual de seguridad de endpoints</li>
@@ -312,10 +325,12 @@
 
             <div class="card featured">
                 <div class="badge">Más vendido</div>
-                <h3>Estándar</h3>
-                <p class="subtitle">Para PyMEs en crecimiento</p>
-                <div class="price">$6,500 <span>MXN / mes</span></div>
-                <div class="hours-label">~6-8 hrs / semana</div>
+                <div class="card-header">
+                    <h3>Estándar</h3>
+                    <p class="subtitle">Para PyMEs en crecimiento</p>
+                    <div class="price">$6,500 <span>MXN / mes</span></div>
+                    <div class="hours-label">~6-8 hrs / semana</div>
+                </div>
                 <ul class="features">
                     <li><strong>Todo lo del plan Básico</strong></li>
                     <li>Auditoría de red mensual (Aislamiento, segmentación)</li>
@@ -327,10 +342,12 @@
             </div>
 
             <div class="card">
-                <h3>Premium</h3>
-                <p class="subtitle">Para empresas con mayor riesgo</p>
-                <div class="price">$12,000 <span>MXN / mes</span></div>
-                <div class="hours-label">~12-15 hrs / semana</div>
+                <div class="card-header">
+                    <h3>Premium</h3>
+                    <p class="subtitle">Para empresas con mayor riesgo</p>
+                    <div class="price">$12,000 <span>MXN / mes</span></div>
+                    <div class="hours-label">~12-15 hrs / semana</div>
+                </div>
                 <ul class="features">
                     <li><strong>Todo lo del plan Estándar</strong></li>
                     <li>Pen testing trimestral (Operaciones Red Team)</li>
