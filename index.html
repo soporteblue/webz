@@ -3,256 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlueTeam México | Ciberseguridad Estratégica</title>
+    <title>Breachcorp | Operaciones y Resiliencia en Ciberseguridad</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        /* Variables de color basadas en tu logo */
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --primary-orange: #d95a2b; /* Ajustado al naranja de tu logo */
+            --primary-hover: #b04620;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+        }
 
-        body {
-            background-color: #ffffff;
-            color: #111827;
-            font-family: 'Inter', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            padding: 70px 40px;
-            box-sizing: border-box;
-        }
-
-        h1 {
-            color: #111827;
-            font-size: 3.5em;
-            font-weight: 800;
-            margin-top: 0;
-            margin-bottom: 20px;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-
-        .brand-accent { color: #2563eb; }
-
-        .hero-subtitle {
-            color: #4b5563;
-            font-size: 1.3em;
-            font-weight: 400;
-            margin-bottom: 60px;
-            max-width: 800px;
-        }
-
-        /* Sección de Servicios */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-bottom: 80px;
-            border-top: 2px solid #e5e7eb;
-            padding-top: 50px;
-        }
-
-        @media (min-width: 768px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        .service-card {
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            padding: 35px;
-            border-radius: 6px;
-        }
-
-        .service-card h3 {
-            color: #111827;
-            font-size: 1.2em;
-            font-weight: 800;
-            margin-top: 0;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
-
-        .service-card p {
-            color: #4b5563;
-            font-size: 1.05em;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* Nueva Sección: Quiénes Somos / Autoridad */
-        .about-section {
-            background-color: #111827; /* Inversión de color (Dark Mode) para destacar el "Quiénes Somos" */
-            color: #f9fafb;
-            padding: 50px;
-            border-radius: 8px;
-            margin-bottom: 60px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .about-title {
-            color: #ffffff;
-            font-size: 2em;
-            font-weight: 800;
-            margin-top: 0;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            border-bottom: 2px solid #2563eb;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-
-        .about-text {
-            color: #d1d5db;
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            max-width: 800px;
-        }
-
-        .about-text strong { color: #ffffff; }
-
-        /* Lista de Certificaciones (Trust Badges) */
-        .cert-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 25px;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        @media (min-width: 768px) {
-            .cert-list { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        .cert-item {
-            position: relative;
-            padding-left: 25px;
-            color: #9ca3af;
-            font-size: 0.95em;
-        }
-
-        .cert-item::before {
-            content: "🛡️"; /* Icono sutil de escudo */
-            position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 0.9em;
-        }
-
-        /* Valor Añadido (Value Proposition) */
-        .value-prop {
-            margin-top: 30px;
-            padding: 25px;
-            background-color: rgba(37, 99, 235, 0.1); /* Fondo azul sutil */
-            border-left: 4px solid #2563eb;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .value-prop p {
-            margin: 0;
-            color: #e5e7eb;
-            font-size: 1.05em;
-            font-weight: 500;
-        }
-
-        /* Botón de Contacto */
-        .cta-container {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 2px solid #e5e7eb;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 18px 45px;
-            background-color: #2563eb;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 4px;
-            font-size: 1.15em;
-            transition: background-color 0.2s;
-            border: none;
-        }
-
-        .cta-button:hover { background-color: #1d4ed8; }
-
-        .footer {
-            margin-top: 80px;
-            padding-top: 25px;
-            border-top: 1px solid #e5e7eb;
-            font-size: 0.9em;
-            color: #6b7280;
+        /* Navegación */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.3em; }
-            .container { padding: 40px 20px; }
-            .about-section { padding: 30px 20px; }
-            .footer { flex-direction: column; text-align: left; gap: 10px; align-items: flex-start; }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary-orange);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #1f1f1f 0%, var(--bg-dark) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .btn {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Sección de Precios / Paquetes */
+        .pricing-section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card.featured {
+            border-color: var(--primary-orange);
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .card .subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+            flex-grow: 1;
+        }
+
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        .card .btn {
+            text-align: center;
+            width: 100%;
+        }
+
+        .card.basic .btn {
+            background-color: transparent;
+            border: 1px solid var(--primary-orange);
+            color: var(--primary-orange);
+        }
+
+        .card.basic .btn:hover {
+            background-color: rgba(217, 90, 43, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            header { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Reduzca el riesgo con <br><span class="brand-accent">BlueTeam México.</span></h1>
-        
-        <div class="hero-subtitle">Protegemos la continuidad operativa de infraestructuras críticas. Validamos sus defensas con inteligencia técnica real y mitigamos el impacto de amenazas avanzadas en el sector industrial y corporativo.</div>
 
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Penetration Testing (Red Team)</h3>
-                <p>Auditorías profundas de arquitectura y evasión de controles (EDR) mediante simulaciones de ataque para descubrir puntos ciegos antes de que sean explotados por adversarios reales.</p>
-            </div>
-            <div class="service-card">
-                <h3>Hardening de Infraestructura</h3>
-                <p>Fortificación proactiva de servidores críticos, securización robusta de Active Directory y despliegue de políticas Zero Trust para reducir drásticamente la superficie de ataque.</p>
-            </div>
-            <div class="service-card">
-                <h3>Respuesta a Incidentes (DFIR)</h3>
-                <p>Análisis forense de red y contención rápida de eventos críticos (como Ransomware) para restaurar la operatividad del negocio con el menor impacto financiero posible.</p>
-            </div>
-            <div class="service-card">
-                <h3>Cumplimiento y Riesgo Industrial</h3>
-                <p>Alineación técnica de sus sistemas con marcos normativos internacionales (NIST, ISO 27001, C-TPAT), requisito indispensable para cadenas de suministro y exportación seguras.</p>
-            </div>
-        </div>
+    <header>
+        <!-- Reemplaza el texto con tu logo real usando la etiqueta img: <img src="ruta-de-tu-logo.png" alt="Breachcorp" height="40"> -->
+        <a href="#" class="logo">BREACH<span>CORP</span></a>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios Operativos</a>
+            <a href="#paquetes">Paquetes</a>
+            <a href="mailto:contacto@breachcorp.mx">Contacto</a>
+        </nav>
+    </header>
 
-        <div class="about-section">
-            <h2 class="about-title">Inteligencia Táctica y Experiencia Real</h2>
+    <section class="hero" id="inicio">
+        <h1>Ciberseguridad Táctica para PyMEs</h1>
+        <p>Aseguramos tu infraestructura mediante operaciones de Red Team, auditorías de red reales y administración de seguridad técnica. No solo hacemos reportes de cumplimiento; defendemos tu negocio contra amenazas activas.</p>
+        <a href="mailto:contacto@breachcorp.mx?subject=Solicitud de Diagnóstico Inicial Gratuito" class="btn">Agenda tu Diagnóstico de Vulnerabilidades</a>
+    </section>
+
+    <section class="pricing-section" id="paquetes">
+        <h2 class="section-title">Modelos de Retención de Seguridad</h2>
+        <div class="pricing-grid">
             
-            <p class="about-text">
-                No somos una agencia de escaneos automatizados. En <strong>BlueTeam México</strong> aportamos más de media década de experiencia real administrando y fortificando infraestructuras desde las trincheras operativas (Sysadmin/Arquitectura) hasta la capa más alta de Ciberseguridad Ofensiva. Entendemos que la seguridad no debe entorpecer la producción, sino garantizarla.
-            </p>
-
-            <div class="value-prop">
-                <p><strong>¿Cómo impulsamos su negocio?</strong><br>
-                Traduciendo hallazgos técnicos complejos (vulnerabilidades, bypass de motores EDR, fallos en bases de datos) en estrategias claras de reducción de riesgo financiero. Aseguramos que su empresa cumpla con auditorías internacionales, evite multas y, sobre todo, no se detenga ante una crisis cibernética.</p>
+            <!-- Paquete Básico -->
+            <div class="card basic">
+                <h3>Básico</h3>
+                <p class="subtitle">Para negocios pequeños</p>
+                <div class="price">$3,500 <span>MXN / mes</span></div>
+                <p class="subtitle">~2-4 hrs/semana</p>
+                <ul class="features">
+                    <li>Diagnóstico inicial de vulnerabilidades</li>
+                    <li>Revisión mensual de seguridad de endpoints</li>
+                    <li>Soporte técnico remoto (Vía WhatsApp)</li>
+                    <li>Reporte operativo mensual de estatus</li>
+                    <li>Gestión segura de contraseñas y accesos</li>
+                </ul>
+                <a href="mailto:contacto@breachcorp.mx" class="btn">Seleccionar Básico</a>
             </div>
 
-            <ul class="cert-list">
-                <li class="cert-item">Ethical Hacking Professional Certification (CEHPC - Nivel 2)</li>
-                <li class="cert-item">Diplomado en Ciberseguridad Empresarial y Gestión de Riesgos</li>
-                <li class="cert-item">Especialización Técnica en Operaciones SOC (SOC Radar Academy)</li>
-                <li class="cert-item">Hardening e Infraestructura (Linux Foundation / SAP HANA)</li>
-            </ul>
+            <!-- Paquete Estándar -->
+            <div class="card featured">
+                <div class="badge">Más vendido</div>
+                <h3>Estándar</h3>
+                <p class="subtitle">Para PyMEs en crecimiento</p>
+                <div class="price">$6,500 <span>MXN / mes</span></div>
+                <p class="subtitle">~6-8 hrs/semana</p>
+                <ul class="features">
+                    <li><strong>Todo lo del plan Básico</strong></li>
+                    <li>Auditoría de red mensual (Aislamiento, segmentación)</li>
+                    <li>Simulaciones de Phishing y capacitación (2x/mes)</li>
+                    <li>Monitoreo de filtraciones en Dark Web</li>
+                    <li>Diseño de plan de respuesta a incidentes</li>
+                </ul>
+                <a href="mailto:contacto@breachcorp.mx" class="btn">Seleccionar Estándar</a>
+            </div>
+
+            <!-- Paquete Premium -->
+            <div class="card">
+                <h3>Premium</h3>
+                <p class="subtitle">Para empresas con mayor riesgo</p>
+                <div class="price">$12,000 <span>MXN / mes</span></div>
+                <p class="subtitle">~12-15 hrs/semana</p>
+                <ul class="features">
+                    <li><strong>Todo lo del plan Estándar</strong></li>
+                    <li>Pen testing trimestral (Operaciones Red Team)</li>
+                    <li>Monitoreo 24/7 de alertas y telemetría</li>
+                    <li>Despliegue y afinación de políticas de seguridad</li>
+                    <li>Gestor técnico de cuenta dedicado</li>
+                </ul>
+                <a href="mailto:contacto@breachcorp.mx" class="btn">Seleccionar Premium</a>
+            </div>
+
         </div>
-        <div class="cta-container">
-            <a href="mailto:contacto@blueteam.mx" class="cta-button">Agendar Diagnóstico Ejecutivo</a>
-        </div>
-        
-        <div class="footer">
-            <span>© 2026 BlueTeam México</span>
-            <span>Operaciones en el sector corporativo e industrial.</span>
-        </div>
-    </div>
+    </section>
+
+    <footer>
+        <p>© 2026 BREACHCORP Operations & Resilience | contacto@breachcorp.mx</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Administración de Ciberseguridad Estratégica en México</p>
+    </footer>
+
 </body>
 </html>
