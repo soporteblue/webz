@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breachcorp | Operaciones y Resiliencia en Ciberseguridad</title>
     <style>
-        /* Variables de color basadas en tu logo */
+        /* Variables de color de Breachcorp */
         :root {
             --bg-dark: #121212;
             --bg-card: #1e1e1e;
@@ -29,36 +29,47 @@
             line-height: 1.6;
         }
 
-        /* Navegación */
+        /* Navegación y Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            background-color: rgba(18, 18, 18, 0.95);
+            padding: 0 5%;
+            background-color: var(--bg-dark);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
+            height: 90px; /* Altura fija para controlar el recorte del logo */
         }
 
-        .logo {
+        /* Contenedor del logo que recorta los excesos negros de tu JPG */
+        .logo-container {
             display: flex;
             align-items: center;
+            justify-content: center;
+            height: 90px;
+            width: 260px;
+            overflow: hidden; /* Recorta los márgenes gigantes del archivo */
             text-decoration: none;
         }
         
-        .logo img {
-            height: 100px; /* Ajusta este valor si quieres el logo más grande o más pequeño */
+        /* Efecto de zoom y transparencia nativa para logo-BC3.jpg */
+        .logo-container img {
+            height: 310px; /* Amplía la imagen para que el logo del centro se vea grande */
             width: auto;
+            margin-top: -5px; /* Ajuste milimétrico para centrar el eje horizontal del logo */
+            mix-blend-mode: screen; /* Truco CSS: Remueve el fondo negro del JPG y lo hace transparente */
+            object-fit: contain;
         }
 
         nav a {
             color: var(--text-light);
             text-decoration: none;
-            margin-left: 20px;
+            margin-left: 25px;
             font-weight: 500;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
         nav a:hover {
@@ -68,32 +79,33 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: radial-gradient(circle at center, #1f1f1f 0%, var(--bg-dark) 100%);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.2rem;
+            margin-bottom: 25px;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto 40px auto;
         }
 
         .btn {
             background-color: var(--primary-orange);
             color: white;
-            padding: 15px 30px;
+            padding: 16px 32px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             font-size: 1.1rem;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
             border: none;
             cursor: pointer;
             display: inline-block;
@@ -101,74 +113,82 @@
 
         .btn:hover {
             background-color: var(--primary-hover);
+            transform: translateY(-2px);
         }
 
         /* Sección de Precios / Paquetes */
         .pricing-section {
-            padding: 60px 5%;
+            padding: 80px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
+            font-size: 2.4rem;
+            margin-bottom: 60px;
+            font-weight: 700;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
             gap: 30px;
         }
 
         .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 30px;
+            border-radius: 12px;
+            padding: 35px;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .card.featured {
             border-color: var(--primary-orange);
             position: relative;
+            box-shadow: 0 4px 15px rgba(217, 90, 43, 0.15);
         }
 
         .badge {
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
             background-color: var(--primary-orange);
             color: white;
-            padding: 5px 15px;
+            padding: 6px 18px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .card .subtitle {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
         }
 
         .price {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 5px;
+            color: white;
         }
 
         .price span {
@@ -177,65 +197,98 @@
             font-weight: normal;
         }
 
+        .hours-label {
+            font-size: 0.9rem;
+            color: var(--primary-orange);
+            font-weight: 600;
+            margin-bottom: 25px;
+            background: rgba(217, 90, 43, 0.1);
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            width: fit-content;
+        }
+
         .features {
             list-style: none;
-            margin: 30px 0;
+            margin-bottom: 35px;
             flex-grow: 1;
         }
 
         .features li {
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
             font-size: 0.95rem;
+            color: #e0e0e0;
         }
 
         .features li::before {
             content: "✓";
             color: var(--primary-orange);
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
         .card .btn {
             text-align: center;
             width: 100%;
+            padding: 14px;
+            font-size: 1rem;
         }
 
         .card.basic .btn {
             background-color: transparent;
-            border: 1px solid var(--primary-orange);
+            border: 2px solid var(--primary-orange);
             color: var(--primary-orange);
         }
 
         .card.basic .btn:hover {
-            background-color: rgba(217, 90, 43, 0.1);
+            background-color: var(--primary-orange);
+            color: white;
         }
 
         /* Footer */
         footer {
             background-color: #0a0a0a;
             text-align: center;
-            padding: 30px;
+            padding: 40px 20px;
             border-top: 1px solid var(--border-color);
-            margin-top: 50px;
+            margin-top: 80px;
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
+        footer p {
+            margin-bottom: 8px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            header { flex-direction: column; gap: 15px; }
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+                gap: 15px;
+            }
+            .logo-container {
+                height: 70px;
+            }
+            .logo-container img {
+                height: 260px;
+            }
+            .hero h1 { font-size: 2.3rem; }
+            .hero p { font-size: 1.1rem; }
+            nav a { margin: 0 10px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <!-- Logo actualizado con tu archivo de imagen -->
-        <a href="#" class="logo">
-            <img src="logo-BC3.png" alt="Breachcorp - Operations & Resilience">
+        <a href="#" class="logo-container">
+            <img src="logo-BC3.jpg" alt="Breachcorp - Operations & Resilience">
         </a>
         <nav>
             <a href="#inicio">Inicio</a>
@@ -254,12 +307,11 @@
         <h2 class="section-title">Modelos de Retención de Seguridad</h2>
         <div class="pricing-grid">
             
-            <!-- Paquete Básico -->
             <div class="card basic">
                 <h3>Básico</h3>
                 <p class="subtitle">Para negocios pequeños</p>
                 <div class="price">$3,500 <span>MXN / mes</span></div>
-                <p class="subtitle">~2-4 hrs/semana</p>
+                <div class="hours-label">~2-4 hrs / semana</div>
                 <ul class="features">
                     <li>Diagnóstico inicial de vulnerabilidades</li>
                     <li>Revisión mensual de seguridad de endpoints</li>
@@ -267,16 +319,15 @@
                     <li>Reporte operativo mensual de estatus</li>
                     <li>Gestión segura de contraseñas y accesos</li>
                 </ul>
-                <a href="mailto:contacto@breachcorp.mx" class="btn">Seleccionar Básico</a>
+                <a href="mailto:contacto@breachcorp.mx?subject=Interés en Plan Básico" class="btn">Seleccionar Básico</a>
             </div>
 
-            <!-- Paquete Estándar -->
             <div class="card featured">
                 <div class="badge">Más vendido</div>
                 <h3>Estándar</h3>
                 <p class="subtitle">Para PyMEs en crecimiento</p>
                 <div class="price">$6,500 <span>MXN / mes</span></div>
-                <p class="subtitle">~6-8 hrs/semana</p>
+                <div class="hours-label">~6-8 hrs / semana</div>
                 <ul class="features">
                     <li><strong>Todo lo del plan Básico</strong></li>
                     <li>Auditoría de red mensual (Aislamiento, segmentación)</li>
@@ -284,15 +335,14 @@
                     <li>Monitoreo de filtraciones en Dark Web</li>
                     <li>Diseño de plan de respuesta a incidentes</li>
                 </ul>
-                <a href="mailto:contacto@breachcorp.mx" class="btn">Seleccionar Estándar</a>
+                <a href="mailto:contacto@breachcorp.mx?subject=Interés en Plan Estándar" class="btn">Seleccionar Estándar</a>
             </div>
 
-            <!-- Paquete Premium -->
             <div class="card">
                 <h3>Premium</h3>
                 <p class="subtitle">Para empresas con mayor riesgo</p>
                 <div class="price">$12,000 <span>MXN / mes</span></div>
-                <p class="subtitle">~12-15 hrs/semana</p>
+                <div class="hours-label">~12-15 hrs / semana</div>
                 <ul class="features">
                     <li><strong>Todo lo del plan Estándar</strong></li>
                     <li>Pen testing trimestral (Operaciones Red Team)</li>
@@ -300,7 +350,7 @@
                     <li>Despliegue y afinación de políticas de seguridad</li>
                     <li>Gestor técnico de cuenta dedicado</li>
                 </ul>
-                <a href="mailto:contacto@breachcorp.mx" class="btn">Seleccionar Premium</a>
+                <a href="mailto:contacto@breachcorp.mx?subject=Interés en Plan Premium" class="btn">Seleccionar Premium</a>
             </div>
 
         </div>
@@ -308,7 +358,7 @@
 
     <footer>
         <p>© 2026 BREACHCORP Operations & Resilience | contacto@breachcorp.mx</p>
-        <p style="margin-top: 10px; font-size: 0.8rem;">Administración de Ciberseguridad Estratégica en México</p>
+        <p style="font-size: 0.8rem; color: #777;">Administración de Ciberseguridad Estratégica en México</p>
     </footer>
 
 </body>
