@@ -11,7 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css" />
 
   <style>
@@ -33,11 +33,11 @@
     --red      : #ef4444;
     --green    : #22c55e;
     --yellow   : #f59e0b;
-    --white    : #f0ece6;
-    --muted    : #6b6b6b;
-    --muted2   : #999;
-    --border   : rgba(255,255,255,.06);
-    --border2  : rgba(255,255,255,.12);
+    --white    : #ffffff; /* Blanco más brillante */
+    --muted    : #a1a1aa; /* Gris intermedio más brillante */
+    --muted2   : #d1d5db; /* Gris plata para párrafos, excelente contraste */
+    --border   : rgba(255,255,255,.08);
+    --border2  : rgba(255,255,255,.15);
     --fh       : 'Barlow Condensed', sans-serif;
     --fb       : 'Barlow', sans-serif;
     --fm       : 'DM Mono', monospace;
@@ -76,7 +76,7 @@
     font-weight: 700; line-height: 1.08; letter-spacing: .005em;
   }
   .lead {
-    font-size: 16px; font-weight: 300; color: var(--muted2);
+    font-size: 16px; font-weight: 400; color: var(--muted2);
     line-height: 1.85; max-width: 540px; margin-top: 14px; margin-bottom: 48px;
   }
 
@@ -114,7 +114,7 @@
   .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
   .nav-links a {
     font-size: 13px; color: var(--muted2); text-decoration: none;
-    transition: color .18s; font-weight: 400;
+    transition: color .18s; font-weight: 500; /* Letras de menú más legibles */
   }
   .nav-links a:hover { color: var(--white); }
   .nav-pill {
@@ -193,7 +193,7 @@
 
   h1 {
     font-family: var(--fh);
-    font-size: clamp(34px, 4.8vw, 56px);
+    font-size: clamp(36px, 5.2vw, 62px);
     font-weight: 800; letter-spacing: -.005em; line-height: 1.05;
     margin-bottom: 22px;
   }
@@ -205,10 +205,10 @@
   }
 
   .hero-sub {
-    font-size: 17px; font-weight: 300; color: var(--muted2);
+    font-size: 17px; font-weight: 400; color: var(--muted2);
     line-height: 1.80; margin-bottom: 36px; max-width: 460px;
   }
-  .hero-sub strong { color: var(--white); font-weight: 500; }
+  .hero-sub strong { color: var(--white); font-weight: 600; }
 
   .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
 
@@ -223,7 +223,7 @@
     border: 2px solid var(--bg);
     background: var(--surface2);
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--fh); font-size: 11px; font-weight: 700; color: var(--muted2);
+    font-family: var(--fh); font-size: 11px; font-weight: 700; color: var(--white);
     margin-left: -8px; flex-shrink: 0;
   }
   .av:first-child { margin-left: 0; }
@@ -237,7 +237,7 @@
   .trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted2); }
   .trust-item i { color: var(--orange); font-size: 15px; }
 
-  /* ═══════ TERMINAL ═══════ */
+  /* ═══════ TERMINAL REPARADA ═══════ */
   .term {
     background: #0d0d0d;
     border: 1px solid rgba(255,255,255,.10);
@@ -252,20 +252,28 @@
   .d { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
   .dr{background:#FF5F57} .dy{background:#FFBD2E} .dg{background:#28C940}
   .t-title { font-size: 11px; color: var(--muted); margin: 0 auto; letter-spacing: .05em; }
+  
   .term-body {
     padding: 18px 20px; 
-    height: 310px; /* Altura fija para evitar desbordes */
-    font-size: 12px; line-height: 2.0; color: #6a717d; 
-    overflow-y: auto; /* Permite scroll como una terminal real */
+    height: 310px; /* Altura fija para la terminal */
+    font-size: 13px; /* Letra un poco más grande */
+    line-height: 1.8; 
+    color: #a1a1aa; /* Letras grises más legibles */
+    overflow-y: auto; /* Scroll bar activa si se desborda */
     scrollbar-width: thin;
-    scrollbar-color: #333 #1a1a1a;
+    scrollbar-color: #444 #1a1a1a;
   }
-  /* Estilos de barra de desplazamiento para Chrome/Safari */
+  /* Estilo barra scroll Chrome */
   .term-body::-webkit-scrollbar { width: 6px; }
   .term-body::-webkit-scrollbar-track { background: #1a1a1a; }
-  .term-body::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-  
-  .tl { display: block; }
+  .term-body::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+
+  .tl { 
+    display: block; 
+    margin-bottom: 4px; /* Espacio entre líneas */
+    word-break: break-word; /* Rompe palabras largas si no caben */
+    white-space: pre-wrap; /* Mantiene formato consola y permite salto de línea */
+  }
   .tp { color: var(--orange); }
   .tok { color: #22c55e; }
   .tw  { color: #f59e0b; }
@@ -275,6 +283,7 @@
     display: inline-block; width: 7px; height: 13px;
     background: var(--white); vertical-align: middle;
     animation: blink 1.1s step-end infinite;
+    margin-left: 2px;
   }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
@@ -302,9 +311,10 @@
   /* ═══════ PAIN SECTION ═══════ */
   .pain-sec { background: var(--bg); padding: 96px 5%; }
   .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .pain-copy p { font-size: 16px; color: var(--muted2); line-height: 1.85; margin-top: 14px; }
+  .pain-copy p { font-size: 16px; font-weight: 400; color: var(--muted2); line-height: 1.85; margin-top: 14px; }
   .pain-copy p strong { color: var(--white); }
   .pain-cards { display: flex; flex-direction: column; gap: 14px; }
+  
   .pain-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--r); padding: 20px 22px;
@@ -331,7 +341,8 @@
   }
   .pain-icon i { font-size: 18px; color: var(--muted2); transition: color .3s ease; }
   .pain-card:hover .pain-icon i { color: #fff; }
-  .pain-card h4 { font-family: var(--fh); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  
+  .pain-card h4 { font-family: var(--fh); font-size: 16px; font-weight: 600; margin-bottom: 4px; color: var(--white); }
   .pain-card p  { font-size: 13px; color: var(--muted2); line-height: 1.6; }
 
   /* ═══════ PACKAGES ═══════ */
@@ -364,13 +375,13 @@
     font-family: var(--fm); font-size: 10px;
     letter-spacing: .10em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
   }
-  .pkg-name { font-family: var(--fh); font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .pkg-name { font-family: var(--fh); font-size: 26px; font-weight: 700; margin-bottom: 4px; color: var(--white); }
   .pkg-tagline { font-size: 13px; color: var(--muted2); margin-bottom: 22px; }
   .pkg-price {
     font-family: var(--fh); font-size: 46px; font-weight: 800;
-    letter-spacing: -.04em; line-height: 1;
+    letter-spacing: -.04em; line-height: 1; color: var(--white);
   }
-  .pkg-price small { font-size: 16px; font-weight: 400; color: var(--white); }
+  .pkg-price small { font-size: 16px; font-weight: 400; color: var(--muted2); }
   .pkg-bill { font-size: 12px; color: var(--muted); margin: 6px 0 8px; font-weight: 500;}
   .pkg-capacity {
     display: inline-flex; align-items: center; gap: 6px;
@@ -386,7 +397,7 @@
   }
   .ft i { color: var(--orange); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
   .ft strong { color: var(--white); font-weight: 500; }
-  .ft.dim { opacity: .35; }
+  .ft.dim { opacity: .45; }
   .ft.dim i { color: var(--muted); }
   .pkg-cta {
     display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -404,7 +415,6 @@
     background: var(--surface2); border: 1px solid var(--border); border-radius: var(--r-sm);
     font-size: 13px; color: var(--muted2);
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-    position: relative;
   }
   .addons i { color: var(--orange); font-size: 15px; flex-shrink: 0; }
   .addons strong { color: var(--white); }
@@ -420,7 +430,7 @@
   .tc-bad .tc-icon i { color: var(--red); font-size: 20px; }
   .tc-good .tc-icon { background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.2); }
   .tc-good .tc-icon i { color: var(--green); font-size: 20px; }
-  .tc h3 { font-family: var(--fh); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .tc h3 { font-family: var(--fh); font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--white); }
   .tc p { font-size: 14px; color: var(--muted2); line-height: 1.7; }
 
   /* ═══════ VALIDATION SERVICE ═══════ */
@@ -445,7 +455,7 @@
     padding: 5px 12px; border-radius: 4px; margin-bottom: 20px;
   }
   .validation-card h3 {
-    font-family: var(--fh); font-size: 24px; font-weight: 700; margin-bottom: 12px; line-height: 1.2;
+    font-family: var(--fh); font-size: 24px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; color: var(--white);
   }
   .validation-card p {
     font-size: 15px; color: var(--muted2); line-height: 1.75; margin-bottom: 24px;
@@ -495,11 +505,11 @@
   .validation-stat-icon i { font-size: 22px; color: var(--muted2); transition: color .3s ease; }
   .validation-stat:hover .validation-stat-icon i { color: #fff; }
   
-  .validation-stat-text h4 { font-family: var(--fh); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .validation-stat-text h4 { font-family: var(--fh); font-size: 16px; font-weight: 600; margin-bottom: 4px; color: var(--white); }
   .validation-stat-text p { font-size: 13px; color: var(--muted2); line-height: 1.6; }
 
   /* ═══════ PROCESS ═══════ */
-  .process-sec { background: var(--surface); border-top: 1px solid var(--border); }
+  .process-sec { background: var(--bg); border-top: 1px solid var(--border); }
   .proc-g {
     display: grid; grid-template-columns: repeat(4,1fr);
     gap: 0; border: 1px solid var(--border2); border-radius: var(--r);
@@ -525,13 +535,37 @@
     letter-spacing: -.05em; color: rgba(224,92,42,.14);
     line-height: 1; margin-bottom: 18px;
   }
-  .ps h3 { font-family: var(--fh); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .ps h3 { font-family: var(--fh); font-size: 17px; font-weight: 600; margin-bottom: 8px; color: var(--white); }
   .ps p  { font-size: 13px; color: var(--muted2); line-height: 1.72; }
   .ps-time {
     display: inline-flex; align-items: center; gap: 5px; margin-top: 12px;
     font-family: var(--fm); font-size: 10px; color: var(--orange); letter-spacing: .05em;
   }
   .ps-time i { font-size: 12px; }
+
+  /* ═══════ FAQ ═══════ */
+  .faq-sec { background: var(--surface); border-top: 1px solid var(--border); }
+  .faq-g { display: grid; grid-template-columns: 38% 1fr; gap: 72px; align-items: start; }
+  .faq-list { display: flex; flex-direction: column; gap: 2px; margin-top: 0; }
+  .faq-item {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--r-sm); overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-family: var(--fb); font-size: 14px; font-weight: 500; color: var(--white);
+    text-align: left; transition: background .18s;
+  }
+  .faq-q:hover { background: rgba(255,255,255,.03); }
+  .faq-q i { font-size: 16px; color: var(--muted2); flex-shrink: 0; transition: transform .22s; }
+  .faq-q[aria-expanded="true"] i { transform: rotate(45deg); color: var(--orange); }
+  .faq-a {
+    font-size: 13.5px; color: var(--muted2); line-height: 1.78;
+    padding: 0 20px; max-height: 0; overflow: hidden;
+    transition: max-height .28s ease, padding .28s ease;
+  }
+  .faq-a.open { max-height: 250px; padding: 0 20px 18px; }
 
   /* ═══════ ABOUT ═══════ */
   .about-sec { background: var(--bg); border-top: 1px solid var(--border); }
@@ -573,7 +607,7 @@
   .dr2 span:first-child { color: var(--muted2); }
   .vg { color: var(--green); font-weight: 500; }
   .va { color: var(--yellow); font-weight: 500; }
-  .vw { font-weight: 500; }
+  .vw { font-weight: 500; color: var(--white); }
   .dash-footer {
     background: var(--surface2); padding: 14px 22px;
     border-top: 1px solid var(--border);
@@ -585,7 +619,7 @@
 
   /* ═══════ LEAD CAPTURE FORM (NUEVO CTA) ═══════ */
   .lead-sec {
-    background: var(--bg);
+    background: var(--surface);
     border-top: 1px solid var(--border);
     position: relative; overflow: hidden;
   }
@@ -597,7 +631,7 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
     position: relative; z-index: 2;
   }
-  .lead-text h2 { margin-bottom: 14px; }
+  .lead-text h2 { margin-bottom: 14px; color: var(--white); }
   .lead-text .lead { font-size: 17px; color: var(--muted2); margin-top: 0; margin-bottom: 30px; line-height: 1.75; }
   
   .lead-benefits { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
@@ -605,7 +639,7 @@
   .lead-benefits i { color: var(--orange); font-size: 18px; }
 
   .lead-form-wrapper {
-    background: var(--surface); padding: 40px; border-radius: var(--r);
+    background: var(--bg); padding: 40px; border-radius: var(--r);
     border: 1px solid var(--border); box-shadow: 0 24px 64px rgba(0,0,0,.4);
   }
   .form-group { margin-bottom: 20px; }
@@ -614,7 +648,7 @@
     display: block; font-size: 13px; color: var(--muted2); margin-bottom: 8px; font-weight: 500;
   }
   .form-control, .form-select {
-    width: 100%; background: var(--bg); border: 1px solid var(--border2);
+    width: 100%; background: var(--surface); border: 1px solid var(--border2);
     color: var(--white); padding: 14px 16px; border-radius: var(--r-sm);
     font-family: var(--fb); font-size: 14px; transition: border-color .2s, box-shadow .2s;
   }
@@ -622,17 +656,17 @@
     outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(224,92,42,.15);
   }
   .form-control::placeholder { color: var(--muted); }
-  .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+  .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d1d5db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
 
   /* ═══════ FOOTER ═══════ */
   footer {
-    background: var(--surface); border-top: 1px solid var(--border); padding: 36px 5%;
+    background: var(--bg); border-top: 1px solid var(--border); padding: 36px 5%;
   }
   .f-inner {
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 18px;
   }
-  .f-logo { font-family: var(--fh); font-size: 18px; font-weight: 700; letter-spacing: .07em; }
+  .f-logo { font-family: var(--fh); font-size: 18px; font-weight: 700; letter-spacing: .07em; color: var(--white); }
   .f-logo span { color: var(--orange); }
   .f-sub { font-family: var(--fm); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
   .f-links { display: flex; gap: 24px; list-style: none; }
@@ -652,6 +686,7 @@
     .ps            { border-right: none; border-bottom: 1px solid var(--border); }
     .ps:nth-child(odd)  { border-right: 1px solid var(--border); }
     .ps:nth-last-child(-n+2) { border-bottom: none; }
+    .faq-g         { grid-template-columns: 1fr; gap: 40px; }
     .about-g       { grid-template-columns: 1fr; gap: 40px; }
     .nav-links     { display: none; }
     .nav-pill      { display: none; }
@@ -695,6 +730,7 @@
     <li><a href="#proceso">Proceso</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#validacion">Validación Real</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="#contacto" class="nav-pill" target="_self">Solicitar diagnóstico →</a>
   <button class="ham" aria-label="Menú" onclick="navToggle(this)">
@@ -760,7 +796,7 @@
         <span class="t-title">breachcorp — recon.sh</span>
       </div>
       <div class="term-body" id="term">
-        <span class="tl"><span class="tp">root@breachcorp</span><span style="color:#555">:~#</span> <span class="tc">breach scan --target empresa.mx --full</span></span>
+        <span class="tl"><span class="tp">root@breachcorp</span><span style="color:#888">:~#</span> <span class="tc">breach scan --target empresa.mx --full</span><span class="cur"></span></span>
       </div>
     </div>
 
@@ -921,7 +957,7 @@
         <strong>Servicios puntuales (+ IVA):</strong>
         Validación de efectividad $4,500 &nbsp;·&nbsp; Plan de Recuperación (DRP) desde $6,000 &nbsp;·&nbsp; Auditoría única $2,500–$8,000 &nbsp;·&nbsp;
         Capacitación empresarial $1,500/sesión &nbsp;·&nbsp;
-        Respuesta a incidentes desde $500/hr &nbsp;·&nbsp;
+        Respuesta urgente a incidentes desde $500/hr &nbsp;·&nbsp;
         <a href="#contacto" style="color:var(--orange);text-decoration:none;" target="_self">Cotiza el tuyo →</a>
       </div>
       <div class="addons-note" style="font-size: 12px; color: var(--muted); font-style: italic; width: 100%; border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px;">* Nota: Los planes incluyen nuestra administración táctica. El costo de licencias de software (antivirus, EDR, gestores de contraseñas) no está incluido.</div>
@@ -1041,6 +1077,50 @@
   </div>
 </section>
 
+<!-- ══════ FAQ ══════ -->
+<section class="sec faq-sec" id="faq">
+  <div class="w faq-g">
+    <div>
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2>Todo lo que necesitas saber antes de contratar</h2>
+      <p class="lead" style="margin-bottom:28px">Si tienes una duda que no está aquí, llena el formulario o escríbenos — respondemos sin tecnicismos en menos de 4 horas.</p>
+      <a href="#contacto" class="btn btn-ghost" target="_self">
+        <i class="ti ti-mail"></i> Solicitar más información
+      </a>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Necesito instalar hardware en mi red?
+          <i class="ti ti-plus"></i>
+        </button>
+        <div class="faq-a">Depende del plan y tus necesidades, pero en la mayoría de los casos el proceso inicial es no invasivo. Usamos técnicas de reconocimiento externo y auditoría de configuraciones que no interrumpen tu operación.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Qué pasa si encuentran una vulnerabilidad grave?
+          <i class="ti ti-plus"></i>
+        </button>
+        <div class="faq-a">Te contactamos de inmediato — no esperamos a armar el reporte de fin de mes. Te explicamos el riesgo de forma sencilla, el impacto potencial en el negocio, y aplicamos la remediación ese mismo día.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Tengo que firmar contrato por un año forzoso?
+          <i class="ti ti-plus"></i>
+        </button>
+        <div class="faq-a">No. Todos nuestros planes de retención son de pago mes a mes. Confiamos en que la calidad técnica de nuestro trabajo hable por sí sola. Puedes pausar o cancelar cuando lo decidas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Pueden ayudarnos si ya sufrimos un hackeo?
+          <i class="ti ti-plus"></i>
+        </button>
+        <div class="faq-a">Sí. Ofrecemos respuesta urgente a incidentes desde $500 MXN la hora + IVA. Si tienes sospechas de compromiso o ransomware activo, contáctanos inmediatamente; la velocidad de respuesta es crítica.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════ ABOUT ══════ -->
 <section class="sec about-sec" id="nosotros">
   <div class="w about-g">
@@ -1055,7 +1135,7 @@
             <i class="ti ti-award" style="font-size: 20px; color: var(--orange);"></i>
           </div>
           <div>
-            <div style="font-family: var(--fh); font-size: 15px; font-weight: 600;">Evasión de EDR reconocida oficialmente</div>
+            <div style="font-family: var(--fh); font-size: 15px; font-weight: 600; color: var(--white);">Evasión de EDR reconocida oficialmente</div>
             <div style="font-size: 12px; color: var(--muted2);">Sophos Security · Responsible Disclosure</div>
           </div>
         </div>
@@ -1149,7 +1229,6 @@
             <option value="Diagnóstico inicial">Quiero un diagnóstico de vulnerabilidades</option>
             <option value="Contratar Plan Mensual">Me interesa contratar un Plan Mensual</option>
             <option value="Validación de Antivirus/EDR">Validación de Efectividad (Antivirus / EDR)</option>
-            <option value="Plan DRP">Necesito un Plan de Recuperación ante Desastres (DRP)</option>
             <option value="Emergencia Activa">¡Tengo una emergencia o incidente activo!</option>
           </select>
         </div>
@@ -1177,6 +1256,7 @@
       <li><a href="#proceso" target="_self">Proceso</a></li>
       <li><a href="#nosotros" target="_self">Nosotros</a></li>
       <li><a href="#validacion" target="_self">Validación Real</a></li>
+      <li><a href="#faq" target="_self">FAQ</a></li>
     </ul>
     <span class="f-copy">© 2026 BreachCorp · breachcorp.mx</span>
   </div>
@@ -1226,6 +1306,18 @@ function navToggle(btn) {
   } else {
     ul.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(10,10,10,.98);padding:24px 5% 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,.07);z-index:299';
     ul.dataset.open = '1';
+  }
+}
+
+/* ── FAQ ACCORDION ── */
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(b => b.setAttribute('aria-expanded','false'));
+  if (!isOpen) {
+    answer.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
   }
 }
 
