@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BreachCorp | Ciberseguridad Táctica para PyMEs</title>
-  <meta name="description" content="¿Tu empresa está expuesta? Red Team, auditorías reales y monitoreo 24/7 para PyMEs. Diagnóstico gratuito en 30 min." />
+  <meta name="description" content="¿Tu empresa está expuesta? Red Team, auditorías reales y monitoreo para PyMEs. Diagnóstico gratuito en 30 min." />
   <meta property="og:title" content="BreachCorp — Tu empresa ya está siendo atacada" />
   <meta property="og:description" content="El 74% de las PyMEs no detectan una brecha hasta que es demasiado tarde. Nosotros sí la encontramos antes." />
   <meta property="og:url" content="https://breachcorp.mx" />
@@ -253,9 +253,18 @@
   .dr{background:#FF5F57} .dy{background:#FFBD2E} .dg{background:#28C940}
   .t-title { font-size: 11px; color: var(--muted); margin: 0 auto; letter-spacing: .05em; }
   .term-body {
-    padding: 18px 20px; min-height: 280px;
-    font-size: 12px; line-height: 2.0; color: #6a717d; overflow: hidden;
+    padding: 18px 20px; 
+    height: 310px; /* Altura fija para evitar desbordes */
+    font-size: 12px; line-height: 2.0; color: #6a717d; 
+    overflow-y: auto; /* Permite scroll como una terminal real */
+    scrollbar-width: thin;
+    scrollbar-color: #333 #1a1a1a;
   }
+  /* Estilos de barra de desplazamiento para Chrome/Safari */
+  .term-body::-webkit-scrollbar { width: 6px; }
+  .term-body::-webkit-scrollbar-track { background: #1a1a1a; }
+  .term-body::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  
   .tl { display: block; }
   .tp { color: var(--orange); }
   .tok { color: #22c55e; }
@@ -850,8 +859,8 @@
           <div class="ft"><i class="ti ti-circle-check"></i> Afinación de accesos y contraseñas</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Soporte técnico remoto vía WhatsApp</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Reporte operativo mensual claro</div>
-          <div class="ft dim"><i class="ti ti-minus"></i> Auditoría de red mensual</div>
-          <div class="ft dim"><i class="ti ti-minus"></i> Monitoreo dark web</div>
+          <div class="ft dim"><i class="ti ti-minus"></i> Auditoría de red</div>
+          <div class="ft dim"><i class="ti ti-minus"></i> Monitoreo de filtraciones de cuentas en dark web</div>
           <div class="ft dim"><i class="ti ti-minus"></i> Simulaciones de phishing</div>
         </div>
         <a href="#contacto" class="pkg-cta pkg-cta-ghost" target="_self">
@@ -871,13 +880,12 @@
         <hr class="pkg-hr" />
         <div class="pkg-fts">
           <div class="ft"><i class="ti ti-circle-check"></i> <strong>Todo lo del plan Básico</strong></div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Auditoría de red mensual (aislamiento y segmentación)</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Auditoría de red</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Simulaciones de phishing + capacitación (2×/mes)</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Monitoreo de filtraciones en dark web</strong></div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Monitoreo de filtraciones de cuentas en dark web</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Diseño de plan de respuesta a incidentes</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Revisión de reglas de firewall perimetral</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Validación de vulnerabilidades en firewall</div>
           <div class="ft dim"><i class="ti ti-minus"></i> Pen testing trimestral (Red Team)</div>
-          <div class="ft dim"><i class="ti ti-minus"></i> Monitoreo 24/7 de alertas</div>
         </div>
         <a href="#contacto" class="pkg-cta pkg-cta-solid" target="_self">
           Solicitar plan Estándar <i class="ti ti-arrow-right"></i>
@@ -896,7 +904,6 @@
         <div class="pkg-fts">
           <div class="ft"><i class="ti ti-circle-check"></i> <strong>Todo lo del plan Estándar</strong></div>
           <div class="ft"><i class="ti ti-circle-check"></i> <strong>Pen testing trimestral (Operaciones Red Team)</strong></div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Monitoreo 24/7 de alertas y telemetría</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Despliegue y afinación de políticas de seguridad</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Gestor técnico de cuenta dedicado</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Respuesta prioritaria a incidentes críticos</div>
@@ -1203,15 +1210,10 @@ let i = 0;
   if (old) old.remove();
   const el = document.createElement('span');
   el.className = 'tl';
-  el.innerHTML = c ? `<span class="${c}">${t}</span>` : t;
+  el.innerHTML = (c ? `<span class="${c}">${t}</span>` : t) + '<span class="cur"></span>';
   term.appendChild(el);
   term.scrollTop = term.scrollHeight;
   if (i < LINES.length) setTimeout(next, 280 + Math.random() * 240);
-  else {
-    const cur = document.createElement('span');
-    cur.className = 'cur';
-    el.appendChild(cur);
-  }
 })();
 
 /* ── MOBILE MENU ── */
