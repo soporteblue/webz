@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BreachCorp | Command Center - Operations & CRM</title>
+<title>BreachCorp | Command Center</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,10 +25,7 @@ tailwind.config = {
 </script>
 <style>
 body { background-color: #070a12; }
-.glass-panel {
-    background: rgba(15, 20, 32, 0.7); backdrop-filter: blur(16px);
-    border: 1px solid rgba(30, 41, 59, 0.8); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
+.glass-panel { background: rgba(15, 20, 32, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(30, 41, 59, 0.8); }
 .nav-item.active { background: linear-gradient(90deg, rgba(0,212,255,0.1) 0%, transparent 100%); border-left: 3px solid #00d4ff; color: #00d4ff; }
 .progress-bar { height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden; }
 .progress-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
@@ -38,6 +35,7 @@ body { background-color: #070a12; }
 ::-webkit-scrollbar-track { background: #070a12; }
 ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
 .locked-service { opacity: 0.4; filter: grayscale(100%); pointer-events: none; }
+.modal-overlay { background: rgba(4, 6, 10, 0.9); backdrop-filter: blur(8px); }
 </style>
 </head>
 <body class="text-textprimary font-sans flex h-screen overflow-hidden selection:bg-accent/30 selection:text-white">
@@ -55,32 +53,26 @@ body { background-color: #070a12; }
         </div>
     </div>
     <nav class="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
-        <div class="px-4 mb-2 text-[11px] font-semibold text-textmuted uppercase tracking-wider">Gestión CRM</div>
-        <a href="#" onclick="showView('dashboard')" id="nav-dashboard" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
-            <i class="fa-solid fa-grid-2 w-5 text-center"></i> Dashboard
+        <div class="px-4 mb-2 text-[11px] font-semibold text-textmuted uppercase tracking-wider">Principal</div>
+        <a href="#" onclick="showView('dashboard')" id="nav-dashboard" class="nav-item active flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all hover:bg-panelhover">
+            <i class="fa-solid fa-grid-2 w-5 text-center"></i> Dashboard Global
         </a>
-        <a href="#" onclick="showView('clients')" id="nav-clients" class="nav-item active flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all hover:bg-panelhover">
-            <i class="fa-solid fa-building-user w-5 text-center"></i> Clientes & Facturación
+        <a href="#" onclick="showView('clients')" id="nav-clients" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
+            <i class="fa-solid fa-building-user w-5 text-center"></i> Directorio de Clientes
         </a>
 
-        <div class="px-4 mt-6 mb-2 text-[11px] font-semibold text-textmuted uppercase tracking-wider">Módulos Operativos</div>
+        <div class="px-4 mt-6 mb-2 text-[11px] font-semibold text-textmuted uppercase tracking-wider">Operaciones</div>
         <a href="#" onclick="showView('incidents')" id="nav-incidents" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
-            <i class="fa-solid fa-triangle-exclamation w-5 text-center text-danger"></i> Incidentes (Red/Blue)
+            <i class="fa-solid fa-triangle-exclamation w-5 text-center text-danger"></i> Incidentes / Hallazgos
         </a>
         <a href="#" onclick="showView('darkweb')" id="nav-darkweb" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
             <i class="fa-solid fa-user-secret w-5 text-center text-purple-400"></i> Dark Web Monitoring
         </a>
         <a href="#" onclick="showView('phishing')" id="nav-phishing" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
-            <i class="fa-solid fa-fish-fins w-5 text-center text-accent"></i> Phishing Propio
+            <i class="fa-solid fa-fish-fins w-5 text-center text-accent"></i> Campañas Phishing
         </a>
         <a href="#" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
-            <i class="fa-solid fa-chalkboard-user w-5 text-center text-warning"></i> Capacitaciones
-        </a>
-        <a href="#" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
-            <i class="fa-solid fa-fire-burner w-5 text-center text-orange-500"></i> Firewall & Perímetro
-        </a>
-        <a href="#" class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-textsecondary transition-all hover:bg-panelhover hover:text-textprimary">
-            <i class="fa-solid fa-briefcase w-5 text-center text-success"></i> Servicios Puntuales (DRP)
+            <i class="fa-solid fa-fire-burner w-5 text-center text-orange-500"></i> Hardening & Perímetro
         </a>
 
         <div class="px-4 mt-6 mb-2 text-[11px] font-semibold text-textmuted uppercase tracking-wider">Entregables</div>
@@ -106,29 +98,148 @@ body { background-color: #070a12; }
 
     <header class="h-16 flex items-center justify-between px-8 border-b border-border bg-panelbg/80 backdrop-blur-md z-10 sticky top-0">
         <div class="flex items-center gap-4">
-            <h1 id="page-title" class="text-lg font-semibold text-white">Clientes & Facturación</h1>
+            <h1 id="page-title" class="text-lg font-semibold text-white">Dashboard Global</h1>
             <span class="text-textmuted">/</span>
-            <span id="page-subtitle" class="text-sm text-textmuted">Perfil de Cliente</span>
+            <span id="page-subtitle" class="text-sm text-textmuted">Resumen Operativo</span>
         </div>
-        <button class="bg-accent text-darkbg px-4 py-2 rounded-lg font-semibold text-sm hover:bg-accent/90 transition-all flex items-center gap-2">
-            <i class="fa-solid fa-file-invoice-dollar"></i> Emitir Factura
-        </button>
+        <div class="flex items-center gap-3">
+            <button class="bg-panelhover border border-border text-textprimary px-4 py-2 rounded-lg font-semibold text-sm hover:border-accent/50 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-user-plus"></i> Nuevo Cliente
+            </button>
+            <button onclick="openNewIncidentModal()" class="bg-danger text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-danger/90 transition-all flex items-center gap-2 hover:shadow-[0_0_20px_rgba(255,71,87,0.3)]">
+                <i class="fa-solid fa-bug"></i> Registrar Incidente
+            </button>
+        </div>
     </header>
 
     <div id="content-area" class="flex-1 overflow-y-auto p-8 relative z-10 scroll-smooth">
 
-        <div id="view-clients" class="fade-in space-y-6">
-            <div class="flex items-center justify-between mb-6">
+        <div id="view-dashboard" class="fade-in space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <div class="glass-panel p-5 rounded-xl cursor-pointer hover:border-accent/50 transition" onclick="showView('clients')">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="text-textmuted text-xs font-semibold uppercase tracking-wider">Clientes Activos</div>
+                        <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-building text-accent text-sm"></i></div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">12</div>
+                    <div class="text-xs text-success"><i class="fa-solid fa-arrow-trend-up"></i> +2 este mes</div>
+                </div>
+                <div class="glass-panel p-5 rounded-xl cursor-pointer hover:border-danger/50 transition" onclick="showView('incidents')">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="text-textmuted text-xs font-semibold uppercase tracking-wider">Hallazgos Abiertos</div>
+                        <div class="w-8 h-8 rounded-lg bg-danger/10 flex items-center justify-center"><i class="fa-solid fa-triangle-exclamation text-danger text-sm"></i></div>
+                    </div>
+                    <div class="text-3xl font-bold text-danger mb-1">7</div>
+                    <div class="text-xs text-textmuted">3 críticos sin mitigar</div>
+                </div>
+                <div class="glass-panel p-5 rounded-xl">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="text-textmuted text-xs font-semibold uppercase tracking-wider">Horas Consumidas</div>
+                        <div class="w-8 h-8 rounded-lg bg-warning/10 flex items-center justify-center"><i class="fa-solid fa-clock text-warning text-sm"></i></div>
+                    </div>
+                    <div class="text-3xl font-bold text-warning mb-1">142</div>
+                    <div class="text-xs text-textmuted">Deuda técnica: baja</div>
+                </div>
+                <div class="glass-panel p-5 rounded-xl">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="text-textmuted text-xs font-semibold uppercase tracking-wider">Reportes Pendientes</div>
+                        <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center"><i class="fa-solid fa-file-pdf text-purple-400 text-sm"></i></div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">5</div>
+                    <div class="text-xs text-textmuted">Cierre: 30 Jun 2026</div>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-xl overflow-hidden mt-6">
+                <div class="p-5 border-b border-border flex justify-between items-center bg-panelhover/30">
+                    <h2 class="text-base font-semibold text-white"><i class="fa-solid fa-bolt text-accent mr-2"></i>Actividad Reciente (Operaciones)</h2>
+                </div>
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-panelhover border-b border-border">
+                        <tr>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Cliente</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Tipo de Evento</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Descripción</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Hace</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-border/50 hover:bg-panelhover/50">
+                            <td class="px-5 py-4 font-semibold text-white">Vertical Knits</td>
+                            <td class="px-5 py-4"><span class="bg-danger/10 text-danger border border-danger/30 px-2 py-1 rounded text-xs">Red Team</span></td>
+                            <td class="px-5 py-4 text-textmuted">Bypass de EDR exitoso mediante Process Hollowing</td>
+                            <td class="px-5 py-4 text-textmuted">2 horas</td>
+                        </tr>
+                        <tr class="border-b border-border/50 hover:bg-panelhover/50">
+                            <td class="px-5 py-4 font-semibold text-white">TechFlow Solutions</td>
+                            <td class="px-5 py-4"><span class="bg-accent/10 text-accent border border-accent/30 px-2 py-1 rounded text-xs">Phishing</span></td>
+                            <td class="px-5 py-4 text-textmuted">Campaña enviada: 145 usuarios alcanzados</td>
+                            <td class="px-5 py-4 text-textmuted">5 horas</td>
+                        </tr>
+                        <tr class="border-b border-border/50 hover:bg-panelhover/50">
+                            <td class="px-5 py-4 font-semibold text-white">Banco Continental</td>
+                            <td class="px-5 py-4"><span class="bg-purple-500/10 text-purple-400 border border-purple-500/30 px-2 py-1 rounded text-xs">Dark Web</span></td>
+                            <td class="px-5 py-4 text-textmuted">Alerta de credencial expuesta (Lumma Stealer)</td>
+                            <td class="px-5 py-4 text-textmuted">1 día</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="view-clients" class="hidden fade-in space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-xl hover:border-accent/50 transition cursor-pointer group" onclick="showClientDetail('vk')">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-blue-500/50 flex items-center justify-center text-blue-400 font-bold text-lg">VK</div>
+                            <div>
+                                <h3 class="font-bold text-white group-hover:text-accent transition">Vertical Knits</h3>
+                                <p class="text-xs text-textmuted">Manufactura</p>
+                            </div>
+                        </div>
+                        <span class="bg-yellow-500/10 text-warning border border-warning/30 px-2 py-1 rounded text-[10px] font-bold">PREMIUM</span>
+                    </div>
+                    <div class="space-y-2 mt-4 text-sm text-textmuted">
+                        <div class="flex justify-between"><span>Gestor:</span> <span class="text-white">Arturo Guzman</span></div>
+                        <div class="flex justify-between"><span>Incidentes Activos:</span> <span class="text-danger font-bold">2 Críticos</span></div>
+                        <div class="flex justify-between"><span>Horas Consumidas:</span> <span class="text-white">28/40</span></div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl hover:border-accent/50 transition cursor-pointer group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600/30 to-teal-600/30 border border-emerald-500/50 flex items-center justify-center text-emerald-400 font-bold text-lg">TF</div>
+                            <div>
+                                <h3 class="font-bold text-white group-hover:text-accent transition">TechFlow Solutions</h3>
+                                <p class="text-xs text-textmuted">Software</p>
+                            </div>
+                        </div>
+                        <span class="bg-textmuted/10 text-textprimary border border-textmuted/30 px-2 py-1 rounded text-[10px] font-bold">ESTÁNDAR</span>
+                    </div>
+                    <div class="space-y-2 mt-4 text-sm text-textmuted">
+                        <div class="flex justify-between"><span>Gestor:</span> <span class="text-white">Javier Ramirez</span></div>
+                        <div class="flex justify-between"><span>Incidentes Activos:</span> <span class="text-warning font-bold">1 Alto</span></div>
+                        <div class="flex justify-between"><span>Horas Consumidas:</span> <span class="text-white">12/20</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-client-detail" class="hidden fade-in space-y-6">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showView('clients')" class="w-10 h-10 rounded-lg bg-panelhover border border-border flex items-center justify-center hover:border-accent/50 transition">
+                    <i class="fa-solid fa-arrow-left text-textmuted"></i>
+                </button>
                 <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-blue-500/50 flex items-center justify-center text-blue-400 font-bold text-2xl shadow-[0_0_15px_rgba(59,130,246,0.2)]">VK</div>
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-blue-500/50 flex items-center justify-center text-blue-400 font-bold text-xl shadow-[0_0_15px_rgba(59,130,246,0.2)]">VK</div>
                     <div>
-                        <h2 class="text-3xl font-bold text-white tracking-tight">cliente01</h2>
+                        <h2 class="text-3xl font-bold text-white tracking-tight">Vertical Knits</h2>
                         <div class="flex items-center gap-3 mt-1">
                             <span class="px-2 py-0.5 rounded text-xs font-bold bg-gradient-to-r from-yellow-500/20 to-orange-500/20 text-warning border border-warning/30"><i class="fa-solid fa-crown mr-1"></i> PLAN PREMIUM</span>
                             <span class="w-1 h-1 rounded-full bg-textmuted"></span>
                             <span class="text-sm text-textmuted"><i class="fa-solid fa-user-tie mr-1"></i> Gestor: Arturo Guzman</span>
-                            <span class="w-1 h-1 rounded-full bg-textmuted"></span>
-                            <span class="status-badge status-active text-xs">Activo</span>
                         </div>
                     </div>
                 </div>
@@ -140,7 +251,6 @@ body { background-color: #070a12; }
                         <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-chart-pie text-accent"></i> Consumo del Plan
                         </h3>
-                        
                         <div class="mb-5">
                             <div class="flex justify-between items-end mb-1">
                                 <span class="text-xs text-textmuted uppercase tracking-wider">Horas Operativas (Mes)</span>
@@ -149,166 +259,125 @@ body { background-color: #070a12; }
                                     <span class="text-sm text-textmuted">/ 40 hrs</span>
                                 </div>
                             </div>
-                            <div class="progress-bar w-full">
-                                <div class="progress-fill bg-accent" style="width: 70%"></div>
-                            </div>
+                            <div class="progress-bar w-full"><div class="progress-fill bg-accent" style="width: 70%"></div></div>
                             <p class="text-[10px] text-textmuted mt-1 text-right">12 horas restantes para corte.</p>
                         </div>
-
-                        <div class="space-y-3 pt-4 border-t border-border">
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-sm text-textmuted"><i class="fa-solid fa-money-bill-wave mr-2 w-4"></i> Cuota Mensual</span>
-                                <span class="text-sm font-mono text-white font-bold">$3,500 USD</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-sm text-textmuted"><i class="fa-regular fa-calendar-check mr-2 w-4"></i> Próxima Factura</span>
-                                <span class="text-sm text-textprimary">01 Jul 2026</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-sm text-textmuted"><i class="fa-solid fa-file-contract mr-2 w-4"></i> Vencimiento Contrato</span>
-                                <span class="text-sm text-warning font-mono">15 Sep 2026</span>
-                            </div>
+                        <div class="space-y-3 pt-4 border-t border-border text-sm text-textmuted">
+                            <div class="flex justify-between"><span>Vencimiento Contrato</span> <span class="text-warning font-mono">15 Sep 2026</span></div>
                         </div>
                     </div>
 
                     <div class="glass-panel rounded-xl p-5">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-sm font-semibold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-briefcase text-success"></i> Servicios Puntuales (Fuera de Plan)
+                                <i class="fa-solid fa-briefcase text-success"></i> Servicios Puntuales
                             </h3>
-                            <button class="text-xs text-accent hover:text-white transition"><i class="fa-solid fa-plus"></i></button>
+                            <button class="text-xs text-accent hover:text-white"><i class="fa-solid fa-plus"></i></button>
                         </div>
-                        <div class="space-y-2">
-                            <div class="p-3 rounded-lg bg-panelhover border border-border flex justify-between items-center">
-                                <div>
-                                    <div class="text-sm text-white font-medium">Validación DRP</div>
-                                    <div class="text-xs text-textmuted">Ejecutado: 12 Mayo 2026</div>
-                                </div>
-                                <span class="text-xs bg-success/10 text-success px-2 py-1 rounded border border-success/30">Completado</span>
+                        <div class="p-3 rounded-lg bg-panelhover border border-border flex justify-between items-center">
+                            <div>
+                                <div class="text-sm text-white font-medium">Validación DRP</div>
+                                <div class="text-xs text-textmuted">Ejecutado: 12 Mayo 2026</div>
                             </div>
+                            <span class="text-xs bg-success/10 text-success px-2 py-1 rounded border border-success/30">Completado</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="glass-panel rounded-xl p-5">
-                        <div class="flex justify-between items-center mb-5">
-                            <h3 class="text-sm font-semibold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-toggle-on text-accent"></i> Módulos Habilitados (Perfil Premium)
-                            </h3>
+                <div class="lg:col-span-2 glass-panel rounded-xl p-5">
+                    <h3 class="text-sm font-semibold text-white mb-5 flex items-center gap-2">
+                        <i class="fa-solid fa-toggle-on text-accent"></i> Módulos Habilitados en Plan
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-lg bg-panelhover border border-accent/30 hover:border-accent/60 transition cursor-pointer" onclick="showView('incidents')">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-bug text-accent"></i></div>
+                                <i class="fa-solid fa-circle-check text-success text-lg"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white">Red Team & Pentesting</h4>
+                            <p class="text-xs text-textmuted mt-1">Simulaciones continuas e inyección.</p>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 rounded-lg bg-panelhover border border-accent/30 hover:border-accent/60 transition cursor-pointer">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="w-8 h-8 rounded bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-bug text-accent"></i></div>
-                                    <i class="fa-solid fa-circle-check text-success text-lg"></i>
-                                </div>
-                                <h4 class="text-sm font-bold text-white">Red Team & Pentesting</h4>
-                                <p class="text-xs text-textmuted mt-1">Simulaciones continuas, evasión EDR e inyección. (Ilimitado).</p>
+                        <div class="p-4 rounded-lg bg-panelhover border border-purple-500/30 hover:border-purple-500/60 transition cursor-pointer" onclick="showView('darkweb')">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded bg-purple-500/10 flex items-center justify-center"><i class="fa-solid fa-user-secret text-purple-400"></i></div>
+                                <i class="fa-solid fa-circle-check text-success text-lg"></i>
                             </div>
+                            <h4 class="text-sm font-bold text-white">Dark Web Monitoring</h4>
+                            <p class="text-xs text-textmuted mt-1">Cuentas filtradas e infraestructura clonada.</p>
+                        </div>
 
-                            <div class="p-4 rounded-lg bg-panelhover border border-purple-500/30 hover:border-purple-500/60 transition cursor-pointer" onclick="showView('darkweb')">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="w-8 h-8 rounded bg-purple-500/10 flex items-center justify-center"><i class="fa-solid fa-user-secret text-purple-400"></i></div>
-                                    <i class="fa-solid fa-circle-check text-success text-lg"></i>
-                                </div>
-                                <h4 class="text-sm font-bold text-white">Dark Web Monitoring</h4>
-                                <p class="text-xs text-textmuted mt-1">Alertas de cuentas filtradas, foros clandestinos e infraestructura clonada.</p>
+                        <div class="p-4 rounded-lg bg-panelhover border border-blue-500/30 hover:border-blue-500/60 transition cursor-pointer" onclick="showView('phishing')">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded bg-blue-500/10 flex items-center justify-center"><i class="fa-solid fa-fish-fins text-blue-400"></i></div>
+                                <i class="fa-solid fa-circle-check text-success text-lg"></i>
                             </div>
+                            <h4 class="text-sm font-bold text-white">Phishing Management</h4>
+                            <p class="text-xs text-textmuted mt-1">Campañas y métricas de credenciales.</p>
+                        </div>
 
-                            <div class="p-4 rounded-lg bg-panelhover border border-blue-500/30 hover:border-blue-500/60 transition cursor-pointer" onclick="showView('phishing')">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="w-8 h-8 rounded bg-blue-500/10 flex items-center justify-center"><i class="fa-solid fa-fish-fins text-blue-400"></i></div>
-                                    <i class="fa-solid fa-circle-check text-success text-lg"></i>
-                                </div>
-                                <h4 class="text-sm font-bold text-white">Phishing Management</h4>
-                                <p class="text-xs text-textmuted mt-1">Campañas controladas, métricas de clics, captura de credenciales y reportes.</p>
+                        <div class="p-4 rounded-lg bg-panelbg border border-border locked-service">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded bg-gray-800 flex items-center justify-center"><i class="fa-solid fa-code text-gray-400"></i></div>
+                                <i class="fa-solid fa-lock text-gray-500 text-lg"></i>
                             </div>
-
-                            <div class="p-4 rounded-lg bg-panelhover border border-orange-500/30 hover:border-orange-500/60 transition cursor-pointer">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="w-8 h-8 rounded bg-orange-500/10 flex items-center justify-center"><i class="fa-solid fa-shield-halved text-orange-400"></i></div>
-                                    <i class="fa-solid fa-circle-check text-success text-lg"></i>
-                                </div>
-                                <h4 class="text-sm font-bold text-white">Validación de Firewall</h4>
-                                <p class="text-xs text-textmuted mt-1">Auditoría de reglas, logs de denegación, hardening MikroTik/VPN.</p>
-                            </div>
-
-                            <div class="p-4 rounded-lg bg-panelhover border border-warning/30 hover:border-warning/60 transition cursor-pointer">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="w-8 h-8 rounded bg-warning/10 flex items-center justify-center"><i class="fa-solid fa-chalkboard-user text-warning"></i></div>
-                                    <i class="fa-solid fa-circle-check text-success text-lg"></i>
-                                </div>
-                                <h4 class="text-sm font-bold text-white">Capacitación (Awareness)</h4>
-                                <p class="text-xs text-textmuted mt-1">1 sesión bimestral incluida. <span class="text-warning">Prox: 20 Jun 2026</span>.</p>
-                            </div>
-
-                            <div class="p-4 rounded-lg bg-panelbg border border-border locked-service">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="w-8 h-8 rounded bg-gray-800 flex items-center justify-center"><i class="fa-solid fa-code text-gray-400"></i></div>
-                                    <i class="fa-solid fa-lock text-gray-500 text-lg" title="Requiere Add-on o Plan Superior"></i>
-                                </div>
-                                <h4 class="text-sm font-bold text-white">Auditoría de Código Fuente</h4>
-                                <p class="text-xs text-textmuted mt-1">SAST/DAST no incluido en el scope del plan actual.</p>
-                            </div>
+                            <h4 class="text-sm font-bold text-white">Auditoría de Código Fuente</h4>
+                            <p class="text-xs text-textmuted mt-1">SAST/DAST requiere Add-on externo.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <div id="view-incidents" class="hidden fade-in space-y-6">
+            <h2 class="text-2xl font-bold text-white mb-6"><i class="fa-solid fa-triangle-exclamation text-danger mr-2"></i>Gestión de Hallazgos e Incidentes</h2>
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-panelhover border-b border-border">
+                        <tr>
+                            <th class="px-5 py-3 font-semibold text-textmuted">ID / CVE</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Severidad</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Descripción</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Cliente</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-border/50 hover:bg-panelhover/50">
+                            <td class="px-5 py-4 font-mono text-white text-xs">CVE-2026-31431</td>
+                            <td class="px-5 py-4"><span class="bg-danger/10 text-danger border border-danger/30 px-2 py-1 rounded text-xs font-bold">CRÍTICO</span></td>
+                            <td class="px-5 py-4 text-textmuted">Vulnerabilidad "Copy Fail" en Kernel Linux</td>
+                            <td class="px-5 py-4 text-white">Vertical Knits</td>
+                            <td class="px-5 py-4"><span class="text-success font-medium"><i class="fa-solid fa-check-circle mr-1"></i> Mitigado</span></td>
+                        </tr>
+                        <tr class="border-b border-border/50 hover:bg-panelhover/50">
+                            <td class="px-5 py-4 font-mono text-white text-xs">FIND-099</td>
+                            <td class="px-5 py-4"><span class="bg-warning/10 text-warning border border-warning/30 px-2 py-1 rounded text-xs font-bold">ALTO</span></td>
+                            <td class="px-5 py-4 text-textmuted">Bypass de EDR (Sophos) vía inyección</td>
+                            <td class="px-5 py-4 text-white">TechFlow Solutions</td>
+                            <td class="px-5 py-4"><span class="text-warning font-medium">Abierto</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div id="view-darkweb" class="hidden fade-in space-y-6">
-            <div class="flex justify-between items-center mb-4">
-                <div>
-                    <h2 class="text-2xl font-bold text-white"><i class="fa-solid fa-user-secret text-purple-400 mr-2"></i>Dark Web & Credential Leaks</h2>
-                    <p class="text-sm text-textmuted mt-1">Monitoreo continuo del dominio @blueteam.com y subsidiarias.</p>
-                </div>
-                <button class="bg-purple-500/20 text-purple-400 border border-purple-500/30 px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-500/30 transition">
-                    <i class="fa-solid fa-rotate-right mr-2"></i> Forzar Escaneo
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
-                <div class="glass-panel p-5 rounded-xl border-l-4 border-l-danger">
-                    <div class="text-textmuted text-xs font-semibold uppercase tracking-wider mb-1">Cuentas Expuestas (Histórico)</div>
-                    <div class="text-3xl font-bold text-white">14</div>
-                </div>
-                <div class="glass-panel p-5 rounded-xl border-l-4 border-l-warning">
-                    <div class="text-textmuted text-xs font-semibold uppercase tracking-wider mb-1">Nuevas Alertas (Últimos 30d)</div>
-                    <div class="text-3xl font-bold text-warning">2</div>
-                </div>
-                <div class="glass-panel p-5 rounded-xl border-l-4 border-l-success">
-                    <div class="text-textmuted text-xs font-semibold uppercase tracking-wider mb-1">Passwords Forzados a Reset</div>
-                    <div class="text-3xl font-bold text-success">14</div>
-                </div>
-            </div>
-
+            <h2 class="text-2xl font-bold text-white mb-6"><i class="fa-solid fa-user-secret text-purple-400 mr-2"></i>Dark Web & Credential Leaks</h2>
             <div class="glass-panel rounded-xl overflow-hidden">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-panelhover border-b border-border">
                         <tr>
                             <th class="px-5 py-3 font-semibold text-textmuted">Email Comprometido</th>
                             <th class="px-5 py-3 font-semibold text-textmuted">Origen de Filtración (Breach)</th>
-                            <th class="px-5 py-3 font-semibold text-textmuted">Datos Expuestos</th>
-                            <th class="px-5 py-3 font-semibold text-textmuted">Fecha Alerta</th>
-                            <th class="px-5 py-3 font-semibold text-textmuted">Estado Mitigation</th>
+                            <th class="px-5 py-3 font-semibold text-textmuted">Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="border-b border-border/50 hover:bg-panelhover/50">
-                            <td class="px-5 py-4 font-mono text-white">j.rodriguez@cliente01.com</td>
-                            <td class="px-5 py-4 text-danger font-medium"><i class="fa-brands fa-telegram mr-1"></i> Lumma Stealer Logs (Telegram)</td>
-                            <td class="px-5 py-4 text-textmuted">Email, Plaintext Password, IP</td>
-                            <td class="px-5 py-4 text-textmuted">16 Jun 2026</td>
-                            <td class="px-5 py-4"><span class="bg-danger/10 text-danger border border-danger/30 px-2 py-1 rounded text-xs">Requiere VPR</span></td>
-                        </tr>
-                        <tr class="border-b border-border/50 hover:bg-panelhover/50">
-                            <td class="px-5 py-4 font-mono text-white">admin.op@cliente01.com</td>
-                            <td class="px-5 py-4 text-warning"><i class="fa-solid fa-database mr-1"></i> LinkedIn Data Dump (2012)</td>
-                            <td class="px-5 py-4 text-textmuted">Email, Hash SHA-1</td>
-                            <td class="px-5 py-4 text-textmuted">02 Jun 2026</td>
-                            <td class="px-5 py-4"><span class="bg-success/10 text-success border border-success/30 px-2 py-1 rounded text-xs">Reset Aplicado</span></td>
+                            <td class="px-5 py-4 font-mono text-white">j.rodriguez@verticalknits.com</td>
+                            <td class="px-5 py-4 text-danger font-medium"><i class="fa-brands fa-telegram mr-1"></i> Lumma Stealer Logs</td>
+                            <td class="px-5 py-4"><span class="bg-danger/10 text-danger border border-danger/30 px-2 py-1 rounded text-xs">Requiere Reset</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -316,75 +385,78 @@ body { background-color: #070a12; }
         </div>
 
         <div id="view-phishing" class="hidden fade-in space-y-6">
-            <div class="flex justify-between items-center mb-4">
-                <div>
-                    <h2 class="text-2xl font-bold text-white"><i class="fa-solid fa-fish-fins text-accent mr-2"></i>Gestor de Campañas Phishing</h2>
-                    <p class="text-sm text-textmuted mt-1">Ingeniería social, envío de templates y trackeo de métricas por cliente.</p>
-                </div>
-                <button class="bg-accent text-darkbg px-4 py-2 rounded-lg font-semibold text-sm hover:bg-accent/90 transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-paper-plane"></i> Lanzar Nueva Campaña
-                </button>
-            </div>
-
-            <div class="glass-panel rounded-xl p-6 mb-6">
-                <h3 class="text-sm font-semibold text-white mb-4">Última Campaña: "Actualización de Políticas RRHH" (Junio 2026)</h3>
+            <h2 class="text-2xl font-bold text-white mb-6"><i class="fa-solid fa-fish-fins text-accent mr-2"></i>Gestor de Phishing</h2>
+            <div class="glass-panel rounded-xl p-6">
+                <h3 class="text-sm font-semibold text-white mb-4">Campaña: "Actualización Políticas" (Junio 2026) - Vertical Knits</h3>
                 <div class="grid grid-cols-4 gap-4">
                     <div class="text-center p-4 bg-panelbg border border-border rounded-lg">
-                        <div class="text-xs text-textmuted uppercase mb-2">Correos Enviados</div>
+                        <div class="text-xs text-textmuted uppercase mb-2">Enviados</div>
                         <div class="text-2xl font-mono text-white">374</div>
                     </div>
                     <div class="text-center p-4 bg-panelbg border border-border rounded-lg">
-                        <div class="text-xs text-textmuted uppercase mb-2">Aperturas (Open Rate)</div>
-                        <div class="text-2xl font-mono text-warning">79 <span class="text-sm">21%</span></div>
+                        <div class="text-xs text-textmuted uppercase mb-2">Aperturas</div>
+                        <div class="text-2xl font-mono text-warning">79</div>
                     </div>
                     <div class="text-center p-4 bg-panelbg border border-danger/30 rounded-lg shadow-[inset_0_0_15px_rgba(255,71,87,0.1)]">
-                        <div class="text-xs text-textmuted uppercase mb-2 text-danger">Credenciales Expuestas</div>
-                        <div class="text-2xl font-mono text-danger font-bold">6 <span class="text-sm">1.6%</span></div>
+                        <div class="text-xs text-textmuted uppercase mb-2 text-danger">Credenciales</div>
+                        <div class="text-2xl font-mono text-danger font-bold">6</div>
                     </div>
                     <div class="text-center p-4 bg-panelbg border border-success/30 rounded-lg">
                         <div class="text-xs text-textmuted uppercase mb-2 text-success">Reportados a IT</div>
-                        <div class="text-2xl font-mono text-success">112 <span class="text-sm">30%</span></div>
+                        <div class="text-2xl font-mono text-success">112</div>
                     </div>
                 </div>
             </div>
-
-            <div class="glass-panel rounded-xl p-5">
-                <h3 class="text-sm font-semibold text-white mb-4">Historial de Campañas (cliente01)</h3>
-                <table class="w-full text-left text-sm">
-                    <thead class="text-textmuted border-b border-border">
-                        <tr>
-                            <th class="py-2">Nombre de Campaña (Template)</th>
-                            <th class="py-2">Fecha</th>
-                            <th class="py-2">Click Rate</th>
-                            <th class="py-2">Compromiso</th>
-                            <th class="py-2">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-border/50">
-                            <td class="py-3 text-white">Alerta: Inicio de sesión inusual (O365)</td>
-                            <td class="py-3 text-textmuted">Mayo 2026</td>
-                            <td class="py-3 text-warning font-mono">12.4%</td>
-                            <td class="py-3 text-danger font-mono">3.1%</td>
-                            <td class="py-3"><button class="text-accent text-xs">Ver Reporte</button></td>
-                        </tr>
-                        <tr class="border-b border-border/50">
-                            <td class="py-3 text-white">Factura Pendiente - Proveedores</td>
-                            <td class="py-3 text-textmuted">Abril 2026</td>
-                            <td class="py-3 text-warning font-mono">8.2%</td>
-                            <td class="py-3 text-success font-mono">0.0%</td>
-                            <td class="py-3"><button class="text-accent text-xs">Ver Reporte</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
-
-        <div id="view-incidents" class="hidden fade-in text-white p-8"><h2 class="text-2xl">Módulo de Incidentes...</h2></div>
-        <div id="view-dashboard" class="hidden fade-in text-white p-8"><h2 class="text-2xl">Dashboard Global...</h2></div>
 
     </div>
 </main>
+
+<div id="modal-new-incident" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4">
+    <div class="bg-panelbg border border-border rounded-2xl w-full max-w-2xl shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+        <div class="p-6 border-b border-border flex justify-between items-center">
+            <div>
+                <h2 class="text-lg font-bold text-white">Registrar Operación / Incidente</h2>
+                <p class="text-xs text-textmuted mt-1">Documenta hallazgos o eventos tácticos</p>
+            </div>
+            <button onclick="closeNewIncidentModal()" class="w-8 h-8 rounded-lg bg-panelhover border border-border flex items-center justify-center hover:bg-danger/20 hover:text-danger hover:border-danger/50 transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-6 space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="text-xs text-textmuted mb-1 block">Cliente</label>
+                    <select class="w-full bg-darkbg border border-border rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-accent">
+                        <option>Vertical Knits</option>
+                        <option>TechFlow Solutions</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs text-textmuted mb-1 block">Tipo (Red/Blue/Intel)</label>
+                    <select class="w-full bg-darkbg border border-border rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-accent">
+                        <option>Red Team (Pentesting)</option>
+                        <option>Blue Team (Contención)</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label class="text-xs text-textmuted mb-1 block">Título del hallazgo</label>
+                <input type="text" placeholder="Ej: Bypass de EDR detectado" class="w-full bg-darkbg border border-border rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-accent">
+            </div>
+            <div>
+                <label class="text-xs text-textmuted mb-1 block">Descripción técnica</label>
+                <textarea rows="4" class="w-full bg-darkbg border border-border rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-accent resize-none font-mono text-xs"></textarea>
+            </div>
+        </div>
+        <div class="p-6 border-t border-border flex justify-end gap-3 bg-panelbg rounded-b-2xl">
+            <button onclick="closeNewIncidentModal()" class="px-4 py-2 rounded-lg bg-panelhover border border-border text-sm text-textprimary hover:bg-white/5 transition">Cancelar</button>
+            <button onclick="closeNewIncidentModal()" class="px-4 py-2 rounded-lg bg-danger text-white text-sm font-medium hover:bg-danger/90 transition-all flex items-center gap-2 hover:shadow-[0_0_15px_rgba(255,71,87,0.4)]">
+                <i class="fa-solid fa-save"></i> Guardar Registro
+            </button>
+        </div>
+    </div>
+</div>
 
 <script>
 function showView(viewName) {
@@ -408,8 +480,10 @@ function showView(viewName) {
     }
 
     const titles = {
-        'dashboard': ['Dashboard', 'Resumen Global'],
-        'clients': ['Clientes & Facturación', 'Perfil CRM'],
+        'dashboard': ['Dashboard Global', 'Resumen Operativo'],
+        'clients': ['Directorio de Clientes', 'Lista General'],
+        'client-detail': ['Perfil Operativo', 'Módulos y Consumo'],
+        'incidents': ['Incidentes y Hallazgos', 'Seguimiento Táctico'],
         'darkweb': ['Threat Intelligence', 'Dark Web Monitoring'],
         'phishing': ['Ingeniería Social', 'Gestión de Phishing']
     };
@@ -417,6 +491,18 @@ function showView(viewName) {
         document.getElementById('page-title').textContent = titles[viewName][0];
         document.getElementById('page-subtitle').textContent = titles[viewName][1];
     }
+}
+
+function showClientDetail(id) {
+    showView('client-detail');
+}
+
+function openNewIncidentModal() {
+    document.getElementById('modal-new-incident').classList.remove('hidden');
+}
+
+function closeNewIncidentModal() {
+    document.getElementById('modal-new-incident').classList.add('hidden');
 }
 </script>
 </body>
