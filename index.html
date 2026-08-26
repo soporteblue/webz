@@ -3,839 +3,963 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BreachCorp | Operaciones y Resiliencia en Ciberseguridad</title>
-  <meta name="description" content="Ciberseguridad táctica para PyMEs en México. Red Team, auditorías de red reales y administración de seguridad técnica." />
-  <meta property="og:title"       content="BreachCorp — Operations & Resilience" />
-  <meta property="og:description" content="Defendemos tu negocio contra amenazas activas. Sin reportes de cumplimiento vacíos." />
-  <meta property="og:url"         content="https://breachcorp.mx" />
+  <title>BreachCorp | Ciberseguridad Táctica para PyMEs</title>
+  <meta name="description" content="Guardia Virtual, Pentesting Real, Blindaje de Correo y Radar Dark Web para PyMEs. Sin contratos anuales." />
+  <meta property="og:title" content="BreachCorp — Ciberseguridad que las PyMEs pueden pagar" />
+  <meta property="og:description" content="Monitoreo activo, pentesting manual y protección de correo desde $3,500 MXN/mes." />
+  <meta property="og:url" content="https://breachcorp.mx" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css" />
 
   <style>
-  /* ═══════════════════════════════
-     RESET
-  ═══════════════════════════════ */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  img  { max-width: 100%; display: block; }
-  a    { color: inherit; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  img{max-width:100%;display:block}
+  a{color:inherit}
 
-  /* ═══════════════════════════════
-     TOKENS  (paleta de tu marca)
-  ═══════════════════════════════ */
-  :root {
-    --bg       : #0f0f0f;
-    --surface  : #181818;
-    --surface2 : #202020;
-    --orange   : #d95a2b;
-    --orange-d : rgba(217,90,43,.11);
-    --orange-b : rgba(217,90,43,.30);
-    --white    : #f2efea;
-    --muted    : #737373;
-    --border   : rgba(255,255,255,.07);
-    --border2  : rgba(255,255,255,.13);
-    --fh       : 'Barlow Condensed', sans-serif;
-    --fb       : 'Barlow', sans-serif;
-    --fm       : 'DM Mono', monospace;
+  :root{
+    --bg:#0a0a0a;--surface:#131313;--surface2:#1a1a1a;--surface3:#222;
+    --orange:#e05c2a;--orange-d:rgba(224,92,42,.08);--orange-b:rgba(224,92,42,.25);--orange-g:rgba(224,92,42,.05);
+    --red:#ef4444;--green:#22c55e;--yellow:#f59e0b;--blue:#3b82f6;
+    --white:#f0ece6;--muted:#5e5e5e;--muted2:#909090;
+    --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.12);
+    --fh:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;--fm:'DM Mono',monospace;
+    --r:12px;--r-sm:8px;
   }
 
-  /* ═══════════════════════════════
-     BASE
-  ═══════════════════════════════ */
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: var(--fb);
-    font-weight: 400;
-    line-height: 1.65;
-    overflow-x: hidden;
-  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:400;line-height:1.65;overflow-x:hidden}
+  .w{max-width:1160px;margin:0 auto}
+  .sec{padding:100px 5%}
 
-  /* ═══════════════════════════════
-     HELPERS
-  ═══════════════════════════════ */
-  .w    { max-width: 1120px; margin: 0 auto; }
-  .sec  { padding: 96px 5%; }
-  .eye  {
-    display: inline-block;
-    font-family: var(--fh); font-size: 12px; font-weight: 600;
-    letter-spacing: .10em; text-transform: uppercase; color: var(--orange);
-    margin-bottom: 14px;
-  }
-  h2 {
-    font-family: var(--fh);
-    font-size: clamp(30px, 4vw, 48px);
-    font-weight: 700; line-height: 1.08; letter-spacing: .01em;
-    margin-bottom: 14px;
-  }
-  .lead {
-    font-size: 17px; font-weight: 300; color: var(--muted);
-    line-height: 1.80; max-width: 520px; margin-bottom: 52px;
-  }
+  .eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+  .eyebrow::before{content:'';width:18px;height:1px;background:var(--orange)}
+  h2{font-family:var(--fh);font-size:clamp(28px,3.8vw,46px);font-weight:700;line-height:1.08;letter-spacing:.005em}
+  .lead{font-size:16px;font-weight:300;color:var(--muted2);line-height:1.85;max-width:560px;margin-top:14px;margin-bottom:48px}
 
-  /* ═══════════════════════════════
-     BUTTONS
-  ═══════════════════════════════ */
-  .btn {
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 14px 28px; border-radius: 7px; border: none; cursor: pointer;
-    font-family: var(--fb); font-size: 15px; font-weight: 500;
-    text-decoration: none; transition: opacity .2s, background .2s, border-color .2s;
-  }
-  .b-solid { background: var(--orange); color: #fff; }
-  .b-solid:hover { opacity: .84; }
-  .b-ghost { border: 0.5px solid var(--border2); color: var(--white); background: transparent; }
-  .b-ghost:hover { background: rgba(255,255,255,.05); }
-  .b-wa    { background: #22C55E; color: #fff; }
-  .b-wa:hover { opacity: .88; }
+  /* ══ BUTTONS ══ */
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:var(--r-sm);border:none;cursor:pointer;font-family:var(--fb);font-size:15px;font-weight:500;text-decoration:none;transition:all .18s ease;white-space:nowrap}
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-primary:hover{background:#c94e20;transform:translateY(-1px);box-shadow:0 8px 24px rgba(224,92,42,.3)}
+  .btn-ghost{border:1px solid var(--border2);color:var(--white);background:transparent}
+  .btn-ghost:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.22)}
+  .btn-wa{background:#16a34a;color:#fff}
+  .btn-wa:hover{background:#15803d;transform:translateY(-1px);box-shadow:0 8px 24px rgba(34,197,94,.25)}
+  .btn-lg{padding:16px 32px;font-size:16px;border-radius:var(--r)}
+  .btn-sm{padding:10px 20px;font-size:13px}
 
-  /* ═══════════════════════════════
-     NAV
-  ═══════════════════════════════ */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-    height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%;
-    background: rgba(15,15,15,.92);
-    backdrop-filter: blur(14px);
-    border-bottom: 0.5px solid var(--border);
-    transition: background .3s;
-  }
-  .logo {
-    font-family: var(--fh); font-size: 22px; font-weight: 700;
-    letter-spacing: .06em; text-decoration: none; color: var(--white);
-  }
-  .logo span { color: var(--orange); }
-  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-  .nav-links a {
-    font-size: 14px; color: var(--muted); text-decoration: none;
-    transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta {
-    font-size: 13px; font-weight: 500; padding: 9px 22px; border-radius: 6px;
-    background: var(--orange); color: #fff; text-decoration: none; transition: opacity .2s;
-  }
-  .nav-cta:hover { opacity: .84; }
-  /* hamburger */
-  .ham {
-    display: none; flex-direction: column; gap: 5px;
-    background: none; border: none; cursor: pointer; padding: 4px;
-  }
-  .ham span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: all .3s; }
+  /* ══ NAV ══ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:300;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(10,10,10,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s}
+  .logo{font-family:var(--fh);font-size:20px;font-weight:700;letter-spacing:.07em;text-decoration:none;color:var(--white);display:flex;align-items:center;gap:2px}
+  .logo span{color:var(--orange)}
+  .logo-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);margin-left:2px;animation:pulse-dot 2s ease-in-out infinite}
+  @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
 
-  /* ═══════════════════════════════
-     HERO
-  ═══════════════════════════════ */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 90px 5% 60px;
-    position: relative; overflow: hidden;
-  }
-  /* Orange radial glow */
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(ellipse 55% 60% at 72% 52%, rgba(217,90,43,.07) 0%, transparent 70%);
-  }
-  /* BREACH watermark */
-  .wm {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    font-family: var(--fh);
-    font-size: clamp(90px, 18vw, 230px);
-    font-weight: 700; letter-spacing: .06em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(217,90,43,.055);
-    pointer-events: none; user-select: none; white-space: nowrap; z-index: 0;
-  }
-  /* Scan line */
-  .scan {
-    position: absolute; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--orange) 35%, var(--orange) 65%, transparent 100%);
-    opacity: .14; pointer-events: none; z-index: 1;
-    animation: scan 9s linear infinite;
-  }
-  @keyframes scan { from { top: -1px } to { top: 100% } }
+  .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+  .nav-item{position:relative}
+  .nav-item>button{background:none;border:none;cursor:pointer;padding:8px 14px;font-family:var(--fb);font-size:13px;color:var(--muted2);transition:color .18s;display:flex;align-items:center;gap:5px;border-radius:6px}
+  .nav-item>button:hover{color:var(--white);background:rgba(255,255,255,.03)}
+  .nav-arrow{font-size:11px;transition:transform .25s}
+  .nav-item:hover .nav-arrow{transform:rotate(180deg)}
 
-  .hero-grid {
-    position: relative; z-index: 2;
-    display: grid; grid-template-columns: 54% 1fr;
-    gap: 44px; align-items: center; width: 100%;
-  }
-  /* Chip */
-  .chip {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--fh); font-size: 11px; font-weight: 600;
-    letter-spacing: .09em; text-transform: uppercase; color: var(--orange);
-    border: 0.5px solid var(--orange-b); background: var(--orange-d);
-    padding: 6px 14px 5px; border-radius: 4px; margin-bottom: 22px;
-  }
-  .chip::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--orange); flex-shrink: 0;
-    animation: pulse 2.2s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+  /* Mega dropdown */
+  .mega{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s,transform .2s;transform:translateX(-50%) translateY(6px);z-index:400}
+  .nav-item:hover .mega{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .mega-inner{background:var(--surface);border:1px solid var(--border2);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,.6);overflow:hidden}
+  .mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .mega-item{display:flex;gap:14px;padding:18px 22px;border-bottom:1px solid var(--border);transition:background .15s;cursor:pointer;text-decoration:none}
+  .mega-item:hover{background:rgba(224,92,42,.04)}
+  .mega-item:nth-child(odd){border-right:1px solid var(--border)}
+  .mega-item:nth-last-child(-n+2){border-bottom:none}
+  .mega-icon{width:42px;height:42px;border-radius:10px;background:var(--orange-g);border:1px solid var(--orange-b);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .mega-icon i{font-size:19px;color:var(--orange)}
+  .mega-text h4{font-family:var(--fh);font-size:15px;font-weight:600;margin-bottom:3px;color:var(--white)}
+  .mega-text p{font-size:12px;color:var(--muted2);line-height:1.55}
+  .mega-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+  .mega-footer a{font-family:var(--fm);font-size:11px;color:var(--orange);text-decoration:none;display:flex;align-items:center;gap:5px;letter-spacing:.03em;transition:color .18s}
+  .mega-footer a:hover{color:#f07040}
 
-  h1 {
-    font-family: var(--fh);
-    font-size: clamp(38px, 5.6vw, 64px);
-    font-weight: 700; letter-spacing: .01em; line-height: 1.06;
-    margin-bottom: 22px;
-  }
-  h1 em { font-style: normal; color: var(--orange); }
+  /* Simple dropdown */
+  .simple-drop{position:absolute;top:calc(100% + 8px);right:0;min-width:220px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s,transform .2s;transform:translateY(6px);z-index:400}
+  .nav-item:hover .simple-drop{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+  .simple-inner{background:var(--surface);border:1px solid var(--border2);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.5);padding:6px;overflow:hidden}
+  .simple-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:13px;color:var(--muted2);text-decoration:none;transition:all .15s}
+  .simple-item:hover{background:rgba(255,255,255,.04);color:var(--white)}
+  .simple-item i{font-size:16px;color:var(--orange);width:20px;text-align:center}
 
-  .hero-desc {
-    font-size: 17px; font-weight: 300; color: var(--muted);
-    line-height: 1.78; margin-bottom: 38px; max-width: 480px;
-  }
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  /* Sub-dropdown */
+  .sub-wrap{position:relative}
+  .sub-wrap>.simple-item::after{content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:4px solid var(--muted);border-top:3px solid transparent;border-bottom:3px solid transparent}
+  .sub-menu{position:absolute;left:calc(100% + 6px);top:0;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s,transform .15s;transform:translateX(-4px);z-index:401}
+  .sub-wrap:hover .sub-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0)}
+  .sub-inner{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,.5);padding:5px}
+  .sub-item{display:block;padding:9px 14px;border-radius:6px;font-size:12.5px;color:var(--muted2);text-decoration:none;transition:all .15s}
+  .sub-item:hover{background:rgba(255,255,255,.04);color:var(--white)}
 
-  /* ═══════════════════════════════
-     TERMINAL
-  ═══════════════════════════════ */
-  .term {
-    background: var(--surface);
-    border: 0.5px solid var(--border2);
-    border-radius: 14px; overflow: hidden;
-    font-family: var(--fm);
-  }
-  .term-bar {
-    background: var(--surface2); padding: 11px 14px;
-    display: flex; align-items: center; gap: 7px;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .d { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .dr{background:#FF5F57} .dy{background:#FFBD2E} .dg{background:#28C940}
-  .t-title { font-size: 11px; color: var(--muted); margin: 0 auto; letter-spacing: .04em; }
-  .term-body {
-    padding: 16px 18px; min-height: 268px;
-    font-size: 12px; line-height: 1.95; color: #888fa0; overflow: hidden;
-  }
-  .tl  { display: block; }
-  .tp  { color: var(--orange); }
-  .tok { color: #34D399; }
-  .tw  { color: #FBBF24; }
-  .te  { color: #F87171; }
-  .tc  { color: var(--white); }
-  .cur {
-    display: inline-block; width: 7px; height: 13px;
-    background: var(--white); vertical-align: middle;
-    animation: blink 1.1s step-end infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .nav-cta{font-size:13px;font-weight:500;padding:9px 20px;border-radius:6px;background:var(--orange);color:#fff;text-decoration:none;transition:all .18s;border:none;cursor:pointer;font-family:var(--fb);margin-left:8px}
+  .nav-cta:hover{background:#c94e20}
 
-  /* ═══════════════════════════════
-     STATS BAND
-  ═══════════════════════════════ */
-  .stats-band {
-    background: var(--surface);
-    border-top: 0.5px solid var(--border);
-    border-bottom: 0.5px solid var(--border);
-    padding: 50px 5%;
-  }
-  .stats-g { display: grid; grid-template-columns: repeat(4,1fr); }
-  .stat    { padding: 0 36px; border-right: 0.5px solid var(--border); }
-  .stat:first-child { padding-left: 0; }
-  .stat:last-child  { border-right: none; }
-  .stat-n {
-    font-family: var(--fh); font-size: 46px; font-weight: 700;
-    letter-spacing: -.03em; color: var(--orange); line-height: 1; margin-bottom: 7px;
-  }
-  .stat-l { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+  .ham span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;transition:all .25s}
 
-  /* ═══════════════════════════════
-     PACKAGES
-  ═══════════════════════════════ */
-  .pkg-g { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
-  .pkg {
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: 16px; padding: 34px;
-    display: flex; flex-direction: column;
-    position: relative; transition: border-color .2s, transform .2s, box-shadow .2s;
-  }
-  .pkg:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,.35);
-    border-color: var(--border2);
-  }
-  .pkg.star {
-    border: 1.5px solid var(--orange-b);
-    box-shadow: 0 4px 30px rgba(217,90,43,.10);
-  }
-  .pkg-badge {
-    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-    background: var(--orange); color: #fff;
-    font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: .07em;
-    padding: 4px 18px; border-radius: 20px; white-space: nowrap;
-  }
-  .pkg-tier {
-    font-family: var(--fh); font-size: 11px; font-weight: 600;
-    letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
-  }
-  .pkg-name {
-    font-family: var(--fh); font-size: 28px; font-weight: 700; margin-bottom: 6px;
-  }
-  .pkg-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
-  .pkg-price {
-    font-family: var(--fh); font-size: 44px; font-weight: 700;
-    letter-spacing: -.03em; line-height: 1;
-  }
-  .pkg-price small { font-size: 17px; font-weight: 400; color: var(--muted); }
-  .pkg-bill { font-size: 12px; color: var(--muted); margin: 6px 0 10px; }
-  .pkg-tag {
-    display: inline-block;
-    font-size: 12px; font-weight: 600; color: var(--orange);
-    background: var(--orange-d); border-radius: 4px;
-    padding: 4px 10px; margin-bottom: 22px; width: fit-content;
-  }
-  .pkg-hr  { border: none; border-top: 0.5px solid var(--border); margin-bottom: 20px; }
-  .pkg-fts { flex: 1; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
-  .ft {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 14px; color: var(--muted); line-height: 1.5;
-  }
-  .ft i { color: var(--orange); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-  .ft strong { color: var(--white); }
-  .pb {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 13px 20px; border-radius: 8px;
-    font-family: var(--fb); font-size: 14px; font-weight: 500;
-    text-decoration: none; transition: all .2s;
-  }
-  .pb-s { background: var(--orange); color: #fff; }
-  .pb-s:hover { opacity: .84; }
-  .pb-g { border: 0.5px solid var(--border2); color: var(--white); }
-  .pb-g:hover { background: rgba(255,255,255,.05); }
+  /* Mobile nav */
+  .mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(10,10,10,.97);backdrop-filter:blur(20px);z-index:299;padding:20px 5%;flex-direction:column;gap:0;overflow-y:auto}
+  .mobile-nav.open{display:flex}
+  .mobile-nav a,.mobile-nav .mob-group-btn{display:block;padding:14px 0;font-size:15px;color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);transition:color .18s;background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;font-family:var(--fb);width:100%;text-align:left}
+  .mobile-nav a:hover,.mobile-nav .mob-group-btn:hover{color:var(--white)}
+  .mob-sub{padding-left:16px;display:none;flex-direction:column}
+  .mob-sub.open{display:flex}
+  .mob-sub a{font-size:13px;padding:10px 0;border-bottom:1px solid var(--border)}
+  .mobile-cta{margin-top:24px!important;display:inline-flex!important;justify-content:center;padding:14px 24px!important;border-radius:var(--r-sm)!important;background:var(--orange)!important;color:#fff!important;font-size:15px!important;font-weight:500!important;text-decoration:none!important;border-bottom:none!important}
 
-  /* ═══════════════════════════════
-     WHY US
-  ═══════════════════════════════ */
-  .why-g { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .wc {
-    background: var(--surface); border: 0.5px solid var(--border);
-    border-radius: 14px; padding: 30px;
-    transition: border-color .2s;
-  }
-  .wc:hover { border-color: var(--border2); }
-  .wi {
-    width: 46px; height: 46px; border-radius: 10px;
-    background: var(--orange-d);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 18px;
-  }
-  .wi i { font-size: 22px; color: var(--orange); }
-  .wc h3 {
-    font-family: var(--fh); font-size: 19px; font-weight: 600; margin-bottom: 9px;
-  }
-  .wc p  { font-size: 14px; color: var(--muted); line-height: 1.72; }
+  /* ══ ALERT BAR ══ */
+  .alert-bar{background:linear-gradient(90deg,rgba(239,68,68,.10),rgba(224,92,42,.10));border-bottom:1px solid rgba(239,68,68,.18);padding:10px 5%;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--fm);font-size:12px;letter-spacing:.04em;color:var(--muted2);position:relative;z-index:200;margin-top:64px}
+  .alert-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pulse-red 2s ease-in-out infinite}
+  @keyframes pulse-red{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+  .alert-bar strong{color:var(--red)}
 
-  /* ═══════════════════════════════
-     PROCESS
-  ═══════════════════════════════ */
-  .proc-g {
-    display: grid; grid-template-columns: repeat(4,1fr);
-    border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden;
-  }
-  .ps {
-    padding: 30px 26px; background: var(--surface);
-    border-right: 0.5px solid var(--border);
-  }
-  .ps:last-child { border-right: none; }
-  .pn {
-    font-family: var(--fh); font-size: 52px; font-weight: 700;
-    letter-spacing: -.04em; color: rgba(217,90,43,.18);
-    line-height: 1; margin-bottom: 16px;
-  }
-  .ps h3 { font-family: var(--fh); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-  .ps p  { font-size: 13px; color: var(--muted); line-height: 1.72; }
+  /* ══ HERO ══ */
+  .hero{min-height:calc(100vh - 64px);display:flex;align-items:center;padding:80px 5% 80px;position:relative;overflow:hidden}
+  .hero-bg-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 55% at 65% 45%,rgba(224,92,42,.06) 0%,transparent 65%),radial-gradient(ellipse 30% 40% at 15% 70%,rgba(224,92,42,.03) 0%,transparent 60%)}
+  .hero-grid-bg{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%)}
+  .scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(224,92,42,.6) 40%,rgba(224,92,42,.6) 60%,transparent 100%);opacity:.08;pointer-events:none;z-index:1;animation:scan-anim 11s linear infinite}
+  @keyframes scan-anim{from{top:-1px}to{top:100%}}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:52% 1fr;gap:56px;align-items:center;width:100%}
+  .chip-urgent{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--red);border:1px solid rgba(239,68,68,.25);background:rgba(239,68,68,.06);padding:6px 14px;border-radius:4px;margin-bottom:24px}
+  .chip-urgent::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pulse-red 2s ease-in-out infinite}
+  h1{font-family:var(--fh);font-size:clamp(36px,5.2vw,62px);font-weight:800;letter-spacing:-.005em;line-height:1.05;margin-bottom:22px}
+  .hl-under{background:linear-gradient(90deg,var(--orange),#f07040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero-sub{font-size:17px;font-weight:300;color:var(--muted2);line-height:1.80;margin-bottom:36px;max-width:460px}
+  .hero-sub strong{color:var(--white);font-weight:500}
+  .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+  .hero-strip{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .hs-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted2)}
+  .hs-item i{color:var(--orange);font-size:15px}
+  .hs-item strong{color:var(--white);font-weight:500}
+  .hs-sep{width:1px;height:22px;background:var(--border2)}
 
-  /* ═══════════════════════════════
-     ABOUT / DASHBOARD
-  ═══════════════════════════════ */
-  .about-g { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-  .at p    { font-size: 16px; color: var(--muted); line-height: 1.82; margin-bottom: 18px; }
-  .certs   { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-  .cert {
-    font-family: var(--fm); font-size: 11px;
-    padding: 6px 12px; border-radius: 5px;
-    background: var(--surface2); border: 0.5px solid var(--border2); color: var(--muted);
-  }
-  /* Logo image */
-  .logo-img { width: 200px; border-radius: 10px; overflow: hidden; margin-bottom: 28px; border: 0.5px solid var(--border); }
-  /* Security panel */
-  .dash {
-    background: var(--surface); border: 0.5px solid var(--border2);
-    border-radius: 16px; padding: 24px 28px;
-  }
-  .dh {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-bottom: 16px; margin-bottom: 18px;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .dh-t {
-    font-family: var(--fh); font-size: 12px; font-weight: 600;
-    letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
-  }
-  .s-ok {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 500; color: #34D399;
-  }
-  .s-ok::before { content:''; width:7px; height:7px; border-radius:50%; background:#34D399; }
-  .dr2 {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 0; border-bottom: 0.5px solid var(--border);
-    font-size: 14px;
-  }
-  .dr2:last-child { border-bottom: none; }
-  .dr2 span:first-child { color: var(--muted); }
-  .vg{color:#34D399;font-weight:500}
-  .va{color:#FBBF24;font-weight:500}
-  .vw{font-weight:500}
+  /* ══ TERMINAL ══ */
+  .term{background:#0c0c0c;border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow:hidden;font-family:var(--fm);box-shadow:0 24px 64px rgba(0,0,0,.5)}
+  .term-bar{background:#181818;padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .d{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  .dr{background:#FF5F57}.dy{background:#FFBD2E}.dg{background:#28C940}
+  .t-title{font-size:11px;color:var(--muted);margin:0 auto;letter-spacing:.05em}
+  .term-body{padding:18px 20px;min-height:290px;font-size:12px;line-height:2.0;color:#6a717d;overflow:hidden}
+  .tl{display:block}.tp{color:var(--orange)}.tok{color:#22c55e}.tw{color:#f59e0b}.te{color:#ef4444}.tc{color:var(--white)}
+  .cur{display:inline-block;width:7px;height:13px;background:var(--white);vertical-align:middle;animation:blink 1.1s step-end infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-  /* ═══════════════════════════════
-     CTA
-  ═══════════════════════════════ */
-  .cta-s {
-    background: var(--surface);
-    border-top: 0.5px solid var(--border);
-    text-align: center; padding: 96px 5%;
-  }
-  .cta-s h2 { margin-bottom: 16px; }
-  .cta-s .sub { font-size: 18px; color: var(--muted); font-weight: 300; margin-bottom: 44px; }
-  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  /* ══ STATS ══ */
+  .stats-band{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:52px 5%}
+  .stats-g{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:0 28px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
+  .stat:first-child{padding-left:0}.stat:last-child{border-right:none}
+  .stat-n{font-family:var(--fh);font-size:46px;font-weight:800;letter-spacing:-.04em;color:var(--orange);line-height:1}
+  .stat-l{font-size:13px;color:var(--muted2);line-height:1.55}
+  .stat-src{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:.04em;margin-top:2px}
 
-  /* ═══════════════════════════════
-     FOOTER
-  ═══════════════════════════════ */
-  footer {
-    background: var(--bg); border-top: 0.5px solid var(--border); padding: 36px 5%;
-  }
-  .fi {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 18px;
-  }
-  .fl  { font-family: var(--fh); font-size: 19px; font-weight: 700; letter-spacing: .05em; }
-  .fl span { color: var(--orange); }
-  .fs  { font-family: var(--fh); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
-  .flinks { display: flex; gap: 28px; list-style: none; }
-  .flinks a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
-  .flinks a:hover { color: var(--white); }
-  .fc  { font-size: 12px; color: var(--muted); }
+  /* ══ SERVICES GRID (ISP-style) ══ */
+  .services-sec{background:var(--bg);border-top:1px solid var(--border)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+  .svc{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px 28px;position:relative;overflow:hidden;transition:all .25s;cursor:default}
+  .svc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);opacity:0;transition:opacity .25s}
+  .svc:hover{border-color:var(--orange-b);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+  .svc:hover::before{opacity:1}
+  .svc-icon{width:50px;height:50px;border-radius:12px;background:var(--orange-g);border:1px solid var(--orange-b);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all .25s}
+  .svc:hover .svc-icon{background:rgba(224,92,42,.12);transform:scale(1.05)}
+  .svc-icon i{font-size:22px;color:var(--orange)}
+  .svc-badge{position:absolute;top:16px;right:16px;font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);background:var(--orange-d);border:1px solid var(--orange-b);padding:3px 10px;border-radius:4px}
+  .svc h3{font-family:var(--fh);font-size:20px;font-weight:700;margin-bottom:8px}
+  .svc p{font-size:13.5px;color:var(--muted2);line-height:1.7;margin-bottom:18px}
+  .svc-link{font-size:13px;font-weight:500;color:var(--orange);text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:gap .2s}
+  .svc-link:hover{gap:9px}
+  .svc-link i{font-size:14px;transition:transform .2s}
+  .svc-link:hover i{transform:translateX(2px)}
 
-  /* ═══════════════════════════════
-     RESPONSIVE
-  ═══════════════════════════════ */
-  @media(max-width:900px){
-    .hero-grid    { grid-template-columns: 1fr; }
-    .term         { display: none; }
-    .stats-g      { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .stat         { border-right: none; padding: 0; }
-    .pkg-g        { grid-template-columns: 1fr; max-width: 420px; }
-    .why-g        { grid-template-columns: 1fr; }
-    .proc-g       { grid-template-columns: 1fr 1fr; }
-    .ps           { border-right: none; border-bottom: 0.5px solid var(--border); }
-    .ps:nth-child(odd)  { border-right: 0.5px solid var(--border); }
-    .ps:nth-last-child(-n+2) { border-bottom: none; }
-    .about-g      { grid-template-columns: 1fr; gap: 40px; }
-    .nav-links    { display: none; }
-    .nav-cta      { display: none; }
-    .ham          { display: flex; }
+  /* ══ SOLUTIONS (ISP-style alternating) ══ */
+  .solutions-sec{background:var(--surface);border-top:1px solid var(--border)}
+  .sol-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:64px 0}
+  .sol-block:not(:last-child){border-bottom:1px solid var(--border)}
+  .sol-block.reverse .sol-visual{order:-1}
+  .sol-label{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+  .sol-label i{font-size:14px}
+  .sol-block h3{font-family:var(--fh);font-size:28px;font-weight:700;margin-bottom:12px;line-height:1.15}
+  .sol-block p{font-size:15px;color:var(--muted2);line-height:1.8;margin-bottom:20px}
+  .sol-features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+  .sf{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--muted2);line-height:1.5}
+  .sf i{color:var(--orange);font-size:16px;flex-shrink:0;margin-top:1px}
+  .sf strong{color:var(--white);font-weight:500}
+  .sol-visual{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;position:relative}
+  .sol-visual-inner{padding:24px;font-family:var(--fm);font-size:12px;line-height:2;color:#6a717d;min-height:280px;display:flex;flex-direction:column;justify-content:center}
+  .sol-vl{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:8px}
+  .sol-vl:last-child{margin-bottom:0}
+
+  /* ══ PACKAGES ══ */
+  .packages-sec{background:var(--bg);border-top:1px solid var(--border)}
+  .pkg-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pkg{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;flex-direction:column;position:relative;transition:border-color .2s,transform .2s,box-shadow .2s}
+  .pkg:hover{transform:translateY(-3px);box-shadow:0 20px 48px rgba(0,0,0,.4);border-color:var(--border2)}
+  .pkg.featured{border:1px solid var(--orange-b);background:linear-gradient(160deg,rgba(224,92,42,.04),var(--surface) 60%);box-shadow:0 8px 32px rgba(224,92,42,.1)}
+  .pkg-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 16px;border-radius:20px;white-space:nowrap}
+  .pkg-tier{font-family:var(--fm);font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .pkg-name{font-family:var(--fh);font-size:26px;font-weight:700;margin-bottom:4px}
+  .pkg-tagline{font-size:13px;color:var(--muted2);margin-bottom:22px}
+  .pkg-price{font-family:var(--fh);font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .pkg-price small{font-size:15px;font-weight:400;color:var(--muted2)}
+  .pkg-bill{font-size:12px;color:var(--muted);margin:6px 0 8px;font-weight:500}
+  .pkg-capacity{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:11px;color:var(--orange);background:var(--orange-d);border-radius:4px;padding:4px 10px;margin-bottom:22px;width:fit-content}
+  .pkg-hr{border:none;border-top:1px solid var(--border);margin-bottom:20px}
+  .pkg-fts{flex:1;display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+  .ft{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted2);line-height:1.5}
+  .ft i{color:var(--orange);font-size:15px;flex-shrink:0;margin-top:2px}
+  .ft strong{color:var(--white);font-weight:500}
+  .pkg-cta{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:var(--r-sm);font-family:var(--fb);font-size:14px;font-weight:500;text-decoration:none;transition:all .18s;cursor:pointer}
+  .pkg-cta-solid{background:var(--orange);color:#fff}
+  .pkg-cta-solid:hover{background:#c94e20}
+  .pkg-cta-ghost{border:1px solid var(--border2);color:var(--white)}
+  .pkg-cta-ghost:hover{background:rgba(255,255,255,.05)}
+  .addons{margin-top:16px;padding:16px 20px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .addons i{color:var(--orange);font-size:15px;flex-shrink:0}
+  .addons strong{color:var(--white)}
+
+  /* ══ VALIDATION ══ */
+  .validation-sec{background:var(--surface);border-top:1px solid var(--border)}
+  .validation-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
+  .validation-card{background:var(--bg);border:1px solid var(--orange-b);border-radius:var(--r);padding:40px;position:relative;overflow:hidden}
+  .validation-card::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(224,92,42,.06),transparent 70%);pointer-events:none}
+  .validation-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);background:var(--orange-d);border:1px solid var(--orange-b);padding:5px 12px;border-radius:4px;margin-bottom:20px}
+  .validation-card h3{font-family:var(--fh);font-size:24px;font-weight:700;margin-bottom:12px;line-height:1.2}
+  .validation-card p{font-size:15px;color:var(--muted2);line-height:1.75;margin-bottom:24px}
+  .validation-features{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+  .validation-features .ft{font-size:14px}
+  .validation-price{font-family:var(--fh);font-size:32px;font-weight:800;color:var(--orange);letter-spacing:-.03em;margin-bottom:4px}
+  .validation-price small{font-size:14px;color:var(--muted2);font-weight:400}
+  .validation-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:var(--orange);color:#fff;border-radius:var(--r-sm);font-size:14px;font-weight:500;text-decoration:none;transition:all .18s}
+  .validation-cta:hover{background:#c94e20;transform:translateY(-1px)}
+  .validation-visual{display:flex;flex-direction:column;gap:16px}
+  .validation-stat{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:24px;display:flex;align-items:center;gap:16px;transition:border-color .2s}
+  .validation-stat:hover{border-color:var(--orange-b)}
+  .validation-stat-icon{width:48px;height:48px;border-radius:10px;background:var(--orange-g);border:1px solid var(--orange-b);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .validation-stat-icon i{font-size:22px;color:var(--orange)}
+  .validation-stat-text h4{font-family:var(--fh);font-size:16px;font-weight:600;margin-bottom:4px}
+  .validation-stat-text p{font-size:13px;color:var(--muted2);line-height:1.6}
+
+  /* ══ PROCESS ══ */
+  .process-sec{background:var(--bg);border-top:1px solid var(--border)}
+  .proc-g{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;margin-top:48px}
+  .ps{padding:32px 26px;background:var(--surface);border-right:1px solid var(--border);position:relative;transition:background .2s}
+  .ps:hover{background:var(--surface2)}
+  .ps:last-child{border-right:none}
+  .ps-connector{position:absolute;right:-12px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:var(--surface);border:1px solid var(--orange-b);display:flex;align-items:center;justify-content:center;z-index:2;font-size:10px;color:var(--orange)}
+  .ps:last-child .ps-connector{display:none}
+  .pn{font-family:var(--fh);font-size:54px;font-weight:800;letter-spacing:-.05em;color:rgba(224,92,42,.12);line-height:1;margin-bottom:18px}
+  .ps h3{font-family:var(--fh);font-size:17px;font-weight:600;margin-bottom:8px}
+  .ps p{font-size:13px;color:var(--muted2);line-height:1.72}
+  .ps-time{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-family:var(--fm);font-size:10px;color:var(--orange);letter-spacing:.05em}
+  .ps-time i{font-size:12px}
+
+  /* ══ FOUNDING ══ */
+  .founding-sec{background:var(--surface);border-top:1px solid var(--border)}
+  .founding-g{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  .founding-copy p{font-size:15px;color:var(--muted2);line-height:1.85;margin-top:14px}
+  .founding-copy p strong{color:var(--white)}
+  .fvs{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+  .fv{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:18px 20px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s}
+  .fv:hover{border-color:var(--orange-b)}
+  .fv-icon{width:36px;height:36px;border-radius:8px;flex-shrink:0;background:var(--orange-g);border:1px solid var(--orange-b);display:flex;align-items:center;justify-content:center}
+  .fv-icon i{font-size:16px;color:var(--orange)}
+  .fv h4{font-family:var(--fh);font-size:15px;font-weight:600;margin-bottom:2px}
+  .fv p{font-size:12.5px;color:var(--muted2);line-height:1.6}
+  .demo-terminal{background:#0c0c0c;border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow:hidden;font-family:var(--fm);box-shadow:0 24px 64px rgba(0,0,0,.4)}
+  .demo-term-bar{background:#181818;padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .demo-term-body{padding:20px;font-size:12px;line-height:2.1;color:#6a717d}
+
+  /* ══ FAQ ══ */
+  .faq-sec{background:var(--bg);border-top:1px solid var(--border)}
+  .faq-g{display:grid;grid-template-columns:38% 1fr;gap:72px;align-items:start}
+  .faq-list{display:flex;flex-direction:column;gap:2px}
+  .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden}
+  .faq-q{width:100%;background:none;border:none;cursor:pointer;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--fb);font-size:14px;font-weight:500;color:var(--white);text-align:left;transition:background .18s}
+  .faq-q:hover{background:rgba(255,255,255,.03)}
+  .faq-q i{font-size:16px;color:var(--muted2);flex-shrink:0;transition:transform .22s}
+  .faq-q[aria-expanded="true"] i{transform:rotate(45deg);color:var(--orange)}
+  .faq-a{font-size:13.5px;color:var(--muted2);line-height:1.78;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .28s ease}
+  .faq-a.open{max-height:300px;padding:0 20px 18px}
+
+  /* ══ CTA ══ */
+  .cta-sec{background:var(--surface);border-top:1px solid var(--border);text-align:center;padding:100px 5%;position:relative;overflow:hidden}
+  .cta-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 70% at 50% 100%,rgba(224,92,42,.07),transparent 65%)}
+  .cta-sec .w{position:relative;z-index:1}
+  .cta-sec h2{font-size:clamp(28px,4vw,50px);margin-bottom:14px}
+  .cta-sec .sub{font-size:17px;color:var(--muted2);font-weight:300;max-width:520px;margin:0 auto 40px;line-height:1.75}
+  .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+  .cta-note{font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px}
+  .cta-note i{color:var(--orange);font-size:14px}
+
+  /* ══ FOOTER ══ */
+  footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 5% 36px}
+  .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  .f-brand p{font-size:13px;color:var(--muted2);line-height:1.7;margin-top:12px;max-width:280px}
+  .f-col h4{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .f-col a{display:block;font-size:13px;color:var(--muted2);text-decoration:none;padding:4px 0;transition:color .18s}
+  .f-col a:hover{color:var(--white)}
+  .f-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:24px;border-top:1px solid var(--border)}
+  .f-copy{font-size:12px;color:var(--muted)}
+  .f-legal{display:flex;gap:20px}
+  .f-legal a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .18s}
+  .f-legal a:hover{color:var(--muted2)}
+
+  /* ══ RESPONSIVE ══ */
+  @media(max-width:960px){
+    .hero-inner{grid-template-columns:1fr}
+    .term{display:none}
+    .stats-g{grid-template-columns:1fr 1fr;gap:36px}
+    .stat{border-right:none;padding:0}
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .sol-block{grid-template-columns:1fr;gap:36px;padding:48px 0}
+    .sol-block.reverse .sol-visual{order:0}
+    .pkg-g{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+    .proc-g{grid-template-columns:1fr 1fr}
+    .ps{border-right:none;border-bottom:1px solid var(--border)}
+    .ps:nth-child(odd){border-right:1px solid var(--border)}
+    .ps:nth-last-child(-n+2){border-bottom:none}
+    .faq-g{grid-template-columns:1fr;gap:40px}
+    .founding-g{grid-template-columns:1fr;gap:40px}
+    .validation-grid{grid-template-columns:1fr;gap:40px}
+    .f-grid{grid-template-columns:1fr 1fr;gap:28px}
+    .nav-links{display:none}
+    .nav-cta{display:none}
+    .ham{display:flex}
+    .ps-connector{display:none}
   }
-  @media(max-width:480px){
-    h1 { font-size: 36px; }
-    .proc-g { grid-template-columns: 1fr; }
-    .ps { border-right: none !important; border-bottom: 0.5px solid var(--border) !important; }
-    .ps:last-child { border-bottom: none !important; }
-    .stats-g { grid-template-columns: 1fr; }
-    .cta-btns .btn { width: 100%; justify-content: center; }
+  @media(max-width:540px){
+    h1{font-size:34px}
+    .proc-g{grid-template-columns:1fr}
+    .ps{border-right:none!important;border-bottom:1px solid var(--border)!important}
+    .ps:last-child{border-bottom:none!important}
+    .stats-g{grid-template-columns:1fr}
+    .svc-grid{grid-template-columns:1fr}
+    .cta-btns .btn,.hero-btns .btn{width:100%;justify-content:center}
+    .hero-strip{flex-direction:column;align-items:flex-start;gap:10px}
+    .hs-sep{display:none}
+    .validation-card{padding:28px}
+    .validation-stat{flex-direction:column;align-items:flex-start}
+    .f-grid{grid-template-columns:1fr}
   }
   @media(prefers-reduced-motion:reduce){
-    .scan,.chip::before,.cur { animation: none !important; }
+    .scan,.chip-urgent::before,.alert-dot,.cur,.logo-dot{animation:none!important}
+    .pkg:hover,.svc:hover{transform:none!important}
   }
   </style>
+  <base target="_blank">
 </head>
 <body>
 
-<!-- ══════════════ NAV ══════════════ -->
+<!-- ═══════════ NAV ═══════════ -->
 <nav id="nav">
-  <!-- OPCIÓN LOGO IMAGEN: descomenta si tienes logo.png con fondo transparente -->
-  <!-- <a href="#inicio"><img src="logo.png" alt="BreachCorp" style="height:40px"></a> -->
-  <a href="#inicio" class="logo">BREACH<span>CORP</span></a>
+  <a href="#inicio" class="logo">BREACH<span>CORP</span><div class="logo-dot"></div></a>
 
-  <ul class="nav-links" id="navlinks">
-    <li><a href="#paquetes">Paquetes</a></li>
-    <li><a href="#proceso">Proceso</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+  <ul class="nav-links">
+    <!-- SERVICIOS — Mega Dropdown -->
+    <li class="nav-item">
+      <button>Servicios <i class="ti ti-chevron-down nav-arrow"></i></button>
+      <div class="mega" style="width:580px">
+        <div class="mega-inner">
+          <div class="mega-grid">
+            <a href="#guardia" class="mega-item">
+              <div class="mega-icon"><i class="ti ti-radar-2"></i></div>
+              <div class="mega-text">
+                <h4>Guardia Virtual</h4>
+                <p>Monitoreo activo 24/7 de tu infraestructura con respuesta humana real.</p>
+              </div>
+            </a>
+            <a href="#pentest" class="mega-item">
+              <div class="mega-icon"><i class="ti ti-bug"></i></div>
+              <div class="mega-text">
+                <h4>Pentesting Real</h4>
+                <p>Ataque manual a tu red. No un escáner, un humano pensando como atacante.</p>
+              </div>
+            </a>
+            <a href="#auditoria" class="mega-item">
+              <div class="mega-icon"><i class="ti ti-scan"></i></div>
+              <div class="mega-text">
+                <h4>Auditoría de Infraestructura</h4>
+                <p>Revisión completa de endpoints, red, cloud y configuraciones.</p>
+              </div>
+            </a>
+            <a href="#correo" class="mega-item">
+              <div class="mega-icon"><i class="ti ti-mail-check"></i></div>
+              <div class="mega-text">
+                <h4>Blindaje de Correo</h4>
+                <p>SPF/DKIM/DMARC, simulaciones de phishing y revisión de gateway.</p>
+              </div>
+            </a>
+            <a href="#darkweb" class="mega-item">
+              <div class="mega-icon"><i class="ti ti-world-search"></i></div>
+              <div class="mega-text">
+                <h4>Radar Dark Web</h4>
+                <p>Monitoreo de credenciales filtradas, spoofing e impersonación.</p>
+              </div>
+            </a>
+            <a href="#incidentes" class="mega-item">
+              <div class="mega-icon"><i class="ti ti-alarm"></i></div>
+              <div class="mega-text">
+                <h4>Respuesta a Incidentes</h4>
+                <p>Contención y remedación urgente. Por hora, sin contrato previo.</p>
+              </div>
+            </a>
+          </div>
+          <div class="mega-footer">
+            <span style="font-size:11px;color:var(--muted)">6 servicios disponibles</span>
+            <a href="#servicios">Ver todos <i class="ti ti-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <!-- SOLUCIONES — Dropdown con sub-nivel -->
+    <li class="nav-item">
+      <button>Soluciones <i class="ti ti-chevron-down nav-arrow"></i></button>
+      <div class="simple-drop">
+        <div class="simple-inner">
+          <a href="#sol-comercio" class="simple-item"><i class="ti ti-shopping-cart"></i> Comercio y Retail</a>
+          <a href="#sol-manufactura" class="simple-item"><i class="ti ti-building-factory"></i> Manufactura</a>
+          <a href="#sol-servicios" class="simple-item"><i class="ti ti-briefcase"></i> Servicios Profesionales</a>
+          <a href="#sol-salud" class="simple-item"><i class="ti ti-heart-pulse"></i> Clínicas y Salud</a>
+          <div class="sub-wrap">
+            <button class="simple-item">Más sectores <i class="ti ti-chevron-right" style="font-size:12px;color:var(--muted);margin-left:auto"></i></button>
+            <div class="sub-menu">
+              <div class="sub-inner">
+                <a href="#sol-legal" class="sub-item">Despachos Legales</a>
+                <a href="#sol-contador" class="sub-item">Contadores y Financieros</a>
+                <a href="#sol-tech" class="sub-item">Startups y Tech</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <!-- PRECIOS — Link directo -->
+    <li class="nav-item">
+      <a href="#paquetes" style="display:block;padding:8px 14px;font-size:13px;color:var(--muted2);text-decoration:none;transition:color .18s;border-radius:6px" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted2)'">Precios</a>
+    </li>
+
+    <!-- EMPRESA — Dropdown simple -->
+    <li class="nav-item">
+      <button>Empresa <i class="ti ti-chevron-down nav-arrow"></i></button>
+      <div class="simple-drop">
+        <div class="simple-inner">
+          <a href="#nosotros" class="simple-item"><i class="ti ti-users"></i> Quiénes somos</a>
+          <a href="#proceso" class="simple-item"><i class="ti ti-route"></i> Cómo trabajamos</a>
+          <a href="#faq" class="simple-item"><i class="ti ti-help-circle"></i> Preguntas frecuentes</a>
+          <a href="https://wa.me/529621770905?text=Hola%20BreachCorp" class="simple-item"><i class="ti ti-message-circle"></i> Contacto</a>
+        </div>
+      </div>
+    </li>
   </ul>
 
-  <!-- ⚠ Reemplaza 52XXXXXXXXXX → 52 + tus 10 dígitos, sin espacios -->
-  <a href="https://wa.me/52XXXXXXXXXX?text=Hola%20BreachCorp,%20quiero%20una%20consulta%20gratuita"
-     class="nav-cta" target="_blank" rel="noopener">Consulta gratuita</a>
+  <a href="https://wa.me/529621770905?text=Hola%20BreachCorp,%20quiero%20una%20consulta%20gratuita" class="nav-cta">Consulta gratuita →</a>
 
   <button class="ham" aria-label="Menú" onclick="navToggle(this)">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- ══════════════ HERO ══════════════ -->
+<!-- Mobile -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mob-group-btn" onclick="toggleMobSub(this,'mob-serv')">Servicios <i class="ti ti-chevron-down" style="font-size:12px;float:right"></i></button>
+  <div class="mob-sub" id="mob-serv">
+    <a href="#guardia" onclick="closeMobile()">Guardia Virtual</a>
+    <a href="#pentest" onclick="closeMobile()">Pentesting Real</a>
+    <a href="#auditoria" onclick="closeMobile()">Auditoría de Infraestructura</a>
+    <a href="#correo" onclick="closeMobile()">Blindaje de Correo</a>
+    <a href="#darkweb" onclick="closeMobile()">Radar Dark Web</a>
+    <a href="#incidentes" onclick="closeMobile()">Respuesta a Incidentes</a>
+  </div>
+  <button class="mob-group-btn" onclick="toggleMobSub(this,'mob-sol')">Soluciones <i class="ti ti-chevron-down" style="font-size:12px;float:right"></i></button>
+  <div class="mob-sub" id="mob-sol">
+    <a href="#sol-comercio" onclick="closeMobile()">Comercio y Retail</a>
+    <a href="#sol-manufactura" onclick="closeMobile()">Manufactura</a>
+    <a href="#sol-servicios" onclick="closeMobile()">Servicios Profesionales</a>
+    <a href="#sol-salud" onclick="closeMobile()">Clínicas y Salud</a>
+    <a href="#sol-legal" onclick="closeMobile()">Despachos Legales</a>
+  </div>
+  <a href="#paquetes" onclick="closeMobile()">Precios</a>
+  <a href="#nosotros" onclick="closeMobile()">Quiénes somos</a>
+  <a href="#proceso" onclick="closeMobile()">Cómo trabajamos</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="https://wa.me/52XXXXXXXXXX?text=Hola%20BreachCorp" class="mobile-cta">Consulta gratuita →</a>
+</div>
+
+<!-- ═══════════ ALERT BAR ═══════════ -->
+<div class="alert-bar">
+  <div class="alert-dot"></div>
+  <strong>Alerta:</strong> Ransomware a PyMEs +41% en 12 meses &nbsp;·&nbsp;
+  <a href="#servicios" style="color:var(--orange);text-decoration:none;">¿Tu empresa está protegida? →</a>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
 <section class="hero" id="inicio">
-  <div class="scan"  aria-hidden="true"></div>
-  <div class="wm"    aria-hidden="true">BREACH</div>
-
-  <div class="w hero-grid">
-
-    <!-- Copy -->
+  <div class="hero-bg-glow" aria-hidden="true"></div>
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="scan" aria-hidden="true"></div>
+  <div class="w hero-inner">
     <div>
-      <div class="chip">Operations &amp; Resilience</div>
-      <h1>Ciberseguridad <em>táctica</em><br>para tu PyME</h1>
-      <p class="hero-desc">
-        Aseguramos tu infraestructura mediante operaciones de Red Team, auditorías de red reales
-        y administración técnica de seguridad. No solo reportes de cumplimiento —
-        <strong style="color:var(--white)">defendemos tu negocio contra amenazas activas.</strong>
-      </p>
+      <div class="chip-urgent">Tu empresa ya está siendo escaneada</div>
+      <h1>Los hackers ya encontraron <span class="hl-under">tu red</span>.<br><span style="color:var(--muted2);font-weight:400">¿La encontraste tú también?</span></h1>
+      <p class="hero-sub">El 74% de las PyMEs operan con vulnerabilidades críticas sin saberlo. En BreachCorp hacemos lo que hacen los atacantes — <strong>antes de que ellos lleguen.</strong></p>
       <div class="hero-btns">
-        <a href="https://wa.me/52XXXXXXXXXX?text=Hola%20BreachCorp,%20quiero%20un%20diagn%C3%B3stico%20gratuito"
-           class="btn b-solid" target="_blank" rel="noopener">
-          <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Diagnóstico gratuito
-        </a>
-        <a href="#paquetes" class="btn b-ghost">
-          Ver paquetes <i class="ti ti-arrow-down" aria-hidden="true"></i>
-        </a>
+        <a href="https://wa.me/529621770905?text=Hola%20BreachCorp,%20quiero%20un%20diagn%C3%B3stico%20gratuito" class="btn btn-wa btn-lg"><i class="ti ti-brand-whatsapp"></i> Diagnóstico gratuito</a>
+        <a href="#servicios" class="btn btn-ghost btn-lg">Ver servicios <i class="ti ti-arrow-down"></i></a>
+      </div>
+      <div class="hero-strip">
+        <div class="hs-item"><i class="ti ti-lock"></i> Sin contratos anuales</div>
+        <div class="hs-sep"></div>
+        <div class="hs-item"><i class="ti ti-clock"></i> <strong>Diagnóstico en 48h</strong></div>
+        <div class="hs-sep"></div>
+        <div class="hs-item"><i class="ti ti-shield-check"></i> Confidencialidad firmada</div>
       </div>
     </div>
-
-    <!-- Terminal -->
-    <div class="term" role="img" aria-label="Simulación de auditoría de seguridad BreachCorp">
-      <div class="term-bar">
-        <div class="d dr"></div><div class="d dy"></div><div class="d dg"></div>
-        <span class="t-title">breachcorp — audit.sh</span>
-      </div>
-      <div class="term-body" id="term">
-        <span class="tl"><span class="tp">▶</span> <span class="tc">breach scan --target cliente.mx --full</span></span>
-      </div>
+    <div class="term" role="img" aria-label="Simulación de auditoría">
+      <div class="term-bar"><div class="d dr"></div><div class="d dy"></div><div class="d dg"></div><span class="t-title">breachcorp — recon.sh</span></div>
+      <div class="term-body" id="term"><span class="tl"><span class="tp">root@breachcorp</span><span style="color:#555">:~#</span> <span class="tc">breach scan --target empresa.mx --full</span></span></div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════ STATS ══════════════ -->
+<!-- ═══════════ STATS ═══════════ -->
 <div class="stats-band">
   <div class="w stats-g">
-    <div class="stat">
-      <div class="stat-n">74%</div>
-      <div class="stat-l">de PyMEs en México sin política de ciberseguridad</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">$2.4M</div>
-      <div class="stat-l">MXN, costo promedio de un incidente de seguridad</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">48h</div>
-      <div class="stat-l">tiempo promedio sin detectar una brecha activa en red</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">60%</div>
-      <div class="stat-l">de empresas cierran 6 meses después de un ataque</div>
-    </div>
+    <div class="stat"><div class="stat-n">74%</div><div class="stat-l">de PyMEs sin política de ciberseguridad</div><div class="stat-src">AMIPCI 2024</div></div>
+    <div class="stat"><div class="stat-n">$2.4M</div><div class="stat-l">MXN: costo promedio de un incidente</div><div class="stat-src">IBM 2025</div></div>
+    <div class="stat"><div class="stat-n">48h</div><div class="stat-l">sin detectar una brecha activa</div><div class="stat-src">Mandiant 2024</div></div>
+    <div class="stat"><div class="stat-n">60%</div><div class="stat-l">de PyMEs atacadas cierran en 6 meses</div><div class="stat-src">NCSA Survey</div></div>
   </div>
 </div>
 
-<!-- ══════════════ PACKAGES ══════════════ -->
-<section class="sec" id="paquetes">
+<!-- ═══════════ SERVICIOS (ISP-style grid) ═══════════ -->
+<section class="sec services-sec" id="servicios">
   <div class="w">
-    <div class="eye">Planes de protección continua</div>
-    <h2>Protección a la medida<br>de tu empresa</h2>
-    <p class="lead">Sin contratos de un año. Sin letra chica. Cancela cuando quieras.</p>
+    <div class="eyebrow">Nuestros servicios</div>
+    <h2>Seis formas de proteger<br>tu empresa</h2>
+    <p class="lead">Cada servicio funciona de forma independiente o como parte de un plan mensual. Sin redundancias, sin servicios forzados — solo lo que necesitas.</p>
+    <div class="svc-grid">
 
+      <div class="svc" id="guardia">
+        <div class="svc-icon"><i class="ti ti-radar-2"></i></div>
+        <div class="svc-badge">POPULAR</div>
+        <h3>Guardia Virtual</h3>
+        <p>Monitoreo activo de tu infraestructura con análisis humano. No solo recibes alertas — recibes <strong>respuestas</strong> a cada hallazgo.</p>
+        <a href="#paquetes" class="svc-link">Incluido en planes <i class="ti ti-arrow-right"></i></a>
+      </div>
+
+      <div class="svc" id="pentest">
+        <div class="svc-icon"><i class="ti ti-bug"></i></div>
+        <h3>Pentesting Real</h3>
+        <p>Ataque manual a tu red que demuestra el impacto real. Encadenamos vulnerabilidades como lo haría un atacante — no como un escáner.</p>
+        <a href="#validacion" class="svc-link">Desde $4,500 MXN <i class="ti ti-arrow-right"></i></a>
+      </div>
+
+      <div class="svc" id="auditoria">
+        <div class="svc-icon"><i class="ti ti-scan"></i></div>
+        <h3>Auditoría de Infraestructura</h3>
+        <p>Revisión exhaustiva de endpoints, servidores, red perimetral, configuraciones cloud y políticas de acceso. Todo documentado.</p>
+        <a href="https://wa.me/529621770905?text=Quiero%20una%20auditor%C3%ADa%20de%20infraestructura" class="svc-link">Cotizar auditoría <i class="ti ti-arrow-right"></i></a>
+      </div>
+
+      <div class="svc" id="correo">
+        <div class="svc-icon"><i class="ti ti-mail-check"></i></div>
+        <h3>Blindaje de Correo</h3>
+        <p>Configuración de SPF, DKIM y DMARC. Simulaciones de phishing mensuales. Revisión de tu gateway de correo. El vector #1 de ataque.</p>
+        <a href="#paquetes" class="svc-link">Incluido en Estándar+ <i class="ti ti-arrow-right"></i></a>
+      </div>
+
+      <div class="svc" id="darkweb">
+        <div class="svc-icon"><i class="ti ti-world-search"></i></div>
+        <h3>Radar Dark Web</h3>
+        <p>Monitoreo continuo de bases de datos filtradas para detectar credenciales de tu empresa. Saber primero = poder actuar primero.</p>
+        <a href="#paquetes" class="svc-link">Incluido en Estándar+ <i class="ti ti-arrow-right"></i></a>
+      </div>
+
+      <div class="svc" id="incidentes">
+        <div class="svc-icon"><i class="ti ti-alarm"></i></div>
+        <h3>Respuesta a Incidentes</h3>
+        <p>¿Ya te hackearon? Contención urgente, análisis forense y remedación. Disponible por hora, sin necesidad de contrato previo.</p>
+        <a href="https://wa.me/529621770905?text=Necesito%20respuesta%20a%20incidentes%20urgente" class="svc-link">$800 MXN/hr <i class="ti ti-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SOLUCIONES POR SECTOR (ISP-style alternating) ═══════════ -->
+<section class="sec solutions-sec" id="soluciones">
+  <div class="w">
+    <div class="eyebrow">Soluciones por sector</div>
+    <h2>Cada industria tiene<br>sus propias vulnerabilidades</h2>
+    <p class="lead">No todas las PyMEs enfrentan los mismos riesgos. Adaptamos nuestros servicios al tipo de datos y procesos que manejas.</p>
+
+    <!-- Solución 1: Comercio -->
+    <div class="sol-block" id="sol-comercio">
+      <div>
+        <div class="sol-label"><i class="ti ti-shopping-cart"></i> Comercio y Retail</div>
+        <h3>Tu punto de venta y tu tienda online son blancos prioritarios</h3>
+        <p>Los datos de tarjetas, las credenciales de tu e-commerce y los sistemas POS son el objetivo principal. Un solo incidente puede paralizar tu operación durante días.</p>
+        <div class="sol-features">
+          <div class="sf"><i class="ti ti-circle-check"></i> Revisión de <strong>compliance PCI-DSS</strong> básico para procesamiento de pagos</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Auditoría de <strong>plataformas e-commerce</strong> (WooCommerce, Shopify, custom)</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Protección de <strong>sistemas POS</strong> y redes de tienda</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Simulaciones de phishing contra personal de <strong>caja y finanzas</strong></div>
+        </div>
+        <a href="https://wa.me/529621770905?text=Soy%20del%20sector%20comercio,%20quiero%20una%20consulta" class="btn btn-ghost btn-sm">Consultar para mi negocio <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="sol-visual">
+        <div class="sol-visual-inner">
+          <div class="sol-vl"><span class="te">[!]</span> <span class="tc">CRÍTICO: POS con software desactualizado (versión 2019)</span></div>
+          <div class="sol-vl"><span class="tw">[~]</span> <span class="tc">ALTO: E-commerce sin WAF ni rate limiting</span></div>
+          <div class="sol-vl"><span class="tw">[~]</span> <span class="tc">ALTO: 12 empleados reusan contraseña en servicios personales</span></div>
+          <div class="sol-vl"><span class="tp">[i]</span> <span class="tc">MEDIO: Backup de BD sin cifrar, accesible desde red</span></div>
+          <div style="margin-top:12px;color:var(--orange);font-family:var(--fm);font-size:11px;">━━━ Diagnóstico típico: sector comercio ━━━</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solución 2: Manufactura (reversed) -->
+    <div class="sol-block reverse" id="sol-manufactura">
+      <div>
+        <div class="sol-label"><i class="ti ti-building-factory"></i> Manufactura</div>
+        <h3>Los sistemas de producción son el nuevo objetivo de los ransomware</h3>
+        <p>El ransomware dirigido a manufactura creció 87% en 2024. Un ataque a tu PLC o SCADA puede detener toda tu línea de producción hasta que pagues.</p>
+        <div class="sol-features">
+          <div class="sf"><i class="ti ti-circle-check"></i> Segmentación de red entre <strong>producción y oficina</strong></div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Auditoría de <strong>equipos IoT y sistemas SCADA/PLC</strong></div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Plan de <strong>continuidad operativa</strong> ante ataque de ransomware</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Monitoreo de <strong>accesos remotos a planta</strong></div>
+        </div>
+        <a href="https://wa.me/529621770905?text=Soy%20del%20sector%20manufactura,%20quiero%20una%20consulta" class="btn btn-ghost btn-sm">Consultar para mi negocio <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="sol-visual">
+        <div class="sol-visual-inner">
+          <div class="sol-vl"><span class="te">[!]</span> <span class="tc">CRÍTICO: Red de producción y oficina sin segmentación</span></div>
+          <div class="sol-vl"><span class="te">[!]</span> <span class="tc">CRÍTICO: PLC accesible desde internet sin autenticación</span></div>
+          <div class="sol-vl"><span class="tw">[~]</span> <span class="tc">ALTO: VPN de mantenimiento con credenciales compartidas</span></div>
+          <div class="sol-vl"><span class="tp">[i]</span> <span class="tc">MEDIO: Sin plan de recuperación ante ransomware</span></div>
+          <div style="margin-top:12px;color:var(--orange);font-family:var(--fm);font-size:11px;">━━━ Diagnóstico típico: manufactura ━━━</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solución 3: Servicios Profesionales -->
+    <div class="sol-block" id="sol-servicios">
+      <div>
+        <div class="sol-label"><i class="ti ti-briefcase"></i> Servicios Profesionales</div>
+        <h3>Tus datos de clientes son tu inventario más valioso — y el más expuesto</h3>
+        <p>Contadores, abogados, consultores: manejan información financiera y legal sensible. Una brecha no solo te cuesta dinero — te cuesta la confianza de tus clientes.</p>
+        <div class="sol-features">
+          <div class="sf"><i class="ti ti-circle-check"></i> <strong>Blindaje de correo</strong> completo (SPF/DKIM/DMARC + simulaciones)</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Revisión de <strong>almacenamiento en la nube</strong> (Google Drive, OneDrive, Dropbox)</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> <strong>Radar Dark Web</strong> para credenciales de la firma</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Capacitación específica contra <strong>BEC (Business Email Compromise)</strong></div>
+        </div>
+        <a href="https://wa.me/529621770905?text=Soy%20servicio%20profesional,%20quiero%20una%20consulta" class="btn btn-ghost btn-sm">Consultar para mi negocio <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="sol-visual">
+        <div class="sol-visual-inner">
+          <div class="sol-vl"><span class="te">[!]</span> <span class="tc">CRÍTICO: Sin SPF/DKIM — cualquier puede suplantar tu dominio</span></div>
+          <div class="sol-vl"><span class="tw">[~]</span> <span class="tc">ALTO: Documentos legales compartidos vía enlace público</span></div>
+          <div class="sol-vl"><span class="tw">[~]</span> <span class="tc">ALTO: Credenciales del contador aparecen en breach DB</span></div>
+          <div class="sol-vl"><span class="tp">[i]</span> <span class="tc">MEDIO: MFA no configurado en correo corporativo</span></div>
+          <div style="margin-top:12px;color:var(--orange);font-family:var(--fm);font-size:11px;">━━━ Diagnóstico típico: servicios profesionales ━━━</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solución 4: Salud -->
+    <div class="sol-block reverse" id="sol-salud">
+      <div>
+        <div class="sol-label"><i class="ti ti-heart-pulse"></i> Clínicas y Salud</div>
+        <h3>Los datos médicos valen 10x más en el mercado negro que los financieros</h3>
+        <p>Las clínicas pequeñas y consultorios manejan historiales clínicos sin las protecciones que exigen las regulaciones de salud. Un solo archivo robado puede generar demandas millonarias.</p>
+        <div class="sol-features">
+          <div class="sf"><i class="ti ti-circle-check"></i> Revisión de <strong>software médico</strong> y sistemas de historial clínico</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Cifrado de <strong>datos de pacientes</strong> en reposo y tránsito</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Control de acceso a <strong>estaciones de trabajo</strong> en recepción y consulta</div>
+          <div class="sf"><i class="ti ti-circle-check"></i> Evaluación de cumplimiento <strong>básico de protección de datos</strong></div>
+        </div>
+        <a href="https://wa.me/52XXXXXXXXXX?text=Soy%20del%20sector%20salud,%20quiero%20una%20consulta" class="btn btn-ghost btn-sm">Consultar para mi negocio <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="sol-visual">
+        <div class="sol-visual-inner">
+          <div class="sol-vl"><span class="te">[!]</span> <span class="tc">CRÍTICO: Historiales clínicos en carpeta compartida sin cifrado</span></div>
+          <div class="sol-vl"><span class="tw">[~]</span> <span class="tc">ALTO: Software médico con vulnerabilidades conocidas (CVE-2024-xxxx)</span></div>
+          <div class="sol-vl"><span class="tw">[~]</span> <span class="tc">ALTO: Cualquier empleado accede a todos los expedientes</span></div>
+          <div class="sol-vl"><span class="tp">[i]</span> <span class="tc">MEDIO: Sin políticas de respaldo de historiales</span></div>
+          <div style="margin-top:12px;color:var(--orange);font-family:var(--fm);font-size:11px;">━━━ Diagnóstico típico: salud ━━━</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAQUETES ═══════════ -->
+<section class="sec packages-sec" id="paquetes">
+  <div class="w">
+    <div class="eyebrow">Protección mensual</div>
+    <h2>El plan correcto<br>para cada empresa</h2>
+    <p class="lead">Sin contratos anuales. Sin letra chica. Cancela cuando quieras.</p>
     <div class="pkg-g">
-
-      <!-- BÁSICO -->
       <div class="pkg">
         <div class="pkg-tier">Plan básico</div>
         <div class="pkg-name">Básico</div>
-        <div class="pkg-sub">Para negocios pequeños</div>
-        <div class="pkg-price">$3,500 <small>MXN</small></div>
-        <div class="pkg-bill">por mes · sin contrato forzoso</div>
-        <div class="pkg-tag">~2–4 hrs / semana</div>
-        <hr class="pkg-hr" />
+        <div class="pkg-tagline">Para negocios que quieren empezar bien</div>
+        <div class="pkg-price">$3,500 <small>MXN/mes + IVA</small></div>
+        <div class="pkg-bill">Sin contrato forzoso</div>
+        <div class="pkg-capacity"><i class="ti ti-clock" style="font-size:12px"></i> ~2–4 hrs / semana</div>
+        <hr class="pkg-hr"/>
         <div class="pkg-fts">
           <div class="ft"><i class="ti ti-circle-check"></i> Diagnóstico inicial de vulnerabilidades</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Revisión mensual de seguridad de endpoints</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Soporte técnico remoto vía WhatsApp</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Reporte operativo mensual de estatus</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Revisión mensual de endpoints</div>
           <div class="ft"><i class="ti ti-circle-check"></i> Gestión segura de contraseñas y accesos</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Soporte técnico remoto</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Reporte operativo mensual</div>
         </div>
-        <a href="https://wa.me/52XXXXXXXXXX?text=Hola,%20me%20interesa%20el%20plan%20B%C3%A1sico%20de%20BreachCorp"
-           class="pb pb-g" target="_blank" rel="noopener">
-          Seleccionar Básico <i class="ti ti-arrow-right"></i>
-        </a>
+        <a href="https://wa.me/52XXXXXXXXXX?text=Me%20interesa%20el%20plan%20B%C3%A1sico" class="pkg-cta pkg-cta-ghost">Comenzar con Básico <i class="ti ti-arrow-right"></i></a>
       </div>
-
-      <!-- ESTÁNDAR (featured) -->
-      <div class="pkg star">
-        <div class="pkg-badge">MÁS VENDIDO</div>
+      <div class="pkg featured">
+        <div class="pkg-badge">RECOMENDADO</div>
         <div class="pkg-tier">Plan estándar</div>
         <div class="pkg-name">Estándar</div>
-        <div class="pkg-sub">Para PyMEs en crecimiento</div>
-        <div class="pkg-price">$6,500 <small>MXN</small></div>
-        <div class="pkg-bill">por mes · sin contrato forzoso</div>
-        <div class="pkg-tag">~6–8 hrs / semana</div>
-        <hr class="pkg-hr" />
+        <div class="pkg-tagline">Protección completa para PyMEs en crecimiento</div>
+        <div class="pkg-price">$6,500 <small>MXN/mes + IVA</small></div>
+        <div class="pkg-bill">Sin contrato forzoso</div>
+        <div class="pkg-capacity"><i class="ti ti-clock" style="font-size:12px"></i> ~6–8 hrs / semana</div>
+        <hr class="pkg-hr"/>
         <div class="pkg-fts">
-          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Todo lo del plan Básico</strong></div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Auditoría de red mensual (aislamiento, segmentación)</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Simulaciones de phishing y capacitación (2x/mes)</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Monitoreo de filtraciones en dark web</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Diseño de plan de respuesta a incidentes</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Todo lo del Básico</strong></div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Auditoría de red mensual</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Blindaje de Correo</strong> + simulaciones phishing</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Radar Dark Web</strong></div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Plan de respuesta a incidentes</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Revisión de firewall perimetral</div>
         </div>
-        <a href="https://wa.me/52XXXXXXXXXX?text=Hola,%20me%20interesa%20el%20plan%20Est%C3%A1ndar%20de%20BreachCorp"
-           class="pb pb-s" target="_blank" rel="noopener">
-          Seleccionar Estándar <i class="ti ti-arrow-right"></i>
-        </a>
+        <a href="https://wa.me/52XXXXXXXXXX?text=Me%20interesa%20el%20plan%20Est%C3%A1ndar" class="pkg-cta pkg-cta-solid">Comenzar con Estándar <i class="ti ti-arrow-right"></i></a>
       </div>
-
-      <!-- PREMIUM -->
       <div class="pkg">
         <div class="pkg-tier">Plan premium</div>
         <div class="pkg-name">Premium</div>
-        <div class="pkg-sub">Para empresas con mayor riesgo</div>
-        <div class="pkg-price">$12,000 <small>MXN</small></div>
-        <div class="pkg-bill">por mes · sin contrato forzoso</div>
-        <div class="pkg-tag">~12–15 hrs / semana</div>
-        <hr class="pkg-hr" />
+        <div class="pkg-tagline">Máxima protección para mayor exposición</div>
+        <div class="pkg-price">$12,000 <small>MXN/mes + IVA</small></div>
+        <div class="pkg-bill">Sin contrato forzoso</div>
+        <div class="pkg-capacity"><i class="ti ti-clock" style="font-size:12px"></i> ~12–15 hrs / semana</div>
+        <hr class="pkg-hr"/>
         <div class="pkg-fts">
-          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Todo lo del plan Estándar</strong></div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Pen testing trimestral (Operaciones Red Team)</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Monitoreo 24/7 de alertas y telemetría</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Despliegue y afinación de políticas de seguridad</div>
-          <div class="ft"><i class="ti ti-circle-check"></i> Gestor técnico de cuenta dedicado</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Todo lo del Estándar</strong></div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Pentesting trimestral (Red Team)</strong></div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Guardia Virtual</strong> — Monitoreo 24/7</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Despliegue de políticas de seguridad</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Gestor técnico dedicado</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> Respuesta prioritaria a incidentes</div>
         </div>
-        <a href="https://wa.me/52XXXXXXXXXX?text=Hola,%20me%20interesa%20el%20plan%20Premium%20de%20BreachCorp"
-           class="pb pb-g" target="_blank" rel="noopener">
-          Seleccionar Premium <i class="ti ti-arrow-right"></i>
-        </a>
+        <a href="https://wa.me/52XXXXXXXXXX?text=Me%20interesa%20el%20plan%20Premium" class="pkg-cta pkg-cta-ghost">Comenzar con Premium <i class="ti ti-arrow-right"></i></a>
       </div>
-
     </div>
-
-    <!-- Adicionales -->
-    <div style="margin-top:16px;padding:14px 18px;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;font-size:13px;color:var(--muted);">
-      <i class="ti ti-info-circle" style="color:var(--orange);font-size:15px;vertical-align:middle;margin-right:6px;"></i>
-      Servicios adicionales puntuales: <strong style="color:var(--white)">Auditorías únicas</strong> $2,500–$8,000 ·
-      <strong style="color:var(--white)">Capacitación empresarial</strong> $1,500/sesión ·
-      <strong style="color:var(--white)">Respuesta urgente a incidentes</strong> desde $500/hr
+    <div class="addons">
+      <i class="ti ti-puzzle"></i>
+      <strong>Servicios puntuales:</strong>
+      Pentesting desde $4,500 · Auditoría única $2,500–$8,000 · Blindaje de Correo desde $3,000 · Respuesta a incidentes $800/hr ·
+      <a href="https://wa.me/52XXXXXXXXXX?text=Cotizar%20servicio%20puntual" style="color:var(--orange);text-decoration:none">Cotiza el tuyo →</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ WHY ══════════════ -->
-<section class="sec" style="padding-top:0">
+<!-- ═══════════ VALIDACIÓN PENTESTING ═══════════ -->
+<section class="sec validation-sec" id="validacion">
   <div class="w">
-    <div class="eye">Por qué BreachCorp</div>
-    <h2>Operaciones reales,<br>no solo certificados en la pared</h2>
-    <p class="lead">Somos administradores de seguridad activos que conocen los ataques desde adentro.</p>
-    <div class="why-g">
-      <div class="wc">
-        <div class="wi"><i class="ti ti-antenna"></i></div>
-        <h3>Experiencia operativa real</h3>
-        <p>No somos consultores de libros. Administramos infraestructuras reales y conocemos de primera mano cómo piensan y actúan los atacantes.</p>
+    <div class="eyebrow">La verdad sobre las auditorías</div>
+    <h2>Cuidado con los "Pentesting"<br>de PDF automatizados</h2>
+    <p class="lead">Muchas consultorías corren un escáner y te entregan un PDF de 100 páginas. Eso <strong>no es</strong> Pentesting. Es un escaneo glorificado.</p>
+    <div class="validation-grid">
+      <div class="validation-card">
+        <div class="validation-badge"><i class="ti ti-shield-check" style="font-size:12px"></i> Pentesting Real</div>
+        <h3>Nosotros atacamos tu red manualmente</h3>
+        <p>Un escáner no puede ver cómo se encadenan dos vulnerabilidades menores para lograr acceso total. Un humano sí.</p>
+        <div class="validation-features">
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Explotación real (segura)</strong> — Probamos si un atacante realmente podría entrar.</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Evasión de defensas</strong> — Verificamos si tu EDR detectaría a un hacker inteligente.</div>
+          <div class="ft"><i class="ti ti-circle-check"></i> <strong>Reporte de impacto</strong> — Plan de acción priorizado, no listado de relleno.</div>
+        </div>
+        <div class="validation-price">Desde $4,500 <small>MXN + IVA</small></div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:20px">Incluye contrato de alcance y confidencialidad.</div>
+        <a href="https://wa.me/52XXXXXXXXXX?text=Quiero%20un%20Pentesting%20Real" class="validation-cta"><i class="ti ti-search"></i> Solicitar auditoría real</a>
       </div>
-      <div class="wc">
-        <div class="wi"><i class="ti ti-currency-peso"></i></div>
-        <h3>Precios para PyMEs mexicanas</h3>
-        <p>La ciberseguridad no debe ser exclusiva de corporativos. Paquetes accesibles sin comprometer la calidad técnica del servicio.</p>
-      </div>
-      <div class="wc">
-        <div class="wi"><i class="ti ti-messages"></i></div>
-        <h3>Comunicación directa, sin capas</h3>
-        <p>Sin intermediarios ni tecnicismos innecesarios. Hablas con el experto directamente por WhatsApp, correo o llamada.</p>
-      </div>
-      <div class="wc">
-        <div class="wi"><i class="ti ti-file-report"></i></div>
-        <h3>Reportes que entiende el dueño</h3>
-        <p>Cada mes recibes un resumen claro de tu postura de seguridad, con prioridades y acciones concretas para tomar decisiones.</p>
+      <div class="validation-visual">
+        <div class="validation-stat"><div class="validation-stat-icon"><i class="ti ti-robot-off"></i></div><div class="validation-stat-text"><h4>No vendemos reportes de relleno</h4><p>El 80% de nuestro valor está en la validación manual que un escáner no puede hacer.</p></div></div>
+        <div class="validation-stat"><div class="validation-stat-icon"><i class="ti ti-settings"></i></div><div class="validation-stat-text"><h4>Validamos tu EDR actual</h4><p>Una herramienta de $50k mal configurada protege menos que una de $5k bien ajustada.</p></div></div>
+        <div class="validation-stat"><div class="validation-stat-icon"><i class="ti ti-file-check"></i></div><div class="validation-stat-text"><h4>Scope legal incluido</h4><p>Toda evaluación incluye contrato de alcance que protege a ambas partes.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ PROCESS ══════════════ -->
-<section class="sec" style="padding-top:0" id="proceso">
+<!-- ═══════════ PROCESO ═══════════ -->
+<section class="sec process-sec" id="proceso">
   <div class="w">
-    <div class="eye">Cómo trabajamos</div>
-    <h2>Del primer contacto<br>al escudo activo</h2>
-    <p class="lead" style="margin-bottom:40px">En menos de una semana tu empresa ya está siendo monitoreada y protegida.</p>
+    <div class="eyebrow">Cómo trabajamos</div>
+    <h2>De cero a protegido</h2>
+    <p class="lead" style="margin-bottom:0">Sin instalaciones complicadas. Sin interrumpir tu operación.</p>
     <div class="proc-g">
-      <div class="ps">
-        <div class="pn">01</div>
-        <h3>Consulta gratuita</h3>
-        <p>30 minutos para entender tu negocio, qué datos manejas y cuáles son tus riesgos reales. Sin compromiso.</p>
+      <div class="ps"><div class="ps-connector"><i class="ti ti-chevron-right"></i></div><div class="pn">01</div><h3>Consulta gratuita</h3><p>30 minutos. Analizamos tu negocio y riesgos reales. Sin compromiso.</p><div class="ps-time"><i class="ti ti-clock"></i> 30 minutos</div></div>
+      <div class="ps"><div class="ps-connector"><i class="ti ti-chevron-right"></i></div><div class="pn">02</div><h3>Diagnóstico inicial</h3><p>Auditamos tu infraestructura. En 48 horas sabes exactamente qué tan expuesto estás.</p><div class="ps-time"><i class="ti ti-clock"></i> 48 horas</div></div>
+      <div class="ps"><div class="ps-connector"><i class="ti ti-chevron-right"></i></div><div class="pn">03</div><h3>Activación del plan</h3><p>Implementamos medidas prioritarias y comenzamos monitoreo desde el Día 1.</p><div class="ps-time"><i class="ti ti-clock"></i> Día 1–3</div></div>
+      <div class="ps"><div class="pn">04</div><h3>Protección continua</h3><p>Revisiones periódicas, reportes mensuales y soporte activo. Siempre cubierto.</p><div class="ps-time"><i class="ti ti-clock"></i> Mensual</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NOSOTROS ═══════════ -->
+<section class="sec founding-sec" id="nosotros">
+  <div class="w founding-g">
+    <div class="founding-copy">
+      <div class="eyebrow">Quiénes somos</div>
+      <h2>Nacimos de la<br>frustración real</h2>
+      <p>Vimos PyMEs pagar fortunas por "ciberseguridad" que era un PDF mensual de un escáner. <strong>Nadie cerraba las vulnerabilidades. Nadie respondía cuando había un incidente real.</strong></p>
+      <p style="margin-top:16px">BreachCorp existe para ser lo que esas empresas necesitaban: <strong>un equipo técnico que realmente hace el trabajo</strong>, no que solo lo documenta.</p>
+      <div class="fvs">
+        <div class="fv"><div class="fv-icon"><i class="ti ti-bulb"></i></div><div><h4>Transparencia radical</h4><p>Te mostramos qué hacemos, cómo y qué encontramos. Sin black boxes.</p></div></div>
+        <div class="fv"><div class="fv-icon"><i class="ti ti-hand-stop"></i></div><div><h4>Saber decir no</h4><p>Si no necesitas un servicio, te lo decimos. Tu confianza vale más que una factura extra.</p></div></div>
+        <div class="fv"><div class="fv-icon"><i class="ti ti-target-arrow"></i></div><div><h4>Enfoque ofensivo</h4><p>Pensamos como atacantes para defender como nadie. Cada recomendación viene de haberla probado.</p></div></div>
       </div>
-      <div class="ps">
-        <div class="pn">02</div>
-        <h3>Diagnóstico inicial</h3>
-        <p>Auditamos tu infraestructura y entregamos un reporte detallado de vulnerabilidades en 48 horas.</p>
-      </div>
-      <div class="ps">
-        <div class="pn">03</div>
-        <h3>Activación del plan</h3>
-        <p>Implementamos las medidas prioritarias y comenzamos el monitoreo desde el primer día activo.</p>
-      </div>
-      <div class="ps">
-        <div class="pn">04</div>
-        <h3>Protección continua</h3>
-        <p>Revisiones periódicas, reportes mensuales y soporte activo. Tu empresa siempre cubierta.</p>
+    </div>
+    <div class="demo-terminal">
+      <div class="demo-term-bar"><div class="d dr"></div><div class="d dy"></div><div class="d dg"></div><span class="t-title">breachcorp — diagnosis-preview</span></div>
+      <div class="demo-term-body">
+        <span class="tl" style="color:var(--muted);font-size:11px"># Diagnóstico real (datos de demo)</span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl"><span class="tp">[*]</span> <span class="tc">Escaneando 198.51.100.0/24...</span></span>
+        <span class="tl"><span class="tok">[+]</span> <span class="tc">12 hosts activos</span></span>
+        <span class="tl"><span class="tok">[+]</span> <span class="tc">Puertos: 22, 80, 443, 3306, 3389</span></span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl"><span class="te">[!]</span> <span class="tc">CRÍTICO: RDP (3389) expuesto a internet</span></span>
+        <span class="tl"><span class="te">[!]</span> <span class="tc">CRÍTICO: MySQL sin autenticación</span></span>
+        <span class="tl"><span class="tw">[~]</span> <span class="tc">ALTO: SSL expirado en dominio principal</span></span>
+        <span class="tl"><span class="tw">[~]</span> <span class="tc">ALTO: 3 credenciales en breach DB</span></span>
+        <span class="tl"><span class="tp">[i]</span> <span class="tc">MEDIO: Firewall sin reglas de egress</span></span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl" style="color:var(--orange);font-weight:500">━━━ 2 críticos · 2 altos · 1 medio ━━━</span>
+        <span class="tl" style="color:var(--muted);font-size:11px"># Tu empresa podría arrojar resultados similares.</span>
+        <span class="tl" style="color:var(--muted);font-size:11px"># Agenda el tuyo y compruébalo.</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ ABOUT ══════════════ -->
-<section class="sec" id="nosotros"
-  style="background:var(--surface);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)">
-  <div class="w about-g">
-
-    <div class="at">
-      <!-- Logo — coloca logo.png en la misma carpeta que index.html -->
-      <div class="logo-img"><img src="logo.png" alt="BreachCorp MX — Operations & Resilience" /></div>
-      <div class="eye">Quiénes somos</div>
-      <h2>Expertos en seguridad con experiencia en campo</h2>
-      <p>BreachCorp MX nació de la experiencia de administradores de seguridad que han protegido infraestructuras críticas y detectado amenazas reales en redes empresariales mexicanas.</p>
-      <p>Nuestra misión: llevar el mismo nivel de protección que tienen las grandes corporaciones a las PyMEs de México, al precio que un negocio real puede pagar.</p>
-      <div class="certs">
-        <!-- Actualiza con tus certificaciones reales -->
-        <span class="cert">CEH</span>
-        <span class="cert">CompTIA Sec+</span>
-        <span class="cert">OSCP</span>
-        <span class="cert">ISO 27001</span>
-        <span class="cert">Nessus</span>
-      </div>
-    </div>
-
-    <!-- Security dashboard mockup -->
-    <div class="dash">
-      <div class="dh">
-        <span class="dh-t">Panel de seguridad — cliente activo</span>
-        <span class="s-ok">Protegido</span>
-      </div>
-      <div class="dr2"><span>Estado general</span><span class="vg">✓ Sin incidentes</span></div>
-      <div class="dr2"><span>Última auditoría</span><span class="vw">hace 3 días</span></div>
-      <div class="dr2"><span>Vulnerabilidades críticas</span><span class="vg">0</span></div>
-      <div class="dr2"><span>Intentos de intrusión (mes)</span><span class="va">14 bloqueados</span></div>
-      <div class="dr2"><span>Credenciales filtradas</span><span class="vg">0 detectadas</span></div>
-      <div class="dr2"><span>Próxima revisión</span><span class="vw">en 9 días</span></div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════ CTA ══════════════ -->
-<section class="cta-s" id="contacto">
-  <div class="w">
-    <div class="eye" style="margin-bottom:16px">Agenda tu consulta gratuita</div>
-    <h2>¿Tu empresa está realmente protegida?</h2>
-    <p class="sub">Descúbrelo en 30 minutos y sin costo. Te decimos exactamente qué tan expuesto estás.</p>
-    <div class="cta-btns">
-      <a href="https://wa.me/52XXXXXXXXXX?text=Hola%20BreachCorp,%20quiero%20un%20diagn%C3%B3stico%20gratuito"
-         class="btn b-wa" target="_blank" rel="noopener">
-        <i class="ti ti-brand-whatsapp"></i> WhatsApp directo
-      </a>
-      <a href="mailto:contacto@breachcorp.mx?subject=Solicitud%20de%20Diagn%C3%B3stico%20Inicial%20Gratuito"
-         class="btn b-ghost">
-        <i class="ti ti-mail"></i> contacto@breachcorp.mx
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ FOOTER ══════════════ -->
-<footer>
-  <div class="w fi">
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="sec faq-sec" id="faq">
+  <div class="w faq-g">
     <div>
-      <div class="fl">BREACH<span>CORP</span></div>
-      <div class="fs">Operations &amp; Resilience</div>
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2>Todo lo que<br>necesitas saber</h2>
+      <p class="lead">Si no encuentras tu respuesta, escríbenos por WhatsApp. Respondemos en menos de 2 horas.</p>
     </div>
-    <ul class="flinks">
-      <li><a href="#paquetes">Paquetes</a></li>
-      <li><a href="#proceso">Proceso</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="mailto:contacto@breachcorp.mx">Contacto</a></li>
-    </ul>
-    <span class="fc">© 2026 BreachCorp MX · breachcorp.mx</span>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="faqToggle(this)">¿Realmente no tienen contratos anuales?<i class="ti ti-plus"></i></button><div class="faq-a">Correcto. Operamos mes a mes. Nuestra retención se basa en resultados, no en trampas legales.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="faqToggle(this)">¿Qué tan rápido pueden empezar?<i class="ti ti-plus"></i></button><div class="faq-a">Después de la consulta gratuita (30 min), el diagnóstico inicia en 24-48 horas. El plan se activa desde el Día 1.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="faqToggle(this)">¿Necesitan instalar algo en mis equipos?<i class="ti ti-plus"></i></button><div class="faq-a">Depende del plan. En Básico, no. En Estándar y Premium podemos desplegar agentes ligeros que no afectan rendimiento.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="faqToggle(this)">¿Qué diferencia su pentesting de un escáner?<i class="ti ti-plus"></i></button><div class="faq-a">Un escáner dice "este puerto está abierto". Nosotros decimos "por este puerto + esta falla, un atacante accede a tu BD — y aquí está la prueba". Explotación manual vs. listado automático.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="faqToggle(this)">Soy muy pequeño (5-10 empleados), ¿tiene sentido?<i class="ti ti-plus"></i></button><div class="faq-a">Los atacantes automatizados no ven tamaño. Ven IPs. Si tienes servidor, correo corporativo o procesas datos de clientes, eres un objetivo. El Básico es para ti.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="faqToggle(this)">¿Qué pasa si detectan un incidente?<i class="ti ti-plus"></i></button><div class="faq-a">Te notificamos inmediatamente. En Premium, respuesta prioritaria. En todos los planes, te guiamos paso a paso en la contención.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="faqToggle(this)">¿Cómo garantizan la confidencialidad?<i class="ti ti-plus"></i></button><div class="faq-a">Todo engagement incluye NDA firmado antes de iniciar. No almacenamos datos sensibles más allá de lo necesario.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA FINAL ═══════════ -->
+<section class="cta-sec">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="w">
+    <h2>El diagnóstico es gratuito.<br>La vulnerabilidad no lo es.</h2>
+    <p class="sub">30 minutos por WhatsApp. Sin compromiso. Sin letra chica. Solo la verdad sobre tu empresa.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/52XXXXXXXXXX?text=Hola%20BreachCorp,%20quiero%20consulta%20gratuita" class="btn btn-wa btn-lg"><i class="ti ti-brand-whatsapp"></i> Agendar consulta gratuita</a>
+      <a href="#paquetes" class="btn btn-ghost btn-lg">Ver paquetes <i class="ti ti-arrow-down"></i></a>
+    </div>
+    <div class="cta-note"><i class="ti ti-clock"></i> Respondemos en menos de 2 horas en horario laboral</div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER (ISP-style multi-column) ═══════════ -->
+<footer>
+  <div class="w">
+    <div class="f-grid">
+      <div class="f-brand">
+        <div class="f-logo" style="font-family:var(--fh);font-size:18px;font-weight:700;letter-spacing:.07em">BREACH<span style="color:var(--orange)">CORP</span></div>
+        <p>Ciberseguridad táctica para PyMEs. Monitoreo activo, pentesting manual y protección real sin contratos forzosos.</p>
+      </div>
+      <div class="f-col">
+        <h4>Servicios</h4>
+        <a href="#guardia">Guardia Virtual</a>
+        <a href="#pentest">Pentesting Real</a>
+        <a href="#auditoria">Auditoría de Infraestructura</a>
+        <a href="#correo">Blindaje de Correo</a>
+        <a href="#darkweb">Radar Dark Web</a>
+        <a href="#incidentes">Respuesta a Incidentes</a>
+      </div>
+      <div class="f-col">
+        <h4>Soluciones</h4>
+        <a href="#sol-comercio">Comercio y Retail</a>
+        <a href="#sol-manufactura">Manufactura</a>
+        <a href="#sol-servicios">Servicios Profesionales</a>
+        <a href="#sol-salud">Clínicas y Salud</a>
+      </div>
+      <div class="f-col">
+        <h4>Empresa</h4>
+        <a href="#nosotros">Quiénes somos</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#paquetes">Precios</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://wa.me/52XXXXXXXXXX?text=Hola%20BreachCorp">Contacto</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div class="f-copy">© 2025 BreachCorp. Todos los derechos reservados.</div>
+      <div class="f-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+      </div>
+    </div>
   </div>
 </footer>
 
+<!-- ═══════════ SCRIPTS ═══════════ -->
 <script>
-/* ── TERMINAL ANIMATION ── */
-const LINES = [
-  { t:'[*] Iniciando reconocimiento de superficie...', c:'' },
-  { t:'[+] Host activo: 192.168.1.1  (RTT 2ms)', c:'tok' },
-  { t:'[+] 4 puertos abiertos: 22, 80, 443, 8080', c:'' },
-  { t:'[!] Puerto 8080 sin certificado SSL/TLS válido', c:'tw' },
-  { t:'[*] Consultando bases de datos de filtraciones...', c:'' },
-  { t:'[!] 3 cuentas corporativas en dark web leaks', c:'te' },
-  { t:'[+] Analizando reglas de firewall perimetral...', c:'' },
-  { t:'[!] Regla permisiva: 0.0.0.0/0 → puerto 22', c:'te' },
-  { t:'[*] Verificando versiones de software instalado...', c:'' },
-  { t:'[!] OpenSSL 1.0.2 detectado  (CVE-2022-0778)', c:'tw' },
-  { t:'────────────────────────────────────────────', c:'' },
-  { t:'RESUMEN: 2 críticos · 3 medios · 2 bajos', c:'te' },
-  { t:'✓  BreachCorp MX puede remediar todo esto.', c:'tok' },
+// Terminal animation
+const termLines=[
+  {d:600,h:'<span class="tl"><span class="tp">[*]</span> <span class="tc">Iniciando reconocimiento pasivo...</span></span>'},
+  {d:1400,h:'<span class="tl"><span class="tok">[+]</span> <span class="tc">DNS: empresa.mx → 198.51.100.42</span></span>'},
+  {d:2200,h:'<span class="tl"><span class="tok">[+]</span> <span class="tc">Puertos: 22, 80, 443, 3306, 3389</span></span>'},
+  {d:3200,h:'<span class="tl"><span class="tw">[~]</span> <span class="tc">SSL expirado hace 14 días</span></span>'},
+  {d:4000,h:'<span class="tl"><span class="te">[!]</span> <span class="tc">CRÍTICO: RDP expuesto sin NLA</span></span>'},
+  {d:5000,h:'<span class="tl"><span class="te">[!]</span> <span class="tc">CRÍTICO: MySQL root sin contraseña</span></span>'},
+  {d:5800,h:'<span class="tl"><span class="tw">[~]</span> <span class="tc">ALTO: 3 credenciales en breach DB</span></span>'},
+  {d:6800,h:'<span class="tl"><span class="tp">[i]</span> <span class="tc">MEDIO: SPF/DKIM/DMARC no configurados</span></span>'},
+  {d:7800,h:'<span class="tl">&nbsp;</span>'},
+  {d:8200,h:'<span class="tl" style="color:var(--orange);font-weight:500">━━━ 2 críticos · 2 altos · 1 medio ━━━</span>'},
+  {d:9000,h:'<span class="tl" style="color:var(--muted);font-size:11px"># Tu red podría verse igual. Agenda el diagnóstico.</span>'},
+  {d:10000,h:'<span class="tl"><span class="tp">root@breachcorp</span><span style="color:#555">:~#</span> <span class="cur"></span></span>'}
 ];
-const term = document.getElementById('term');
-let i = 0;
-(function next() {
-  if (i >= LINES.length) return;
-  const { t, c } = LINES[i++];
-  const old = term.querySelector('.cur');
-  if (old) old.remove();
-  const el = document.createElement('span');
-  el.className = 'tl';
-  el.innerHTML = c ? `<span class="${c}">${t}</span>` : t;
-  term.appendChild(el);
-  term.scrollTop = term.scrollHeight;
-  if (i < LINES.length) setTimeout(next, 310 + Math.random() * 270);
-  else { const c2 = document.createElement('span'); c2.className = 'cur'; el.appendChild(c2); }
-})();
+const t=document.getElementById('term');
+termLines.forEach(l=>{setTimeout(()=>{const c=t.querySelector('.cur');if(c)c.remove();t.insertAdjacentHTML('beforeend',l.h);t.scrollTop=t.scrollHeight},l.d)});
 
-/* ── MOBILE MENU ── */
-function navToggle(btn) {
-  const ul  = document.getElementById('navlinks');
-  const cta = document.querySelector('.nav-cta');
-  const open = ul.dataset.open === '1';
-  if (open) {
-    ul.removeAttribute('style'); ul.dataset.open = '0';
-    if (cta) cta.style.cssText = '';
-  } else {
-    ul.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:rgba(15,15,15,.97);padding:24px 5% 32px;gap:22px;border-bottom:0.5px solid rgba(255,255,255,.07);z-index:299';
-    ul.dataset.open = '1';
-    if (cta) cta.style.cssText = 'display:block;margin:8px 5% 0';
-  }
-}
+// FAQ
+function faqToggle(b){const a=b.nextElementSibling,o=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.faq-q').forEach(q=>{q.setAttribute('aria-expanded','false');q.nextElementSibling.classList.remove('open')});if(!o){b.setAttribute('aria-expanded','true');a.classList.add('open')}}
 
-/* ── SMOOTH SCROLL ── */
-document.querySelectorAll('a[href^="#"]').forEach(a =>
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
-  })
-);
-
-/* ── NAV SCROLL TINT ── */
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').style.background =
-    window.scrollY > 40 ? 'rgba(15,15,15,.98)' : 'rgba(15,15,15,.92)';
-});
+// Mobile nav
+function navToggle(b){const n=document.getElementById('mobileNav'),o=n.classList.contains('open');n.classList.toggle('open');const s=b.querySelectorAll('span');if(!o){s[0].style.transform='rotate(45deg) translate(4px,4px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(4px,-4px)';document.body.style.overflow='hidden'}else{closeMobile()}}
+function closeMobile(){const n=document.getElementById('mobileNav'),b=document.querySelector('.ham');n.classList.remove('open');const s=b.querySelectorAll('span');s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform='';document.body.style.overflow=''}
+function toggleMobSub(btn,id){const sub=document.getElementById(id);sub.classList.toggle('open');const icon=btn.querySelector('i');icon.style.transform=sub.classList.contains('open')?'rotate(180deg)':''}
 </script>
 </body>
 </html>
-    
