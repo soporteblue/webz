@@ -65,6 +65,8 @@
 
   .mega{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s,transform .2s;transform:translateX(-50%) translateY(6px);z-index:400}
   .nav-item:hover .mega{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  /* FIX: puente invisible mega */
+  .mega::before{content:'';position:absolute;top:-8px;left:0;right:0;height:8px}
   .mega-inner{background:var(--surface);border:1px solid var(--border2);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,.6);overflow:hidden}
   .mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
   .mega-item{display:flex;gap:14px;padding:18px 22px;border-bottom:1px solid var(--border);transition:background .15s;cursor:pointer;text-decoration:none}
@@ -81,6 +83,8 @@
 
   .simple-drop{position:absolute;top:calc(100% + 8px);right:0;min-width:220px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s,transform .2s;transform:translateY(6px);z-index:400}
   .nav-item:hover .simple-drop{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+  /* FIX: puente invisible simple-drop */
+  .simple-drop::before{content:'';position:absolute;top:-8px;left:0;right:0;height:8px}
   .simple-inner{background:var(--surface);border:1px solid var(--border2);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.5);padding:6px;overflow:hidden}
   .simple-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:13px;color:var(--muted2);text-decoration:none;transition:all .15s}
   .simple-item:hover{background:rgba(255,255,255,.04);color:var(--white)}
@@ -90,6 +94,8 @@
   .sub-wrap>.simple-item::after{content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:4px solid var(--muted);border-top:3px solid transparent;border-bottom:3px solid transparent}
   .sub-menu{position:absolute;left:calc(100% + 6px);top:0;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s,transform .15s;transform:translateX(-4px);z-index:401}
   .sub-wrap:hover .sub-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0)}
+  /* FIX: puente horizontal sub-menú */
+  .sub-menu::before{content:'';position:absolute;top:0;left:-6px;width:6px;height:100%}
   .sub-inner{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,.5);padding:5px}
   .sub-item{display:block;padding:9px 14px;border-radius:6px;font-size:12.5px;color:var(--muted2);text-decoration:none;transition:all .15s}
   .sub-item:hover{background:rgba(255,255,255,.04);color:var(--white)}
@@ -771,7 +777,7 @@
       <div class="f-col"><h4>Empresa</h4><a href="#nosotros">Quiénes somos</a><a href="#proceso">Proceso</a><a href="#paquetes">Precios</a><a href="#faq">FAQ</a><a data-wa="Hola BreachCorp">Contacto</a><a data-email href="#" class="js-email">correo</a></div>
     </div>
     <div class="f-bottom">
-      <div class="f-copy">© 2026 BreachCorp. Todos los derechos reservados.</div>
+      <div class="f-copy">© 2025 BreachCorp. Todos los derechos reservados.</div>
       <div class="f-legal"><a href="#">Privacidad</a><a href="#">Términos</a></div>
     </div>
   </div>
@@ -789,40 +795,23 @@
      Cambia SOLO aquí y se actualiza en TODA la página.
      ═══════════════════════════════════════════════════════ -->
 <script>
-/*
- * ┌─────────────────────────────────────────────┐
- * │  CAMBIA SOLO ESTO — UN SOLO LUGAR          │
- * └─────────────────────────────────────────────┘
- */
 const BC = {
-  // WhatsApp: 52 = lada México, luego tu número sin espacios ni guiones
   wa: '529621770905',
-
-  // Correo de contacto
   email: 'contacto@breachcorp.mx',
-
-  // Teléfono para mostrar en pantalla (formato legible)
   phone: '962 177 0905'
 };
 
-
-/* ── NO TOCAR NADA DE AQUÍ HACIA ABAJO ── */
-
-// Inyectar todos los enlaces de WhatsApp
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-wa]').forEach(el => {
     const msg = el.getAttribute('data-wa');
     el.href = 'https://wa.me/' + BC.wa + '?text=' + encodeURIComponent(msg);
   });
-
-  // Inyectar correo
   document.querySelectorAll('[data-email]').forEach(el => {
     el.href = 'mailto:' + BC.email;
     el.textContent = BC.email;
   });
 });
 
-// Terminal animation
 const termLines=[
   {d:600,h:'<span class="tl"><span class="tp">[*]</span> <span class="tc">Iniciando reconocimiento pasivo...</span></span>'},
   {d:1400,h:'<span class="tl"><span class="tok">[+]</span> <span class="tc">DNS: empresa.mx → 198.51.100.42</span></span>'},
@@ -840,10 +829,8 @@ const termLines=[
 const t=document.getElementById('term');
 termLines.forEach(l=>{setTimeout(()=>{const c=t.querySelector('.cur');if(c)c.remove();t.insertAdjacentHTML('beforeend',l.h);t.scrollTop=t.scrollHeight},l.d)});
 
-// FAQ
 function faqToggle(b){const a=b.nextElementSibling,o=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.faq-q').forEach(q=>{q.setAttribute('aria-expanded','false');q.nextElementSibling.classList.remove('open')});if(!o){b.setAttribute('aria-expanded','true');a.classList.add('open')}}
 
-// Mobile nav
 function navToggle(b){const n=document.getElementById('mobileNav'),o=n.classList.contains('open');n.classList.toggle('open');const s=b.querySelectorAll('span');if(!o){s[0].style.transform='rotate(45deg) translate(4px,4px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(4px,-4px)';document.body.style.overflow='hidden'}else{closeMobile()}}
 function closeMobile(){const n=document.getElementById('mobileNav'),b=document.querySelector('.ham');n.classList.remove('open');const s=b.querySelectorAll('span');s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform='';document.body.style.overflow=''}
 function toggleMobSub(btn,id){const sub=document.getElementById(id);sub.classList.toggle('open');const icon=btn.querySelector('i');icon.style.transform=sub.classList.contains('open')?'rotate(180deg)':''}
